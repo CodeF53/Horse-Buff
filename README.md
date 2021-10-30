@@ -1,9 +1,24 @@
-# Fabric Example Mod
+# Horse Buff
+[![CC BY-NC-SA 4.0][cc-by-nc-sa-image]][cc-by-nc-sa]
 
-## Setup
+[cc-by-nc-sa]: http://creativecommons.org/licenses/by-nc-sa/4.0/
+[cc-by-nc-sa-image]: https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png
 
-For setup instructions please see the [fabric wiki page](https://fabricmc.net/wiki/tutorial:setup) that relates to the IDE that you are using.
+## About
 
-## License
+Removes stupid things about horses.
+- Reduce rubberbanding on stairs/slabs "Horse moved wrongly!" ([MC-100830](https://bugs.mojang.com/browse/MC-100830))
+- Better Breeding
+- Saddled Horses don't wander
 
-This template is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.
+Todo
+- Remove break speed debuff
+
+## New Breeding Logic
+
+Stays within vanilla min/max horse stats
+
+1. Take average of the parents' traits
+2. Random amount added/subtracted from said average
+  - +/- 10% of range between max and min
+3. clamp to vanilla min/max stat

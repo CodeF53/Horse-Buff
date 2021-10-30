@@ -19,7 +19,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.fabricmc.example.ExampleMod"
+      "net.F53.HorseBuff.HorseBuffInit"
     ]
   },
   "mixins": [
