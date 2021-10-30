@@ -1,20 +1,20 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "horsebuff",
   "version": "${version}",
 
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "HorseBuff",
+  "description": "Makes Horses better by removing stupid things",
   "authors": [
-    "Me!"
+    "CodeF53#0241"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://github.com/CodeF53/Horse-Buff",
+    "sources": "https://github.com/CodeF53/Horse-Buff"
   },
 
-  "license": "CC0-1.0",
-  "icon": "assets/modid/icon.png",
+  "license": "CC BY-NC-SA",
+  "icon": "assets/horsebuff/icon.png",
 
   "environment": "*",
   "entrypoints": {
@@ -23,7 +23,7 @@
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "horsebuff.mixins.json"
   ],
 
   "depends": {
