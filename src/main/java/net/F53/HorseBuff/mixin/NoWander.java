@@ -16,8 +16,9 @@ public abstract class NoWander {
     @Shadow public abstract boolean isSaddled();
 
     @ModifyArg(method = "travel(Lnet/minecraft/util/math/Vec3d;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/passive/AnimalEntity;travel(Lnet/minecraft/util/math/Vec3d;)V", ordinal = 0))
-    private void lowerWanderSpeed(Args args) {
+    private Vec3d lowerWanderSpeed(Vec3d input) {
         if (isSaddled())
-            args.set(0, Vec3d.ZERO);
+            return(Vec3d.ZERO);
+        return input;
     }
 }
