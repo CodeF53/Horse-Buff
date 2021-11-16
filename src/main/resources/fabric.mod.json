@@ -20,6 +20,9 @@
   "entrypoints": {
     "main": [
       "net.F53.HorseBuff.HorseBuffInit"
+    ],
+    "modmenu": [
+      "net.F53.HorseBuff.config.ModMenuIntegration"
     ]
   },
   "mixins": [
@@ -30,6 +33,22 @@
     "fabricloader": ">=0.11.3",
     "fabric": "*",
     "minecraft": "1.18.x",
-    "java": ">=16"
+    "java": ">=17"
+    "cloth-config2": ">=5.0.38",
+    "modmenu": ">=2.0.14"
+  },
+  "suggests": {
+    "another-mod": "*"
+  },
+
+  "custom": {
+    "modmenu": {
+      "parent": {
+        "id": "horsebuff",
+        "name": "HorseBuff",
+        "description": "QOL tweaks for horses",
+        "icon": "assets/horsebuff/icon.png"
+      }
+    }
   }
 }

@@ -1,6 +1,11 @@
 package net.F53.HorseBuff;
 
 import net.fabricmc.api.ModInitializer;
+
+import net.F53.HorseBuff.config.ModConfig;
+
+import me.shedaniel.autoconfig.AutoConfig;
+import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -17,5 +22,6 @@ public class HorseBuffInit implements ModInitializer {
 		// Proceed with mild caution.
 
 		LOGGER.info("Horse Buff Initialized");
+		AutoConfig.register(ModConfig.class, Toml4jConfigSerializer::new);
 	}
 }

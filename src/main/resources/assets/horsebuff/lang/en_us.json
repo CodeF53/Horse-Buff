@@ -1,0 +1,7 @@
+{
+  "text.autoconfig.HorseBuff.title": "Horse Buff Config",
+  "text.autoconfig.HorseBuff.option.noWander": "No Horse Wandering",
+  "text.autoconfig.HorseBuff.option.noWander.@Tooltip": "Yes - saddled horses wont wander.\nNo - saddled horses will wander",
+  "text.autoconfig.HorseBuff.option.fairBreeds": "Breeding Changes",
+  "text.autoconfig.HorseBuff.option.fairBreeds.@Tooltip": "Yes - game uses alternate breeding algorithm.\nNo - game uses vanilla breeding algorithm"
+}
