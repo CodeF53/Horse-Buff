@@ -1,5 +1,7 @@
 package net.F53.HorseBuff.config;
 
+import me.shedaniel.autoconfig.AutoConfig;
+import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer;
 import net.F53.HorseBuff.ModInfo;
 import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.*;
@@ -12,8 +14,16 @@ public class ModConfig implements ConfigData{
     //    Breeding Changes
 
     @ConfigEntry.Gui.Tooltip
-    public static boolean noWander = true;
+    public boolean noWander = true;
 
     @ConfigEntry.Gui.Tooltip
-    public static boolean fairBreeds = true;
+    public boolean fairBreeds = true;
+
+    public static void init() {
+        AutoConfig.register(ModConfig.class, Toml4jConfigSerializer::new);
+    }
+
+    public static ModConfig getInstance() {
+        return AutoConfig.getConfigHolder(ModConfig.class).getConfig();
+    }
 }
