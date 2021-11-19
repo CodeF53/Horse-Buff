@@ -1,5 +1,6 @@
 package net.F53.HorseBuff.mixin;
 
+import net.F53.HorseBuff.config.ModConfig;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.passive.AnimalEntity;
@@ -11,8 +12,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import static net.F53.HorseBuff.config.ModConfig.fairBreeds;
-
 // Make breeding fair
 @Mixin(HorseBaseEntity.class)
 abstract class HorseChildAttributeMixin extends AnimalEntity {
@@ -23,7 +22,7 @@ abstract class HorseChildAttributeMixin extends AnimalEntity {
 
     @Inject(method = "setChildAttributes", at = @At(value = "TAIL"))
     protected void onSetChildAttributes(PassiveEntity mate, HorseBaseEntity child, CallbackInfo ci) {
-        if (fairBreeds) {
+        if (ModConfig.getInstance().fairBreeds) {
             // Logic - Set stat to average parent stat, +/- some random amount, limited to vanilla min/max values
 
             // Health

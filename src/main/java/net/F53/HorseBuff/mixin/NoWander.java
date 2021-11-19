@@ -1,5 +1,6 @@
 package net.F53.HorseBuff.mixin;
 
+import net.F53.HorseBuff.config.ModConfig;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.passive.HorseBaseEntity;
@@ -9,8 +10,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
-
-import static net.F53.HorseBuff.config.ModConfig.noWander;
 
 // Lower wander speed for saddled horses
 @Mixin(HorseBaseEntity.class)
@@ -23,7 +22,7 @@ public abstract class NoWander extends MobEntity {
 
     @ModifyArg(method = "travel(Lnet/minecraft/util/math/Vec3d;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/passive/AnimalEntity;travel(Lnet/minecraft/util/math/Vec3d;)V", ordinal = 0))
     private Vec3d lowerWanderSpeed(Vec3d input) {
-        if (noWander && isSaddled() && this.getHoldingEntity() == null)
+        if (ModConfig.getInstance().noWander && isSaddled() && this.getHoldingEntity() == null)
             return(Vec3d.ZERO);
         return input;
     }
