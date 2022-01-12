@@ -3,6 +3,7 @@ package net.F53.HorseBuff.mixin.PortalHorse;
 
 import net.F53.HorseBuff.config.ModConfig;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
@@ -26,7 +27,7 @@ public abstract class TickNether {
     @Inject(method = "tickNetherPortal()V", at = @At("HEAD"))
     public void riderTravel(CallbackInfo ci){
         Entity thisEntity = (Entity)(Object)this;
-        if (thisEntity.world instanceof ServerWorld){
+        if (thisEntity.world instanceof ServerWorld && thisEntity instanceof PlayerEntity){
             if (thisEntity.hasVehicle()){
                 int maxPortalTime = thisEntity.getMaxNetherPortalTime();
                 if (inNetherPortal) {
@@ -47,13 +48,10 @@ public abstract class TickNether {
                         Entity newVehicle = oldVehicle.getType().create(serverWorld2);
                         assert newVehicle != null;
                         newVehicle.copyFrom(oldVehicle);
-                        newVehicle.refreshPositionAndAngles(thisEntity.getX(), thisEntity.getY(), thisEntity.getZ(), thisEntity.getYaw(), newVehicle.getPitch());
+                        newVehicle.refreshPositionAndAngles(thisEntity.getX(), thisEntity.getY()-.8, thisEntity.getZ(), thisEntity.getYaw(), newVehicle.getPitch());
                         newVehicle.setVelocity(oldVehicle.getVelocity());
                         serverWorld2.onDimensionChanged(newVehicle);
                         oldVehicle.setRemoved(Entity.RemovalReason.CHANGED_DIMENSION);
-
-                        // Give Vehicle negative fall distance to prevent stupid death on portal travel
-                        newVehicle.fallDistance = -20;
 
                         // Make Entity remount Vehicle
                         thisEntity.startRiding(newVehicle, true);
@@ -71,9 +69,17 @@ public abstract class TickNether {
                 tickNetherPortalCooldown();
             }
         }
-
     }
 
+    // elsewhere, we allow vehicles to be marked as in nether portal, so we have to deny them teleporting
+    @Redirect(method = "tickNetherPortal()V", at = @At(value = "INVOKE", target = "net/minecraft/entity/Entity.hasVehicle ()Z"))
+    public boolean denyVehicleTravel(Entity instance){
+        // if portalPatch, deny travel
+        if (instance.hasPassengers() && ModConfig.getInstance().portalPatch){
+            return true;
+        }
+        return instance.hasVehicle();
+    }
 
     @ModifyConstant(method = "tickNetherPortal()V", constant = @Constant(intValue = 4))
     public int netherPortalTime(int constant){
