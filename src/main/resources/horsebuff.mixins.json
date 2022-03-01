@@ -9,7 +9,6 @@
     "MovementCheck",
     "NoWander",
     "PortalHorse.OnCollideNether",
-    "PortalHorse.PortalChoke",
     "PortalHorse.TickNether"
   ],
   "client": [
