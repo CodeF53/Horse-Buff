@@ -14,11 +14,17 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 public class OnCollideNether {
     @Redirect(method = "onEntityCollision(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/Entity;)V", at = @At(value = "INVOKE", target = "net/minecraft/entity/Entity.hasVehicle ()Z"))
     public boolean hasVehicle(Entity instance){
-        return !ModConfig.getInstance().portalPatch;
+        if (ModConfig.getInstance().portalPatch) {
+            return false;
+        }
+        return instance.hasVehicle();
     }
 
     @Redirect(method = "onEntityCollision(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/Entity;)V", at = @At(value = "INVOKE", target = "net/minecraft/entity/Entity.hasPassengers ()Z"))
     public boolean isVehicle(Entity instance){
-        return !ModConfig.getInstance().portalPatch;
+        if (ModConfig.getInstance().portalPatch) {
+            return false;
+        }
+        return instance.hasPassengers();
     }
 }
