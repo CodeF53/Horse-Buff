@@ -35,19 +35,5 @@
     "minecraft": "1.18.x",
     "java": ">=17",
     "cloth-config2": ">=6.0.42"
-  },
-  "suggests": {
-    "another-mod": "*"
-  },
-
-  "custom": {
-    "modmenu": {
-      "parent": {
-        "id": "horsebuff",
-        "name": "HorseBuff",
-        "description": "QOL tweaks for horses",
-        "icon": "assets/horsebuff/icon.png"
-      }
-    }
   }
 }
