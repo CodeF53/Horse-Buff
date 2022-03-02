@@ -9,6 +9,8 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
+import net.F53.HorseBuff.HorseBuffInit;
+
 @Mixin(EndPortalBlock.class)
 public class OnCollideEnd {
     //Allow entities with passengers
@@ -21,14 +23,17 @@ public class OnCollideEnd {
     }
 
     @Redirect(method = "onEntityCollision(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/Entity;)V", at = @At(value = "INVOKE", target = "net/minecraft/entity/Entity.moveToWorld (Lnet/minecraft/server/world/ServerWorld;)Lnet/minecraft/entity/Entity;"))
-    public Entity hgdfytiop(Entity instance, ServerWorld destination){
+    public Entity bringRider(Entity instance, ServerWorld destination){
         if (instance.hasPassengers() && instance.getFirstPassenger() instanceof PlayerEntity) {
             Entity rider = instance.getFirstPassenger();
 
             Entity newInstance = instance.moveToWorld(destination);
             Entity newRider = rider.moveToWorld(destination);
+            assert newInstance != null;
 
-            newInstance.setPosition(newRider.getPos());
+            // Fix horse falling from sky
+            newInstance.refreshPositionAndAngles(newRider.getX(), newRider.getY(), newRider.getZ(), newRider.getYaw(), newRider.getPitch());
+            newInstance.setVelocity(newRider.getVelocity());
             newRider.startRiding(newInstance, true);
 
             return newInstance;
