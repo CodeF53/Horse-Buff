@@ -7,7 +7,10 @@
     "BreakSpeed",
     "HorseChildAttributeMixin",
     "MovementCheck",
-    "NoWander"
+    "NoWander",
+    "PortalHorse.OnCollideEnd",
+    "PortalHorse.OnCollideNether",
+    "PortalHorse.TickNether"
   ],
   "client": [
   ],
