@@ -122,7 +122,7 @@ public abstract class TickNether {
             double h = DimensionType.getCoordinateScaleFactor(Vehicle.world.getDimension(), destination.getDimension());
             BlockPos blockPos2 = new BlockPos(MathHelper.clamp(Vehicle.getX() * h, d, f), Vehicle.getY(), MathHelper.clamp(Vehicle.getZ() * h, e, g));
 
-            return (TeleportTarget)destination.getPortalForcer().getPortalRect(blockPos2, blockPos, worldBorder).map((rect) -> {
+            return (TeleportTarget)destination.getPortalForcer().getPortalRect(blockPos2, blockPos).map((rect) -> {
                 BlockState blockState = Vehicle.world.getBlockState(lastNetherPortalPosition);
                 Direction.Axis axis;
                 Vec3d vec3d;
