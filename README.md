@@ -11,6 +11,7 @@ Removes stupid things about horses.
 - Better Breeding Logic
 - Saddled Horses don't wander
 - Remove break speed debuff
+- Allow nether portal travel without dismounting
 
 ## New Breeding Logic
 
