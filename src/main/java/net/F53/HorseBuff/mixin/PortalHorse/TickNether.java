@@ -1,5 +1,6 @@
 package net.F53.HorseBuff.mixin.PortalHorse;
 
+import net.F53.HorseBuff.HorseBuffInit;
 
 import net.F53.HorseBuff.config.ModConfig;
 import net.minecraft.block.BlockState;
@@ -52,15 +53,29 @@ public abstract class TickNether {
                         Entity oldVehicle = thisEntity.getVehicle();
                         assert oldVehicle != null;
 
+                        HorseBuffInit.LOGGER.info("TP- Got Vehicle");
+
+                        // Split Vehicle and Player
+                        thisEntity.detach();
+                        HorseBuffInit.LOGGER.info("TP- Split");
+
+                        // Fetch old coordinates
+                        Vec3d oldCords = thisEntity.getPos();
+
                         // Change Entity Dim
                         netherPortalTime = maxPortalTime;
                         thisEntity.resetNetherPortalCooldown();
                         thisEntity.moveToWorld(serverWorld2);
 
+
+                        HorseBuffInit.LOGGER.info("TP- Changed Player Dimension");
+
                         // Change Vehicle Dim
                         Entity newVehicle = oldVehicle.getType().create(serverWorld2);
                         assert newVehicle != null;
                         newVehicle.copyFrom(oldVehicle);
+
+                        HorseBuffInit.LOGGER.info("TP- Copied Vehicle to new dimension");
 
                         // Get Proper Vehicle Position
                         TeleportTarget teleportTarget = getVehicleTeleportTarget(oldVehicle, serverWorld2);
@@ -69,8 +84,17 @@ public abstract class TickNether {
                         serverWorld2.onDimensionChanged(newVehicle);
                         oldVehicle.setRemoved(Entity.RemovalReason.CHANGED_DIMENSION);
 
+                        HorseBuffInit.LOGGER.info("TP- Set Vehicle Position to new coordinates");
+
                         // Make Entity remount Vehicle
                         thisEntity.startRiding(newVehicle, true);
+
+                        HorseBuffInit.LOGGER.info("TP- Remounted Player on vehicle");
+
+                        // Fetch new coordinates
+                        Vec3d newCords = thisEntity.getPos();
+
+                        HorseBuffInit.LOGGER.info("TP- Teleport Complete!\n\tOld Coords:" + oldCords + "\n\tTP- New Coords:"+newCords);
                     }
                     inNetherPortal = false;
                 }
@@ -112,6 +136,7 @@ public abstract class TickNether {
     protected TeleportTarget getVehicleTeleportTarget(Entity Vehicle, ServerWorld destination) {
         boolean blockPos = destination.getRegistryKey() == World.NETHER;
         if (Vehicle.world.getRegistryKey() != World.NETHER && !blockPos) {
+            HorseBuffInit.LOGGER.info("attempted to get teleport target for vehicle and failed");
             return null;
         } else {
             WorldBorder worldBorder = destination.getWorldBorder();
@@ -142,3 +167,17 @@ public abstract class TickNether {
         }
     }
 }
+
+/*
+Notes on teleport issue:
+    CORE ISSUE:
+
+
+    - Sometimes it lags hard after teleport
+    - Sometimes riding something that doesnt exist
+    - Sometimes it teleports back instantly when in creative mode
+
+    Stupid idea - check if coords didnt change much, if so try setting coords again next tick?
+
+    STUPIDER IDEA - old code didnt have this issue, look at it to see what happened
+ */
