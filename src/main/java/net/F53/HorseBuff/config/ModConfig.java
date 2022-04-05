@@ -20,7 +20,7 @@ public class ModConfig implements ConfigData{
     public boolean fairBreeds = true;
 
     @ConfigEntry.Gui.Tooltip
-    public boolean portalPatch = true;
+    public boolean portalPatch = false;
 
     public static void init() {
         AutoConfig.register(ModConfig.class, Toml4jConfigSerializer::new);
