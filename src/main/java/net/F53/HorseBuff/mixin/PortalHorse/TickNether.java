@@ -6,6 +6,7 @@ import net.F53.HorseBuff.config.ModConfig;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -53,12 +54,14 @@ public abstract class TickNether {
                         netherPortalTime = maxPortalTime;
                         player.resetNetherPortalCooldown();
                         player.moveToWorld(serverWorld2);
+                        player.unsetRemoved();
 
                         HorseBuffInit.LOGGER.info("TP- Moved Player to new dimension");
 
                         // Change Vehicle Dim
                         vehicle.resetNetherPortalCooldown();
                         Entity newVehicle = vehicle.moveToWorld(serverWorld2);
+                        newVehicle.unsetRemoved();
 
                         HorseBuffInit.LOGGER.info("TP- Moved Vehicle to new dimension");
 
