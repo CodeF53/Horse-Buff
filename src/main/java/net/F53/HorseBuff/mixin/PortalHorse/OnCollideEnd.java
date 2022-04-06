@@ -37,7 +37,8 @@ public class OnCollideEnd {
             player.detach();
 
             // Change player Dim
-            player.moveToWorld(destination);
+            player = player.moveToWorld(destination);
+            assert player != null;
             player.unsetRemoved();
 
             // Change vehicle Dim
@@ -51,6 +52,9 @@ public class OnCollideEnd {
                 player.setPosition(vehicle.getPos());
                 player.setPos(vehicle.getX(),vehicle.getY(),vehicle.getZ());
                 ((ServerPlayerEntity) player).teleport(destination, vehicle.getX(),vehicle.getY(),vehicle.getZ(), player.getYaw(), player.getPitch());
+                player.refreshPositionAfterTeleport(vehicle.getPos());
+                player.refreshPositionAndAngles(vehicle.getX(),vehicle.getY(),vehicle.getZ(), player.getYaw(), player.getPitch());
+                ((ServerPlayerEntity) player).networkHandler.requestTeleport(vehicle.getX(),vehicle.getY(),vehicle.getZ(), player.getYaw(), player.getPitch());
                 //TODO: why does player not go?
 
             // Make player remount Vehicle
