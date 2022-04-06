@@ -3,6 +3,8 @@
   "id": "horsebuff",
   "version": "${version}",
 
+  "accessWidener" : "horsebuff.accesswidener",
+
   "name": "HorseBuff",
   "description": "Makes Horses better by removing stupid things",
   "authors": [
