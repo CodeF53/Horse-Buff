@@ -3,23 +3,12 @@ package net.F53.HorseBuff.mixin.PortalHorse;
 import net.F53.HorseBuff.HorseBuffInit;
 
 import net.F53.HorseBuff.config.ModConfig;
-import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.state.property.Properties;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.BlockLocating;
-import net.minecraft.world.TeleportTarget;
 import net.minecraft.world.World;
-import net.minecraft.world.border.WorldBorder;
-import net.minecraft.world.dimension.AreaHelper;
-import net.minecraft.world.dimension.DimensionType;
-import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.*;
@@ -32,69 +21,56 @@ public abstract class TickNether {
 
     @Shadow protected int netherPortalTime;
 
-    @Shadow protected BlockPos lastNetherPortalPosition;
-
     @Shadow protected abstract void tickNetherPortalCooldown();
 
     @Shadow public abstract boolean hasVehicle();
 
     @Inject(method = "tickNetherPortal()V", at = @At("HEAD"))
     public void riderTravel(CallbackInfo ci){
-        Entity thisEntity = (Entity)(Object)this;
-        if (thisEntity.world instanceof ServerWorld && thisEntity instanceof PlayerEntity){
-            if (thisEntity.hasVehicle()){
-                int maxPortalTime = thisEntity.getMaxNetherPortalTime();
+        Entity player = (Entity)(Object)this;
+        if (player.world instanceof ServerWorld && player instanceof PlayerEntity){
+            if (player.hasVehicle()){
+                int maxPortalTime = player.getMaxNetherPortalTime();
                 if (inNetherPortal) {
-                    MinecraftServer minecraftServer = ((ServerWorld)thisEntity.world).getServer();
-                    ServerWorld serverWorld2 = minecraftServer.getWorld(thisEntity.world.getRegistryKey() == World.NETHER ? World.OVERWORLD : World.NETHER);
+                    MinecraftServer minecraftServer = ((ServerWorld)player.world).getServer();
+                    ServerWorld serverWorld2 = minecraftServer.getWorld(player.world.getRegistryKey() == World.NETHER ? World.OVERWORLD : World.NETHER);
 
                     if (serverWorld2 != null && minecraftServer.isNetherAllowed() && netherPortalTime++ >= maxPortalTime) {
                         // Get Vehicle
-                        Entity oldVehicle = thisEntity.getVehicle();
-                        assert oldVehicle != null;
+                        Entity vehicle = player.getVehicle();
+                        assert vehicle != null;
 
                         HorseBuffInit.LOGGER.info("TP- Got Vehicle");
 
                         // Split Vehicle and Player
-                        thisEntity.detach();
+                        player.detach();
                         HorseBuffInit.LOGGER.info("TP- Split");
 
                         // Fetch old coordinates
-                        Vec3d oldCords = thisEntity.getPos();
+                        Vec3d oldCords = player.getPos();
 
-                        // Change Entity Dim
+                        // Change Player Dim
                         netherPortalTime = maxPortalTime;
-                        thisEntity.resetNetherPortalCooldown();
-                        thisEntity.moveToWorld(serverWorld2);
+                        player.resetNetherPortalCooldown();
+                        player.moveToWorld(serverWorld2);
 
-
-                        HorseBuffInit.LOGGER.info("TP- Changed Player Dimension");
+                        HorseBuffInit.LOGGER.info("TP- Moved Player to new dimension");
 
                         // Change Vehicle Dim
-                        Entity newVehicle = oldVehicle.getType().create(serverWorld2);
-                        assert newVehicle != null;
-                        newVehicle.copyFrom(oldVehicle);
+                        vehicle.resetNetherPortalCooldown();
+                        Entity newVehicle = vehicle.moveToWorld(serverWorld2);
 
-                        HorseBuffInit.LOGGER.info("TP- Copied Vehicle to new dimension");
-
-                        // Get Proper Vehicle Position
-                        TeleportTarget teleportTarget = getVehicleTeleportTarget(oldVehicle, serverWorld2);
-                        newVehicle.refreshPositionAndAngles(teleportTarget.position.x, teleportTarget.position.y, teleportTarget.position.z, teleportTarget.yaw, newVehicle.getPitch());
-                        newVehicle.setVelocity(teleportTarget.velocity);
-                        serverWorld2.onDimensionChanged(newVehicle);
-                        oldVehicle.setRemoved(Entity.RemovalReason.CHANGED_DIMENSION);
-
-                        HorseBuffInit.LOGGER.info("TP- Set Vehicle Position to new coordinates");
+                        HorseBuffInit.LOGGER.info("TP- Moved Vehicle to new dimension");
 
                         // Make Entity remount Vehicle
-                        thisEntity.startRiding(newVehicle, true);
+                        player.startRiding(newVehicle, true);
 
                         HorseBuffInit.LOGGER.info("TP- Remounted Player on vehicle");
 
                         // Fetch new coordinates
-                        Vec3d newCords = thisEntity.getPos();
+                        Vec3d newCords = player.getPos();
 
-                        HorseBuffInit.LOGGER.info("TP- Teleport Complete!\n\tOld Coords:" + oldCords + "\n\tTP- New Coords:"+newCords);
+                        HorseBuffInit.LOGGER.info("TP- Teleport Complete!\n\tOld Coords:" + oldCords + "\n\tNew Coords:"+newCords);
                     }
                     inNetherPortal = false;
                 }
@@ -128,56 +104,4 @@ public abstract class TickNether {
         }
         return constant;
     }
-
-    // gives teleport target for given entity (assumes nether)
-    // made by copying code, and whenever something didn't have access, just copying that method
-    // for lastNetherPortalPosition, that is taken from the rider
-    @Nullable
-    protected TeleportTarget getVehicleTeleportTarget(Entity Vehicle, ServerWorld destination) {
-        boolean blockPos = destination.getRegistryKey() == World.NETHER;
-        if (Vehicle.world.getRegistryKey() != World.NETHER && !blockPos) {
-            HorseBuffInit.LOGGER.info("attempted to get teleport target for vehicle and failed");
-            return null;
-        } else {
-            WorldBorder worldBorder = destination.getWorldBorder();
-            double d = Math.max(-2.9999872E7D, worldBorder.getBoundWest() + 16.0D);
-            double e = Math.max(-2.9999872E7D, worldBorder.getBoundNorth() + 16.0D);
-            double f = Math.min(2.9999872E7D, worldBorder.getBoundEast() - 16.0D);
-            double g = Math.min(2.9999872E7D, worldBorder.getBoundSouth() - 16.0D);
-            double h = DimensionType.getCoordinateScaleFactor(Vehicle.world.getDimension(), destination.getDimension());
-            BlockPos blockPos2 = new BlockPos(MathHelper.clamp(Vehicle.getX() * h, d, f), Vehicle.getY(), MathHelper.clamp(Vehicle.getZ() * h, e, g));
-
-            return (TeleportTarget)destination.getPortalForcer().getPortalRect(blockPos2, blockPos, worldBorder).map((rect) -> {
-                BlockState blockState = Vehicle.world.getBlockState(lastNetherPortalPosition);
-                Direction.Axis axis;
-                Vec3d vec3d;
-                if (blockState.contains(Properties.HORIZONTAL_AXIS)) {
-                    axis = (Direction.Axis)blockState.get(Properties.HORIZONTAL_AXIS);
-                    BlockLocating.Rectangle rectangle = BlockLocating.getLargestRectangle(lastNetherPortalPosition, axis, 21, Direction.Axis.Y, 21, (blockPosa) -> {
-                        return Vehicle.world.getBlockState(blockPosa) == blockState;
-                    });
-                    vec3d = AreaHelper.entityPosInPortal(rectangle, axis, Vehicle.getPos(), Vehicle.getDimensions(Vehicle.getPose()));
-                } else {
-                    axis = Direction.Axis.X;
-                    vec3d = new Vec3d(0.5D, 0.0D, 0.0D);
-                }
-
-                return AreaHelper.getNetherTeleportTarget(destination, rect, axis, vec3d, Vehicle.getDimensions(Vehicle.getPose()), Vehicle.getVelocity(), Vehicle.getYaw(), Vehicle.getPitch());
-            }).orElse((TeleportTarget) null);
-        }
-    }
 }
-
-/*
-Notes on teleport issue:
-    CORE ISSUE:
-
-
-    - Sometimes it lags hard after teleport
-    - Sometimes riding something that doesnt exist
-    - Sometimes it teleports back instantly when in creative mode
-
-    Stupid idea - check if coords didnt change much, if so try setting coords again next tick?
-
-    STUPIDER IDEA - old code didnt have this issue, look at it to see what happened
- */
