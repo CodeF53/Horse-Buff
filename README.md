@@ -7,7 +7,7 @@
 
 ## About
 Removes stupid things about horses.
-- Allow nether portal travel without dismounting ([MC-67](https://bugs.mojang.com/browse/MC-67))* (off by default, see [issue #7](https://github.com/CodeF53/Horse-Buff/issues/7))
+- Allow nether portal travel without dismounting ([MC-67](https://bugs.mojang.com/browse/MC-67))*
 - Fix rubberbanding on stairs/slabs "Horse moved wrongly!" ([MC-100830](https://bugs.mojang.com/browse/MC-100830))
 - Better Breeding Logic
 - Saddled Horses don't wander
