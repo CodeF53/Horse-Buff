@@ -1,0 +1,9 @@
+accessWidener	v2	named
+
+accessible method net/minecraft/server/network/ServerPlayerEntity moveToSpawn (Lnet/minecraft/server/world/ServerWorld;)V
+
+accessible method net/minecraft/entity/Entity resetNetherPortalCooldown ()V
+
+accessible method net/minecraft/entity/Entity moveToWorld (Lnet/minecraft/server/world/ServerWorld;)Lnet/minecraft/entity/Entity;
+
+accessible method net/minecraft/entity/Entity unsetRemoved ()V
