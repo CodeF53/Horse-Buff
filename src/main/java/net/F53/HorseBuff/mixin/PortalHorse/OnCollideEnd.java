@@ -3,30 +3,17 @@ package net.F53.HorseBuff.mixin.PortalHorse;
 import net.F53.HorseBuff.config.ModConfig;
 import net.minecraft.block.EndPortalBlock;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.MovementType;
-import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.network.packet.s2c.play.*;
-import net.minecraft.server.PlayerManager;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.registry.RegistryKey;
-import net.minecraft.world.TeleportTarget;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldProperties;
-import net.minecraft.world.biome.source.BiomeAccess;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
 import net.F53.HorseBuff.HorseBuffInit;
 
-import java.util.Iterator;
-
 @Mixin(EndPortalBlock.class)
 public class OnCollideEnd {
-    /* disabled until player is moved to horse
 
     // Allow entities with passengers
     // Has to be vehicle bringing player, otherwise you enter end with a burning horse
@@ -48,34 +35,26 @@ public class OnCollideEnd {
             // Split vehicle and player
             player.detach();
 
-
-
             // Change vehicle Dim
             vehicle = vehicle.moveToWorld(destination);
             assert vehicle != null;
             vehicle.unsetRemoved();
 
             // Change player Dim
-            if (destination.getRegistryKey() == World.OVERWORLD) {
-                // Cant use vanilla moveToWorld because it doesn't let us setpos afterwards
-                this.inTeleportationState = true;
-                ServerWorld serverWorld = this.getWorld();
-                RegistryKey<World> registryKey = serverWorld.getRegistryKey();
-                this.getWorld().removePlayer(this, Entity.RemovalReason.CHANGED_DIMENSION);
-                this.networkHandler.sendPacket(new GameStateChangeS2CPacket(GameStateChangeS2CPacket.GAME_WON, this.seenCredits ? 0.0F : 1.0F));
-                this.seenCredits = true;
-            } else {
-                player.moveToWorld(destination);
-                player.unsetRemoved();
-            }
+            player.moveToWorld(destination);
+            player.unsetRemoved();
 
-            // Make player remount Vehicle
-            player.startRiding(vehicle, true);
+            // If we are moving from the End to the overworld, the player gets teleported to their bed,
+            // while their horse goes to world spawn, we have to make them meet
+            if (destination.getRegistryKey() == World.OVERWORLD) {
+                // Next tick bring the player over to the vehicle and remount
+                HorseBuffInit.tpAndRemount(player, vehicle);
+            } else {
+                player.startRiding(vehicle, true);
+            }
 
             return vehicle;
         }
         return vehicle.moveToWorld(destination);
     }
-
-     */
 }
