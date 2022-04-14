@@ -9,10 +9,13 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import java.util.UUID;
 
 @Mixin(Entity.class)
 public abstract class TickNether {
@@ -25,6 +28,8 @@ public abstract class TickNether {
 
     @Shadow public abstract boolean hasVehicle();
 
+    @Shadow @Final public static String UUID_KEY;
+
     @Inject(method = "tickNetherPortal()V", at = @At("HEAD"))
     public void riderTravel(CallbackInfo ci){
         Entity player = (Entity)(Object)this;
@@ -33,46 +38,27 @@ public abstract class TickNether {
                 int maxPortalTime = player.getMaxNetherPortalTime();
                 if (inNetherPortal) {
                     MinecraftServer minecraftServer = ((ServerWorld)player.world).getServer();
-                    ServerWorld serverWorld2 = minecraftServer.getWorld(player.world.getRegistryKey() == World.NETHER ? World.OVERWORLD : World.NETHER);
+                    ServerWorld destination = minecraftServer.getWorld(player.world.getRegistryKey() == World.NETHER ? World.OVERWORLD : World.NETHER);
 
-                    if (serverWorld2 != null && minecraftServer.isNetherAllowed() && netherPortalTime++ >= maxPortalTime) {
+                    if (destination != null && minecraftServer.isNetherAllowed() && netherPortalTime++ >= maxPortalTime) {
                         // Get Vehicle
                         Entity vehicle = player.getVehicle();
                         assert vehicle != null;
 
-                        HorseBuffInit.LOGGER.info("TP- Got Vehicle");
+                        // Get UUIDs
+                        UUID vehicleUUID = vehicle.getUuid();
+                        UUID playerUUID = player.getUuid();
 
-                        // Split Vehicle and Player
-                        player.detach();
-                        HorseBuffInit.LOGGER.info("TP- Split");
-
-                        // Fetch old coordinates
-                        Vec3d oldCords = player.getPos();
-
-                        // Change Player Dim
-                        netherPortalTime = maxPortalTime;
-                        player.resetNetherPortalCooldown();
-                        player.moveToWorld(serverWorld2);
-                        player.unsetRemoved();
-
-                        HorseBuffInit.LOGGER.info("TP- Moved Player to new dimension");
-
-                        // Change Vehicle Dim
+                        // Change vehicle Dim
                         vehicle.resetNetherPortalCooldown();
-                        Entity newVehicle = vehicle.moveToWorld(serverWorld2);
-                        newVehicle.unsetRemoved();
+                        vehicle.moveToWorld(destination);
 
-                        HorseBuffInit.LOGGER.info("TP- Moved Vehicle to new dimension");
+                        // Change player Dim
+                        player.resetNetherPortalCooldown();
+                        player.moveToWorld(destination);
 
-                        // Make Entity remount Vehicle
-                        player.startRiding(newVehicle, true);
-
-                        HorseBuffInit.LOGGER.info("TP- Remounted Player on vehicle");
-
-                        // Fetch new coordinates
-                        Vec3d newCords = player.getPos();
-
-                        HorseBuffInit.LOGGER.info("TP- Teleport Complete!\n\tOld Coords:" + oldCords + "\n\tNew Coords:"+newCords);
+                        // Safely rejoin player and vehicle once the game is ready
+                        HorseBuffInit.tpAndRemount(playerUUID, vehicleUUID, destination, 0);
                     }
                     inNetherPortal = false;
                 }

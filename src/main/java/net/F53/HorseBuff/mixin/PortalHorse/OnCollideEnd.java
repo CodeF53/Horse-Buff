@@ -12,6 +12,8 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 import net.F53.HorseBuff.HorseBuffInit;
 
+import java.util.UUID;
+
 @Mixin(EndPortalBlock.class)
 public class OnCollideEnd {
 
@@ -28,31 +30,22 @@ public class OnCollideEnd {
     @Redirect(method = "onEntityCollision(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/Entity;)V", at = @At(value = "INVOKE", target = "net/minecraft/entity/Entity.moveToWorld (Lnet/minecraft/server/world/ServerWorld;)Lnet/minecraft/entity/Entity;"))
     public Entity bringRider(Entity vehicle, ServerWorld destination){
         if (ModConfig.getInstance().portalPatch && vehicle.hasPassengers() && vehicle.getFirstPassenger() instanceof PlayerEntity) {
-            // Get Player
+            // Get player
             Entity player = vehicle.getPrimaryPassenger();
             assert player != null;
 
-            // Split vehicle and player
-            player.detach();
+            // Get UUIDs
+            UUID vehicleUUID = vehicle.getUuid();
+            UUID playerUUID = player.getUuid();
 
             // Change vehicle Dim
-            vehicle = vehicle.moveToWorld(destination);
-            assert vehicle != null;
-            vehicle.unsetRemoved();
+            vehicle.moveToWorld(destination);
 
             // Change player Dim
-            player = player.moveToWorld(destination);
-            assert player != null;
-            player.unsetRemoved();
+            player.moveToWorld(destination);
 
-            // If we are moving from the End to the overworld, the player gets teleported to their bed,
-            // while their horse goes to world spawn, we have to make them meet
-            if (destination.getRegistryKey() == World.OVERWORLD) {
-                // Next tick bring the player over to the vehicle and remount
-                HorseBuffInit.tpAndRemount(player.getUuid(), vehicle.getUuid(), destination);
-            } else {
-                player.startRiding(vehicle, true);
-            }
+            // Safely rejoin player and vehicle once the game is ready
+            HorseBuffInit.tpAndRemount(playerUUID, vehicleUUID, destination, 0);
 
             return vehicle;
         }
