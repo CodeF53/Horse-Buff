@@ -3,7 +3,12 @@ package net.F53.HorseBuff.mixin.PortalHorse;
 import net.F53.HorseBuff.config.ModConfig;
 import net.minecraft.block.EndPortalBlock;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.MovementType;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.network.packet.s2c.play.*;
+import net.minecraft.server.PlayerManager;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
@@ -11,6 +16,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
 import net.F53.HorseBuff.HorseBuffInit;
+
+import java.util.Iterator;
 
 @Mixin(EndPortalBlock.class)
 public class OnCollideEnd {
