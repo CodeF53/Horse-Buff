@@ -29,10 +29,8 @@ public class HorseBuffInit implements ModInitializer {
 				toRun.get(0).run();
 				toRun.remove(0);
 			}
-			while (runNextTick.size()>0){
-				toRun.add(runNextTick.get(0));
-				runNextTick.remove(0);
-			}
+			toRun.addAll(runNextTick);
+			runNextTick.clear();
 		});
 	}
 
