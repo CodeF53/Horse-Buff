@@ -9,6 +9,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import org.apache.logging.log4j.Logger;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -30,35 +31,41 @@ public abstract class TickNether {
 
     @Shadow @Final public static String UUID_KEY;
 
+    @Shadow @Final protected static Logger LOGGER;
+
     @Inject(method = "tickNetherPortal()V", at = @At("HEAD"))
     public void riderTravel(CallbackInfo ci){
         Entity player = (Entity)(Object)this;
         if (player.world instanceof ServerWorld && player instanceof PlayerEntity){
-            if (player.hasVehicle()){
+            if (player.getVehicle() != null){
                 int maxPortalTime = player.getMaxNetherPortalTime();
                 if (inNetherPortal) {
                     MinecraftServer minecraftServer = ((ServerWorld)player.world).getServer();
                     ServerWorld destination = minecraftServer.getWorld(player.world.getRegistryKey() == World.NETHER ? World.OVERWORLD : World.NETHER);
-
                     if (destination != null && minecraftServer.isNetherAllowed() && netherPortalTime++ >= maxPortalTime) {
                         // Get Vehicle
                         Entity vehicle = player.getVehicle();
-                        assert vehicle != null;
 
-                        // Get UUIDs
-                        UUID vehicleUUID = vehicle.getUuid();
-                        UUID playerUUID = player.getUuid();
+                        // Split
+                        vehicle.detach();
 
-                        // Change vehicle Dim
-                        vehicle.resetNetherPortalCooldown();
-                        vehicle.moveToWorld(destination);
+                        // in some cases some of these values are null, causing problems, just don't teleport if they are null
+                        if (player.getPos() != null && vehicle.getPos() != null) {
+                            // Get UUIDs
+                            UUID vehicleUUID = vehicle.getUuid();
+                            UUID playerUUID = player.getUuid();
 
-                        // Change player Dim
-                        player.resetNetherPortalCooldown();
-                        player.moveToWorld(destination);
+                            // Change player Dim
+                            player.resetNetherPortalCooldown();
+                            player.moveToWorld(destination);
 
-                        // Safely rejoin player and vehicle once the game is ready
-                        HorseBuffInit.tpAndRemount(playerUUID, vehicleUUID, destination, 0);
+                            // Change vehicle Dim
+                            vehicle.resetNetherPortalCooldown();
+                            vehicle.moveToWorld(destination);
+
+                            // Safely rejoin player and vehicle once the game is ready
+                            HorseBuffInit.tpAndRemount(playerUUID, vehicleUUID, destination, 0);
+                        }
                     }
                     inNetherPortal = false;
                 }

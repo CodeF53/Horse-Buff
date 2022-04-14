@@ -38,11 +38,11 @@ public class OnCollideEnd {
             UUID vehicleUUID = vehicle.getUuid();
             UUID playerUUID = player.getUuid();
 
-            // Change vehicle Dim
-            vehicle.moveToWorld(destination);
-
             // Change player Dim
             player.moveToWorld(destination);
+
+            // Change vehicle Dim
+            vehicle.moveToWorld(destination);
 
             // Safely rejoin player and vehicle once the game is ready
             HorseBuffInit.tpAndRemount(playerUUID, vehicleUUID, destination, 0);
