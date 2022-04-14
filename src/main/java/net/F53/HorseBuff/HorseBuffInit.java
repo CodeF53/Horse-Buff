@@ -6,10 +6,14 @@ import net.F53.HorseBuff.config.ModConfig;
 
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class HorseBuffInit implements ModInitializer {
 	public static final Logger LOGGER = LogManager.getLogger("HorseBuff");
@@ -34,17 +38,19 @@ public class HorseBuffInit implements ModInitializer {
 		});
 	}
 
-	// Schedules player to be teleported to and mounted on a horse
-	public static void tpAndRemount(Entity player, Entity horse) {
+	// Schedules player to be teleported to and mounted on its vehicle
+	public static void tpAndRemount(UUID playerUUID, UUID VehicleUUID, ServerWorld destination) {
 		runNextTick.add(() -> {
+			PlayerEntity player = destination.getPlayerByUuid(playerUUID);
+			Entity vehicle = destination.getEntity(VehicleUUID);
+			assert player != null;
+			assert vehicle != null;
 			player.unsetRemoved();
-			player.setPosition(horse.getPos());
-			player.detach();
-			horse.detach();
+			vehicle.unsetRemoved();
 
-			runNextTick.add(() -> {
-				player.startRiding(horse, true);
-			});
+			player.setPosition(vehicle.getPos());
+
+			player.startRiding(vehicle, true);
 		});
 	}
 }
