@@ -35,7 +35,6 @@ public class HorseBuffInit implements ModInitializer {
 				toRun.remove(0);
 			}
 		});
-
 	}
 
 	// Schedules player to be teleported to and mounted on its vehicle

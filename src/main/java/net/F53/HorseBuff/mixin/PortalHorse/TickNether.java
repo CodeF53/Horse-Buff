@@ -7,10 +7,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import org.apache.logging.log4j.Logger;
-import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.*;
@@ -28,10 +25,6 @@ public abstract class TickNether {
     @Shadow protected abstract void tickNetherPortalCooldown();
 
     @Shadow public abstract boolean hasVehicle();
-
-    @Shadow @Final public static String UUID_KEY;
-
-    @Shadow @Final protected static Logger LOGGER;
 
     @Inject(method = "tickNetherPortal()V", at = @At("HEAD"))
     public void riderTravel(CallbackInfo ci){
