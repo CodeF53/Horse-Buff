@@ -14,6 +14,7 @@
     "PortalHorse.TickNether"
   ],
   "client": [
+    "Client.RenderTweaks"
   ],
   "injectors": {
     "defaultRequire": 1

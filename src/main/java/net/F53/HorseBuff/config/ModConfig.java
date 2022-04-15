@@ -22,6 +22,13 @@ public class ModConfig implements ConfigData{
     @ConfigEntry.Gui.Tooltip
     public boolean portalPatch = true;
 
+    @ConfigEntry.Gui.Tooltip
+    public boolean pitchFade = true;
+
+    @ConfigEntry.Gui.Tooltip
+    @ConfigEntry.BoundedDiscrete(min = 0, max = 100)
+    public int horseHeadAngleOffset = 0;
+
     public static void init() {
         AutoConfig.register(ModConfig.class, Toml4jConfigSerializer::new);
     }

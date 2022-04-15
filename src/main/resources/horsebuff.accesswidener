@@ -1,4 +1,4 @@
-accessWidener	v2	named
+accessWidener v2 named
 
 accessible method net/minecraft/entity/Entity resetNetherPortalCooldown ()V
 
