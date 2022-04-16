@@ -62,4 +62,8 @@ public class HorseBuffInit implements ModInitializer {
 			}
 		});
 	}
+
+	public static boolean isJeb(Entity horse){
+		return ModConfig.getInstance().jeb_Horses && horse.hasCustomName() && "jeb_".equals(horse.getName().asString());
+	}
 }

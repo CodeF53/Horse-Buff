@@ -29,6 +29,8 @@ public class ModConfig implements ConfigData{
     @ConfigEntry.BoundedDiscrete(min = 0, max = 45)
     public int horseHeadAngleOffset = 0;
 
+    public boolean jeb_Horses = true;
+
     public static void init() {
         AutoConfig.register(ModConfig.class, Toml4jConfigSerializer::new);
     }
