@@ -6,14 +6,14 @@ import net.F53.HorseBuff.config.ModConfig;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import java.util.UUID;
 
 @Mixin(Entity.class)
 public abstract class TickNether {
@@ -30,50 +30,35 @@ public abstract class TickNether {
     public void riderTravel(CallbackInfo ci){
         Entity player = (Entity)(Object)this;
         if (player.world instanceof ServerWorld && player instanceof PlayerEntity){
-            if (player.hasVehicle()){
+            if (player.getVehicle() != null){
                 int maxPortalTime = player.getMaxNetherPortalTime();
                 if (inNetherPortal) {
                     MinecraftServer minecraftServer = ((ServerWorld)player.world).getServer();
-                    ServerWorld serverWorld2 = minecraftServer.getWorld(player.world.getRegistryKey() == World.NETHER ? World.OVERWORLD : World.NETHER);
-
-                    if (serverWorld2 != null && minecraftServer.isNetherAllowed() && netherPortalTime++ >= maxPortalTime) {
+                    ServerWorld destination = minecraftServer.getWorld(player.world.getRegistryKey() == World.NETHER ? World.OVERWORLD : World.NETHER);
+                    if (destination != null && minecraftServer.isNetherAllowed() && netherPortalTime++ >= maxPortalTime) {
                         // Get Vehicle
                         Entity vehicle = player.getVehicle();
-                        assert vehicle != null;
 
-                        HorseBuffInit.LOGGER.info("TP- Got Vehicle");
+                        // Split
+                        vehicle.detach();
 
-                        // Split Vehicle and Player
-                        player.detach();
-                        HorseBuffInit.LOGGER.info("TP- Split");
+                        // in some cases some of these values are null, causing problems, just don't teleport if they are null
+                        if (player.getPos() != null && vehicle.getPos() != null) {
+                            // Get UUIDs
+                            UUID vehicleUUID = vehicle.getUuid();
+                            UUID playerUUID = player.getUuid();
 
-                        // Fetch old coordinates
-                        Vec3d oldCords = player.getPos();
+                            // Change player Dim
+                            player.resetNetherPortalCooldown();
+                            player.moveToWorld(destination);
 
-                        // Change Player Dim
-                        netherPortalTime = maxPortalTime;
-                        player.resetNetherPortalCooldown();
-                        player.moveToWorld(serverWorld2);
-                        player.unsetRemoved();
+                            // Change vehicle Dim
+                            vehicle.resetNetherPortalCooldown();
+                            vehicle.moveToWorld(destination);
 
-                        HorseBuffInit.LOGGER.info("TP- Moved Player to new dimension");
-
-                        // Change Vehicle Dim
-                        vehicle.resetNetherPortalCooldown();
-                        Entity newVehicle = vehicle.moveToWorld(serverWorld2);
-                        newVehicle.unsetRemoved();
-
-                        HorseBuffInit.LOGGER.info("TP- Moved Vehicle to new dimension");
-
-                        // Make Entity remount Vehicle
-                        player.startRiding(newVehicle, true);
-
-                        HorseBuffInit.LOGGER.info("TP- Remounted Player on vehicle");
-
-                        // Fetch new coordinates
-                        Vec3d newCords = player.getPos();
-
-                        HorseBuffInit.LOGGER.info("TP- Teleport Complete!\n\tOld Coords:" + oldCords + "\n\tNew Coords:"+newCords);
+                            // Safely rejoin player and vehicle once the game is ready
+                            HorseBuffInit.tpAndRemount(playerUUID, vehicleUUID, destination, 0);
+                        }
                     }
                     inNetherPortal = false;
                 }
