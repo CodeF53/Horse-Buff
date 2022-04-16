@@ -14,7 +14,8 @@
     "PortalHorse.TickNether"
   ],
   "client": [
-    "Client.RenderTweaks"
+    "Client.PitchFade",
+    "Client.HeadPitchOffset"
   ],
   "injectors": {
     "defaultRequire": 1

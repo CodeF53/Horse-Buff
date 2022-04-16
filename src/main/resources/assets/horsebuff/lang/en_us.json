@@ -1,9 +1,18 @@
 {
   "text.autoconfig.HorseBuff.title": "Horse Buff Config",
+
   "text.autoconfig.HorseBuff.option.noWander": "No Horse Wandering",
   "text.autoconfig.HorseBuff.option.noWander.@Tooltip": "Yes - saddled horses wont wander.\nNo - saddled horses will wander",
+
   "text.autoconfig.HorseBuff.option.fairBreeds": "Breeding Changes",
   "text.autoconfig.HorseBuff.option.fairBreeds.@Tooltip": "Yes - game uses alternate breeding algorithm.\nNo - game uses vanilla breeding algorithm",
+
   "text.autoconfig.HorseBuff.option.portalPatch": "Ride Through Portals",
-  "text.autoconfig.HorseBuff.option.portalPatch.@Tooltip": "Yes - Allows you to travel through nether and end portals while mounted on horseback.\nNo - vanilla behavior"
+  "text.autoconfig.HorseBuff.option.portalPatch.@Tooltip": "Yes - Allows you to travel through nether and end portals while mounted on horseback.\nNo - vanilla behavior",
+
+  "text.autoconfig.HorseBuff.option.pitchFade": "Fade Horse when you look down",
+  "text.autoconfig.HorseBuff.option.pitchFade.@Tooltip": "While you are mounted, the further you look down, the lower the opacity of the horse gets",
+
+  "text.autoconfig.HorseBuff.option.horseHeadAngleOffset": "Pitch offset of Horse heads",
+  "text.autoconfig.HorseBuff.option.horseHeadAngleOffset.@Tooltip": "While you are mounted horse heads are angled an extra N degrees down\n    0 is disabled\n   30 is good for visibility and style\n   45 is good for breaking necks"
 }

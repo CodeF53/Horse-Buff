@@ -19,7 +19,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(LivingEntityRenderer.class)
-public abstract class RenderTweaks<T extends LivingEntity, M extends EntityModel<T>> {
+public abstract class PitchFade<T extends LivingEntity, M extends EntityModel<T>> {
     @Shadow protected M model;
 
     @Shadow protected abstract boolean isVisible(T entity);
@@ -35,10 +35,8 @@ public abstract class RenderTweaks<T extends LivingEntity, M extends EntityModel
                 //As a player looks down, opacity of horse should decrease.
                 //100% at 30 degrees
                 //10% at 50+ degrees
-                //TODO: Add Advanced Config for fading
-
                 float Opacity = (Math.max(Math.min(100, -4.5f * (player.renderPitch - 50)), 10)) / 100;
-                VertexConsumer vertexConsumer = vertexConsumerProvider.getBuffer(RenderLayer.getItemEntityTranslucentCull
+                VertexConsumer vertexConsumer = vertexConsumerProvider.getBuffer(RenderLayer.getEntityTranslucentCull
                         (((LivingEntityRenderer) (Object) this).getTexture(livingEntity)));
                 this.model.render(matrixStack, vertexConsumer, light, 0, 1.0f, 1.0f, 1.0f, Opacity);
             }
@@ -47,19 +45,12 @@ public abstract class RenderTweaks<T extends LivingEntity, M extends EntityModel
 
     @Redirect(method = "render(Lnet/minecraft/entity/LivingEntity;FFLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V",
     at = @At(value = "INVOKE", target = "net/minecraft/client/render/entity/LivingEntityRenderer.isVisible (Lnet/minecraft/entity/LivingEntity;)Z"))
-    boolean dontRender(LivingEntityRenderer instance, T livingEntity) {
+    boolean dontRender(LivingEntityRenderer<LivingEntity, EntityModel<LivingEntity>> instance, T livingEntity) {
         if ((livingEntity instanceof HorseBaseEntity) && livingEntity.hasPassenger(MinecraftClient.getInstance().player)) {
-            return false;
+            if (ModConfig.getInstance().pitchFade) {
+                return false;
+            }
         }
         return isVisible(livingEntity);
     }
-
-    //TODO: fix this
-    /*@ModifyArg(method = "render(Lnet/minecraft/entity/LivingEntity;FFLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V",
-    at = @At(value = "INVOKE", target = "", index = ))
-    float headPitch(float value, CallbackInfo ci, ){
-        if ((livingEntity instanceof HorseBaseEntity) && livingEntity.hasPassenger(MinecraftClient.getInstance().player)) {
-            return value + (ModConfig.getInstance().horseHeadAngleOffset/100f);
-        }
-    }*/
 }

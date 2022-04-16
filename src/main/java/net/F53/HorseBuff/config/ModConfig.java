@@ -26,7 +26,7 @@ public class ModConfig implements ConfigData{
     public boolean pitchFade = true;
 
     @ConfigEntry.Gui.Tooltip
-    @ConfigEntry.BoundedDiscrete(min = 0, max = 100)
+    @ConfigEntry.BoundedDiscrete(min = 0, max = 45)
     public int horseHeadAngleOffset = 0;
 
     public static void init() {
