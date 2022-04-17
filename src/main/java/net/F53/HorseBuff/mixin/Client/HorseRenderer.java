@@ -63,18 +63,15 @@ public abstract class HorseRenderer<T extends LivingEntity, M extends EntityMode
                 assert player != null;
                 opacity = (Math.max(Math.min(100, rate * (player.renderPitch - fadeEndAngle)), minOpacity)) / 100;
             } if (isJeb(livingEntity)) {
-                // TODO: desynchronize horse chroma
-                // adding the ID is supposed to do that, but it doesnt work
                 float hueOffset = (livingEntity.getUuid().hashCode()%5000)/5000f + (System.currentTimeMillis()%5000)/5000f;
-                HorseBuffInit.LOGGER.info("hueOffset = "+hueOffset);
                 Color color = new Color(Color.HSBtoRGB(hueOffset, 0.8f, 1));
                 r = color.getRed()/255f;
                 g = color.getGreen()/255f;
                 b = color.getBlue()/255f;
             }
             VertexConsumer vertexConsumer = vertexConsumerProvider.getBuffer(renderLayer);
-
-            this.model.render(matrixStack, vertexConsumer, light, overlay, r, g, b, opacity);
+            if (opacity != 0)
+                this.model.render(matrixStack, vertexConsumer, light, overlay, r, g, b, opacity);
         }
     }
 

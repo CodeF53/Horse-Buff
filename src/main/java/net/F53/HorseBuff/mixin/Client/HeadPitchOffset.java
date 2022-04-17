@@ -22,7 +22,7 @@ public class HeadPitchOffset<T extends LivingEntity, M extends EntityModel<T>> {
     // Thanks dorianpb#9929 for the tip on where to mixin
     @Inject(method = "setAngles(Lnet/minecraft/entity/passive/HorseBaseEntity;FFFFF)V", at = @At("TAIL"))
     void headPitch(HorseBaseEntity horseBaseEntity, float f, float g, float h, float i, float j, CallbackInfo ci){
-        if (horseBaseEntity.hasPassenger(MinecraftClient.getInstance().player))
-            this.head.pitch += ModConfig.getInstance().horseHeadAngleOffset/100f;
+        if (horseBaseEntity.hasPassenger(MinecraftClient.getInstance().player) && MinecraftClient.getInstance().options.getPerspective().isFirstPerson())
+            this.head.pitch = Math.min(this.head.pitch + ModConfig.getInstance().horseHeadAngleOffset/100f, 1.5f);
     }
 }
