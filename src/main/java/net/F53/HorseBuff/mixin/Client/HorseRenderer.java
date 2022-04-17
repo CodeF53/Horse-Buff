@@ -1,7 +1,5 @@
 package net.F53.HorseBuff.mixin.Client;
 
-import com.google.common.base.Charsets;
-import com.google.common.hash.Hashing;
 import net.F53.HorseBuff.HorseBuffInit;
 import net.F53.HorseBuff.config.ModConfig;
 import net.minecraft.client.MinecraftClient;
@@ -14,8 +12,6 @@ import net.minecraft.client.render.entity.model.EntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.passive.HorseBaseEntity;
-import org.apache.logging.log4j.Logger;
-import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -40,8 +36,6 @@ public abstract class HorseRenderer<T extends LivingEntity, M extends EntityMode
 
     @Shadow
     protected abstract RenderLayer getRenderLayer(T entity, boolean showBody, boolean translucent, boolean showOutline);
-
-    @Shadow @Final private static Logger LOGGER;
 
     @Inject(method = "render(Lnet/minecraft/entity/LivingEntity;FFLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V",
             at = @At(value = "INVOKE", target = "net/minecraft/client/render/entity/LivingEntityRenderer.isVisible (Lnet/minecraft/entity/LivingEntity;)Z", shift = At.Shift.AFTER))
