@@ -70,8 +70,8 @@ public abstract class HorseRenderer<T extends LivingEntity, M extends EntityMode
                 b = color.getBlue()/255f;
             }
             VertexConsumer vertexConsumer = vertexConsumerProvider.getBuffer(renderLayer);
-            if (opacity != 0)
-                this.model.render(matrixStack, vertexConsumer, light, overlay, r, g, b, opacity);
+            // for some reason opacity with this technique doesn't go below 10, I am not writing a new
+            this.model.render(matrixStack, vertexConsumer, light, overlay, r, g, b, opacity);
         }
     }
 

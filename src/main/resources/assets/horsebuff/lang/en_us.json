@@ -27,7 +27,7 @@
   "text.autoconfig.HorseBuff.option.pitchFade.endAngle": "Max transparency angle",
   "text.autoconfig.HorseBuff.option.pitchFade.endAngle.@Tooltip": "Below this angle the horse is as transparent as it will get",
   "text.autoconfig.HorseBuff.option.pitchFade.maxTransparency": "Maximum transparency",
-  "text.autoconfig.HorseBuff.option.pitchFade.maxTransparency.@Tooltip": "How transparent the horse can get\n100 is invisible",
+  "text.autoconfig.HorseBuff.option.pitchFade.maxTransparency.@Tooltip": "How transparent the horse can get\n100 would be invisible\n(due to technical reasons, slider only goes to 90)",
 
 
 
