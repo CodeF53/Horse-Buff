@@ -34,7 +34,7 @@ public class ModConfig implements ConfigData{
 
         @ConfigEntry.Gui.Tooltip
         @ConfigEntry.BoundedDiscrete(min = 0, max = 90)
-        public int startAngle = 10;
+        public int startAngle = 30;
 
         @ConfigEntry.Gui.Tooltip
         @ConfigEntry.BoundedDiscrete(min = 0, max = 90)

@@ -1,5 +1,7 @@
 package net.F53.HorseBuff.mixin.Client;
 
+import com.google.common.base.Charsets;
+import com.google.common.hash.Hashing;
 import net.F53.HorseBuff.HorseBuffInit;
 import net.F53.HorseBuff.config.ModConfig;
 import net.minecraft.client.MinecraftClient;
@@ -12,6 +14,8 @@ import net.minecraft.client.render.entity.model.EntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.passive.HorseBaseEntity;
+import org.apache.logging.log4j.Logger;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -37,6 +41,8 @@ public abstract class HorseRenderer<T extends LivingEntity, M extends EntityMode
     @Shadow
     protected abstract RenderLayer getRenderLayer(T entity, boolean showBody, boolean translucent, boolean showOutline);
 
+    @Shadow @Final private static Logger LOGGER;
+
     @Inject(method = "render(Lnet/minecraft/entity/LivingEntity;FFLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V",
             at = @At(value = "INVOKE", target = "net/minecraft/client/render/entity/LivingEntityRenderer.isVisible (Lnet/minecraft/entity/LivingEntity;)Z", shift = At.Shift.AFTER))
     void pitchFade(T livingEntity, float f, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, CallbackInfo ci) {
@@ -48,7 +54,7 @@ public abstract class HorseRenderer<T extends LivingEntity, M extends EntityMode
 
             int overlay = LivingEntityRenderer.getOverlay(livingEntity, getAnimationCounter(livingEntity, g));
             MinecraftClient minecraftClient = MinecraftClient.getInstance();
-            RenderLayer renderLayer = RenderLayer.getEntityTranslucentCull((((LivingEntityRenderer) (Object) this).getTexture(livingEntity)));
+            RenderLayer renderLayer = getRenderLayer(livingEntity, false, true, false);
 
             if (livingEntity.hasPassenger(MinecraftClient.getInstance().player) && ModConfig.getInstance().pitchFade.enabled) {
                 //As a player looks down, opacity of horse decreases.
@@ -65,9 +71,9 @@ public abstract class HorseRenderer<T extends LivingEntity, M extends EntityMode
             } if (isJeb(livingEntity)) {
                 // TODO: desynchronize horse chroma
                 // adding the ID is supposed to do that, but it doesnt work
-                float hueOffset = livingEntity.getId() + (System.currentTimeMillis()%5000)/5000f;
+                float hueOffset = (livingEntity.getUuid().hashCode()%5000)/5000f + (System.currentTimeMillis()%5000)/5000f;
                 HorseBuffInit.LOGGER.info("hueOffset = "+hueOffset);
-                Color color = new Color(Color.HSBtoRGB(hueOffset, 1, 1));
+                Color color = new Color(Color.HSBtoRGB(hueOffset, 0.8f, 1));
                 r = color.getRed()/255f;
                 g = color.getGreen()/255f;
                 b = color.getBlue()/255f;
