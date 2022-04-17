@@ -6,19 +6,22 @@
 [cc-by-nc-sa-image]: https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png
 
 ## About
-Removes stupid things about horses.
+Improve horses by removing stupid stuff and adding useful stuff.
+
+###Server Changes:
 - Allow nether portal travel without dismounting ([MC-67](https://bugs.mojang.com/browse/MC-67))*
 - Fix rubberbanding on stairs/slabs "Horse moved wrongly!" ([MC-100830](https://bugs.mojang.com/browse/MC-100830))
 - Better Breeding Logic
 - Saddled Horses don't wander
-- Remove break speed debuff
+- Remove break speed debuff\
+<sub><sup>*only fixes the bug for players riding vehicles as fully fixing the bug would screw with technical minecraft</sup></sub>
 
-*only fixes the bug for players riding vehicles as fully fixing the bug would screw with technical minecraft
+###Client Changes:
+- Fade Horse as you look down
+- Horse Head Pitch offset
+- Horses named `jeb_` become rainbow
 
 ## New Breeding Logic
-
-Stays within vanilla min/max horse stats
-
 1. Take average of the parents' traits
 2. Random amount added/subtracted from said average
    - +/- 10% of range between max and min
