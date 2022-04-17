@@ -1,6 +1,11 @@
 {
   "text.autoconfig.HorseBuff.title": "Horse Buff Config",
 
+  "text.autoconfig.HorseBuff.category.Server": "Server",
+  "text.autoconfig.HorseBuff.category.Client": "Client",
+
+
+
   "text.autoconfig.HorseBuff.option.noWander": "No Horse Wandering",
   "text.autoconfig.HorseBuff.option.noWander.@Tooltip": "Yes - saddled horses wont wander.\nNo - saddled horses will wander",
 
@@ -10,9 +15,25 @@
   "text.autoconfig.HorseBuff.option.portalPatch": "Ride Through Portals",
   "text.autoconfig.HorseBuff.option.portalPatch.@Tooltip": "Yes - Allows you to travel through nether and end portals while mounted on horseback.\nNo - vanilla behavior",
 
-  "text.autoconfig.HorseBuff.option.pitchFade": "Fade Horse when you look down",
-  "text.autoconfig.HorseBuff.option.pitchFade.@Tooltip": "While you are mounted, the further you look down, the lower the opacity of the horse gets",
 
-  "text.autoconfig.HorseBuff.option.horseHeadAngleOffset": "Pitch offset of Horse heads",
-  "text.autoconfig.HorseBuff.option.horseHeadAngleOffset.@Tooltip": "While you are mounted horse heads are angled an extra N degrees down\n    0 is disabled\n   30 is good for visibility and style\n   45 is good for breaking necks"
+
+  "text.autoconfig.HorseBuff.option.pitchFade": "Horse Fade",
+  "text.autoconfig.HorseBuff.option.pitchFade.@Tooltip": "When mounted, the horse gets more transparent the further you look down",
+
+  "text.autoconfig.HorseBuff.option.pitchFade.enabled": "Enabled",
+
+  "text.autoconfig.HorseBuff.option.pitchFade.startAngle": "0% transparency angle",
+  "text.autoconfig.HorseBuff.option.pitchFade.startAngle.@Tooltip": "The horse wont be faded above this angle\nlooking below it will start decreasing opacity",
+  "text.autoconfig.HorseBuff.option.pitchFade.endAngle": "Max transparency angle",
+  "text.autoconfig.HorseBuff.option.pitchFade.endAngle.@Tooltip": "Below this angle the horse is as transparent as it will get",
+  "text.autoconfig.HorseBuff.option.pitchFade.maxTransparency": "Maximum transparency",
+  "text.autoconfig.HorseBuff.option.pitchFade.maxTransparency.@Tooltip": "How transparent the horse can get\n100 is invisible",
+
+
+
+  "text.autoconfig.HorseBuff.option.horseHeadAngleOffset": "Horse Head pitch offset",
+  "text.autoconfig.HorseBuff.option.horseHeadAngleOffset.@Tooltip": "When mounted, horse heads are angled an extra N degrees down\n   0 is disabled\n   30 is good for visibility and style\n   45 is good for breaking necks",
+
+  "text.autoconfig.HorseBuff.option.jeb_Horses": "jeb_ Horses",
+  "text.autoconfig.HorseBuff.option.jeb_Horses.@Tooltip": "Like sheep, horses will become RGB when named \"jeb\""
 }

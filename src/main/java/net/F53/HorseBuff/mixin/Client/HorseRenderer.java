@@ -10,11 +10,8 @@ import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.LivingEntityRenderer;
 import net.minecraft.client.render.entity.model.EntityModel;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.passive.HorseBaseEntity;
-import net.minecraft.entity.passive.SheepEntity;
-import net.minecraft.util.DyeColor;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -53,13 +50,18 @@ public abstract class HorseRenderer<T extends LivingEntity, M extends EntityMode
             MinecraftClient minecraftClient = MinecraftClient.getInstance();
             RenderLayer renderLayer = RenderLayer.getEntityTranslucentCull((((LivingEntityRenderer) (Object) this).getTexture(livingEntity)));
 
-            if (livingEntity.hasPassenger(MinecraftClient.getInstance().player) && ModConfig.getInstance().pitchFade) {
-                //As a player looks down, opacity of horse should decrease.
-                //100% at 30 degrees
-                //10% at 50+ degrees
+            if (livingEntity.hasPassenger(MinecraftClient.getInstance().player) && ModConfig.getInstance().pitchFade.enabled) {
+                //As a player looks down, opacity of horse decreases.
+                //100% at fadeStartAngle degrees
+                //10% at fadeEndAngle+ degrees
+                int fadeStartAngle = ModConfig.getInstance().pitchFade.startAngle;
+                int fadeEndAngle = ModConfig.getInstance().pitchFade.endAngle;
+                int minOpacity = 100 - ModConfig.getInstance().pitchFade.maxTransparency;
+                float rate = (100f-minOpacity)/(fadeStartAngle-fadeEndAngle);
+
                 ClientPlayerEntity player = MinecraftClient.getInstance().player;
                 assert player != null;
-                opacity = (Math.max(Math.min(100, -4.5f * (player.renderPitch - 50)), 10)) / 100;
+                opacity = (Math.max(Math.min(100, rate * (player.renderPitch - fadeEndAngle)), minOpacity)) / 100;
             } if (isJeb(livingEntity)) {
                 // TODO: desynchronize horse chroma
                 // adding the ID is supposed to do that, but it doesnt work
@@ -85,7 +87,7 @@ public abstract class HorseRenderer<T extends LivingEntity, M extends EntityMode
         if (livingEntity instanceof HorseBaseEntity) {
             if (isJeb(livingEntity))
                 return false;
-            if (livingEntity.hasPassenger(MinecraftClient.getInstance().player) && ModConfig.getInstance().pitchFade)
+            if (livingEntity.hasPassenger(MinecraftClient.getInstance().player) && ModConfig.getInstance().pitchFade.enabled)
                 return false;
         }
         return isVisible(livingEntity);
