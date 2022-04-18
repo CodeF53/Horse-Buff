@@ -9,12 +9,13 @@
     "HorseChildAttributeMixin",
     "MovementCheck",
     "NoWander",
-    "Client.TransparentArmor",
     "PortalHorse.OnCollideEnd",
     "PortalHorse.OnCollideNether",
     "PortalHorse.TickNether"
   ],
   "client": [
+    "Client.TransparentArmor",
+    "Client.TransparentMarkings",
     "Client.HeadPitchOffset",
     "Client.HorseRenderer",
     "Client.JebHorseTintable"
