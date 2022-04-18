@@ -9,6 +9,7 @@
     "HorseChildAttributeMixin",
     "MovementCheck",
     "NoWander",
+    "Client.TransparentArmor",
     "PortalHorse.OnCollideEnd",
     "PortalHorse.OnCollideNether",
     "PortalHorse.TickNether"

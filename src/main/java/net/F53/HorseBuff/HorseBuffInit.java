@@ -5,6 +5,7 @@ import net.fabricmc.api.ModInitializer;
 import net.F53.HorseBuff.config.ModConfig;
 
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
+import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -65,5 +66,14 @@ public class HorseBuffInit implements ModInitializer {
 
 	public static boolean isJeb(Entity horse){
 		return ModConfig.getInstance().jeb_Horses && horse.hasCustomName() && "jeb_".equals(horse.getName().asString());
+	}
+
+	public static float getOpacity(ClientPlayerEntity player){
+		int fadeStartAngle = ModConfig.getInstance().pitchFade.startAngle;
+		int fadeEndAngle = ModConfig.getInstance().pitchFade.endAngle;
+		int minOpacity = 100 - ModConfig.getInstance().pitchFade.maxTransparency;
+		float rate = (100f-minOpacity)/(fadeStartAngle-fadeEndAngle);
+
+		return (Math.max(Math.min(100, rate * (player.renderPitch - fadeEndAngle)), minOpacity)) / 100f;
 	}
 }
