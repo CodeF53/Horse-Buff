@@ -117,7 +117,7 @@ public abstract class HorseRenderer<T extends LivingEntity, M extends EntityMode
         if (livingEntity instanceof HorseBaseEntity) {
             if (isJeb(livingEntity))
                 return false;
-            if (livingEntity.hasPassenger(MinecraftClient.getInstance().player) && ModConfig.getInstance().pitchFade.enabled)
+            if (livingEntity.hasPassenger(MinecraftClient.getInstance().player) && ModConfig.getInstance().pitchFade.enabled && MinecraftClient.getInstance().options.getPerspective().isFirstPerson())
                 return false;
         }
         return isVisible(livingEntity);
