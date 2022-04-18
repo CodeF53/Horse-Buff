@@ -8,7 +8,7 @@
 ## About
 Improve horses by removing stupid stuff and adding useful stuff.
 
-###Server Changes:
+### Server Changes:
 - Allow nether portal travel without dismounting ([MC-67](https://bugs.mojang.com/browse/MC-67))*
 - Fix rubberbanding on stairs/slabs "Horse moved wrongly!" ([MC-100830](https://bugs.mojang.com/browse/MC-100830))
 - Better Breeding Logic
@@ -16,7 +16,7 @@ Improve horses by removing stupid stuff and adding useful stuff.
 - Remove break speed debuff\
 <sub><sup>*only fixes the bug for players riding vehicles as fully fixing the bug would screw with technical minecraft</sup></sub>
 
-###Client Changes:
+### Client Changes:
 - Fade Horse as you look down
 - Horse Head Pitch offset
 - Horses named `jeb_` become rainbow
