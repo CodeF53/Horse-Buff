@@ -14,6 +14,11 @@
     "PortalHorse.TickNether"
   ],
   "client": [
+    "Client.TransparentArmor",
+    "Client.TransparentMarkings",
+    "Client.HeadPitchOffset",
+    "Client.HorseRenderer",
+    "Client.JebHorseTintable"
   ],
   "injectors": {
     "defaultRequire": 1
