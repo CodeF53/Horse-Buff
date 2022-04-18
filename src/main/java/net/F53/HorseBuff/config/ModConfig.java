@@ -41,7 +41,7 @@ public class ModConfig implements ConfigData{
         public int endAngle = 50;
 
         @ConfigEntry.Gui.Tooltip
-        @ConfigEntry.BoundedDiscrete(min = 50, max = 90)
+        @ConfigEntry.BoundedDiscrete(min = 50, max = 100)
         public int maxTransparency = 90;
     }
 
