@@ -10,14 +10,14 @@ Improve horses by removing stupid stuff and adding useful stuff.
 
 ### Server Changes:
 <details><summary> 
-Allow travel through portals without dismounting ([MC-67](https://bugs.mojang.com/browse/MC-67))*
+Allow travel through portals without dismounting <a href="https://bugs.mojang.com/browse/MC-67">(MC-67)</a>*
 </summary>
 <sub><sup>*only fixes the bug for players riding vehicles as fully fixing the bug would screw with technical minecraft</sup></sub>
    
 Temp, video not made
    
 </details>
-<details><summary> Fix rubberbanding on stairs/slabs "Horse moved wrongly!" ([MC-100830](https://bugs.mojang.com/browse/MC-100830))</summary>
+<details><summary> Fix rubberbanding on stairs/slabs "Horse moved wrongly!" <a href="https://bugs.mojang.com/browse/MC-100830">(MC-100830)</a></summary>
 
 https://user-images.githubusercontent.com/37855219/163895099-0a01a410-c1c6-490e-9a01-5c489ec4801f.mp4
    
