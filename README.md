@@ -9,12 +9,38 @@
 Improve horses by removing stupid stuff and adding useful stuff.
 
 ### Server Changes:
-- Allow travel through portals without dismounting ([MC-67](https://bugs.mojang.com/browse/MC-67))*
-- Fix rubberbanding on stairs/slabs "Horse moved wrongly!" ([MC-100830](https://bugs.mojang.com/browse/MC-100830))
-- Better Breeding Logic
-- Saddled Horses don't wander
-- Remove break speed debuff\
+<details><summary> 
+Allow travel through portals without dismounting ([MC-67](https://bugs.mojang.com/browse/MC-67))*
+</summary>
 <sub><sup>*only fixes the bug for players riding vehicles as fully fixing the bug would screw with technical minecraft</sup></sub>
+   
+Temp, video not made
+   
+</details>
+<details><summary> Fix rubberbanding on stairs/slabs "Horse moved wrongly!" ([MC-100830](https://bugs.mojang.com/browse/MC-100830))</summary>
+
+https://user-images.githubusercontent.com/37855219/163895099-0a01a410-c1c6-490e-9a01-5c489ec4801f.mp4
+   
+</details>
+<details><summary> Better Breeding Logic</summary>
+   
+   1. Take average of the parents' traits
+   2. Random amount added/subtracted from said average
+      - +/- 10% of range between max and min
+   3. clamp to vanilla min/max stat
+   
+</details>
+<details><summary> Saddled Horses don't wander</summary>
+
+https://user-images.githubusercontent.com/37855219/163895736-6b68bd17-a3b3-43f9-8031-443e6de68635.mp4
+   
+</details>
+<details><summary> Remove break speed debuff</summary>
+
+Temp, video not made
+   
+</details>
+
 
 ### Client Changes:
 <details><summary> Fade Horse as you look down</summary>
@@ -35,9 +61,4 @@ https://user-images.githubusercontent.com/37855219/163889351-5caaded0-ff7e-40ab-
    
 </details>
 
-## New Breeding Logic
-1. Take average of the parents' traits
-2. Random amount added/subtracted from said average
-   - +/- 10% of range between max and min
-3. clamp to vanilla min/max stat
 
