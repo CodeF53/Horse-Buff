@@ -1,4 +1,4 @@
-package net.F53.HorseBuff.mixin;
+package net.F53.HorseBuff.mixin.Server;
 
 import net.F53.HorseBuff.HorseBuffInit;
 import net.minecraft.world.World;

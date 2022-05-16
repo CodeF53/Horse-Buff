@@ -35,9 +35,12 @@ dependencies {
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
 	// Fabric API
+	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+	/*
 	modIncludeImplementation(fabricApi.module("fabric-api-base", project.fabric_version))
 	modIncludeImplementation(fabricApi.module("fabric-rendering-data-attachment-v1", project.fabric_version))
 	modIncludeImplementation(fabricApi.module("fabric-lifecycle-events-v1", project.fabric_version))
+	 */
 
 
 	// Cloth Config

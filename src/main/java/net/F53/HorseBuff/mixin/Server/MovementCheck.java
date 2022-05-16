@@ -1,4 +1,4 @@
-package net.F53.HorseBuff.mixin;
+package net.F53.HorseBuff.mixin.Server;
 
 import net.minecraft.server.network.ServerPlayNetworkHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
