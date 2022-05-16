@@ -4,12 +4,13 @@
   "package": "net.F53.HorseBuff.mixin",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
-    "Server.FairBreeds",
+    "Client.InventoryAccessor",
     "PortalHorse.OnCollideEnd",
     "PortalHorse.OnCollideNether",
     "PortalHorse.TickNether",
     "Server.BreakSpeed",
     "Server.clearFutureTickEvents",
+    "Server.FairBreeds",
     "Server.MovementCheck",
     "Server.NoWander",
     "Server.StepHeight"

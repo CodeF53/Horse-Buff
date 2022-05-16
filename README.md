@@ -73,5 +73,10 @@ https://user-images.githubusercontent.com/37855219/163889148-a7c4b787-1979-44b6-
 https://user-images.githubusercontent.com/37855219/163889351-5caaded0-ff7e-40ab-8192-3ec88dc38a5a.mp4
    
 </details>
+<details><summary> Sprint + Inventory to open survival inventory</summary>
+
+https://user-images.githubusercontent.com/37855219/168519188-7ecd8e7b-85fe-4960-8053-8a290f81d200.mp4
+
+</details>
 
 
