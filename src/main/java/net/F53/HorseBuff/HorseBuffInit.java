@@ -74,6 +74,9 @@ public class HorseBuffInit implements ModInitializer {
 		int minOpacity = 100 - ModConfig.getInstance().pitchFade.maxTransparency;
 		float rate = (100f-minOpacity)/(fadeStartAngle-fadeEndAngle);
 
+		// ItemEntityTranslucentCull rendering is stupid, it stops rendering when transparency <= 10
+		minOpacity += 10;
+
 		return (Math.max(Math.min(100, rate * (player.renderPitch - fadeEndAngle)), minOpacity)) / 100f;
 	}
 }
