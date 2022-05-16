@@ -42,6 +42,17 @@ https://user-images.githubusercontent.com/37855219/163895736-6b68bd17-a3b3-43f9-
 Temp, video not made
    
 </details>
+<details><summary> Improve "Step Height" capability </summary>
+
+Without:
+
+https://user-images.githubusercontent.com/37855219/167529335-bea46c66-4ee2-4e3f-9391-f8cf2960d58a.mp4
+
+With:
+
+Temp, video not made
+
+</details>
 
 
 ### Client Changes:
