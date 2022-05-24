@@ -20,8 +20,8 @@ public abstract class InventoryAccessor {
 
     @Shadow @Nullable public ClientPlayerEntity player;
 
-    @Redirect(method="net/minecraft/client/MinecraftClient.handleInputEvents()V", at = @At(value = "INVOKE", target = "net/minecraft/client/network/ClientPlayerEntity.openRidingInventory ()V"))
-    void teergtoind(ClientPlayerEntity instance){
+    @Redirect(method= "handleInputEvents()V", at = @At(value = "INVOKE", target = "net/minecraft/client/network/ClientPlayerEntity.openRidingInventory ()V"))
+    void playerInventoryAccess(ClientPlayerEntity instance){
         assert this.player != null;
         if (MinecraftClient.getInstance().options.sprintKey.isPressed()) {
             tutorialManager.onInventoryOpened();
