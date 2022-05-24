@@ -24,6 +24,18 @@ public class ModConfig implements ConfigData{
     @ConfigEntry.Gui.Tooltip
     public boolean portalPatch = true;
 
+    @ConfigEntry.Category("Server")
+    @ConfigEntry.Gui.Tooltip
+    public boolean rubberBand = true;
+
+    @ConfigEntry.Category("Server")
+    @ConfigEntry.Gui.Tooltip
+    public boolean breakSpeed = true;
+
+    @ConfigEntry.Category("Server")
+    @ConfigEntry.Gui.Tooltip
+    public boolean stepHeight = false;
+
     @ConfigEntry.Category("Client")
     @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Gui.CollapsibleObject

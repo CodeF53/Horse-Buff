@@ -1,5 +1,6 @@
 package net.F53.HorseBuff.mixin.Server;
 
+import net.F53.HorseBuff.config.ModConfig;
 import net.minecraft.entity.passive.HorseBaseEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.Constant;
@@ -11,6 +12,9 @@ import org.spongepowered.asm.mixin.injection.ModifyConstant;
 public class StepHeight {
 	@ModifyConstant(method = "<init>(Lnet/minecraft/entity/EntityType;Lnet/minecraft/world/World;)V", constant = @Constant(floatValue = 1.0f))
 	private float horseHigherStepHeight(float value){
-		return 1.1f;
+		if (ModConfig.getInstance().stepHeight) {
+			return 1.1f;
+		}
+		return value;
 	}
 }
