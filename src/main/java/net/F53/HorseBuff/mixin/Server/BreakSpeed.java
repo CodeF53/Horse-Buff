@@ -1,5 +1,6 @@
-package net.F53.HorseBuff.mixin;
+package net.F53.HorseBuff.mixin.Server;
 
+import net.F53.HorseBuff.config.ModConfig;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.passive.HorseBaseEntity;
@@ -18,7 +19,7 @@ public abstract class BreakSpeed extends LivingEntity {
 
     @ModifyConstant(method = "getBlockBreakingSpeed(Lnet/minecraft/block/BlockState;)F", constant = @Constant(floatValue = 5.0F))
     private float HorseBreakSpeed(float speedMultiplier){
-        if (this.getRootVehicle() instanceof HorseBaseEntity)
+        if (this.getRootVehicle() instanceof HorseBaseEntity && ModConfig.getInstance().breakSpeed)
             return 1.0F;
         return speedMultiplier;
     }

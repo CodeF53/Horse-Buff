@@ -5,10 +5,8 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumerProvider;
-import net.minecraft.client.render.entity.feature.HorseMarkingFeatureRenderer;
 import net.minecraft.client.render.entity.feature.LlamaDecorFeatureRenderer;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.entity.passive.HorseEntity;
 import net.minecraft.entity.passive.LlamaEntity;
 import net.minecraft.util.Identifier;
 import org.spongepowered.asm.mixin.Mixin;
@@ -37,7 +35,7 @@ public class TransparentLlamaDecor {
     @Redirect(method = "render(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;ILnet/minecraft/entity/passive/LlamaEntity;FFFFFF)V",
     at = @At(value = "INVOKE", target = "net/minecraft/client/render/RenderLayer.getEntityCutoutNoCull (Lnet/minecraft/util/Identifier;)Lnet/minecraft/client/render/RenderLayer;"))
     RenderLayer makeRenderLayerTranslucent(Identifier texture) {
-        return RenderLayer.getEntityTranslucent(texture);
+        return RenderLayer.getItemEntityTranslucentCull(texture);
     }
 
     @ModifyConstant(method = "render(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;ILnet/minecraft/entity/passive/LlamaEntity;FFFFFF)V",

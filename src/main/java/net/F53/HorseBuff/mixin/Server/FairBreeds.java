@@ -1,4 +1,4 @@
-package net.F53.HorseBuff.mixin;
+package net.F53.HorseBuff.mixin.Server;
 
 import net.F53.HorseBuff.config.ModConfig;
 import net.minecraft.entity.EntityType;
@@ -14,9 +14,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 // Make breeding fair
 @Mixin(HorseBaseEntity.class)
-abstract class HorseChildAttributeMixin extends AnimalEntity {
+abstract class FairBreeds extends AnimalEntity {
 
-    protected HorseChildAttributeMixin(EntityType<? extends AnimalEntity> entityType, World world) {
+    protected FairBreeds(EntityType<? extends AnimalEntity> entityType, World world) {
         super(entityType, world);
     }
 

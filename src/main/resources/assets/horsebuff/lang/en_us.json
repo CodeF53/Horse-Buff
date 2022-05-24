@@ -15,6 +15,14 @@
   "text.autoconfig.HorseBuff.option.portalPatch": "Ride Through Portals",
   "text.autoconfig.HorseBuff.option.portalPatch.@Tooltip": "Yes - Allows you to travel through nether and end portals while mounted on horseback.\nNo - vanilla behavior",
 
+  "text.autoconfig.HorseBuff.option.rubberBand": "Fix Rubberbanding on Stairs",
+  "text.autoconfig.HorseBuff.option.rubberBand.@Tooltip": "Yes - Increases server tolerance for Horse movement speed, fixing rubberbanding.\nNo - vanilla behavior",
+
+  "text.autoconfig.HorseBuff.option.breakSpeed": "Remove Riding Breakspeed Debuff",
+  "text.autoconfig.HorseBuff.option.breakSpeed.@Tooltip": "Yes - Allows mining at full speed while on horseback.\nNo - Dramatically slows mining speed while on horseback (vanilla behavior)",
+
+  "text.autoconfig.HorseBuff.option.stepHeight": "Buff Stepheight",
+  "text.autoconfig.HorseBuff.option.stepHeight.@Tooltip": "Yes - Increases horse stepheight from 1 block to 1.1 blocks, making travel much smoother around path blocks.\nNo - vanilla behavior",
 
 
   "text.autoconfig.HorseBuff.option.pitchFade": "Horse Fade",

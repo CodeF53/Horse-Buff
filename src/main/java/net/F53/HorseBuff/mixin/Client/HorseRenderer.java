@@ -59,7 +59,7 @@ public abstract class HorseRenderer<T extends LivingEntity, M extends EntityMode
     at = @At(value = "INVOKE", target = "net/minecraft/client/render/entity/LivingEntityRenderer.getRenderLayer (Lnet/minecraft/entity/LivingEntity;ZZZ)Lnet/minecraft/client/render/RenderLayer;"))
     RenderLayer makeRenderLayerTranslucent(LivingEntityRenderer<T, ? extends EntityModel<T>> instance, T entity, boolean showBody, boolean translucent, boolean showOutline) {
         if (entity instanceof HorseBaseEntity) {
-            return RenderLayer.getEntityTranslucent(instance.getTexture(entity));
+            return RenderLayer.getItemEntityTranslucentCull(instance.getTexture(entity));
         }
         return getRenderLayer(entity, showBody, translucent, showOutline);
     }
