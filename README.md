@@ -40,7 +40,7 @@ Allow travel through portals without dismounting <a href="https://bugs.mojang.co
 <details><summary> Remove break speed debuff</summary>
 
 Allows players on horseback to mine at full speed.\
-Minecraft dramatically lowers break speed while a player is not on the ground.\
+Minecraft dramatically lowers break speed while a player is not on the ground.
 
 ![image](https://imgur.com/DKqrGOD.gif)
 
@@ -75,6 +75,8 @@ This makes riding horses around path blocks way less frustrating.
 </details>
 <details><summary> Sprint + Inventory to open survival inventory</summary>
 
-![image](https://imgur.com/aVl56hM.gif)
+![image](https://imgur.com/8oOswAR.png)
+
+*Horse Buff pulls from your Minecraft keybinds, so if you change your inventory/sprint key, that will change what you need to press to access your survival inventory
 
 </details>
