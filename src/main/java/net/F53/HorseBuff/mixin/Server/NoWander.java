@@ -3,7 +3,7 @@ package net.F53.HorseBuff.mixin.Server;
 import net.F53.HorseBuff.config.ModConfig;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.mob.MobEntity;
-import net.minecraft.entity.passive.HorseBaseEntity;
+import net.minecraft.entity.passive.AbstractHorseEntity;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 
 // Lower wander speed for saddled horses
-@Mixin(HorseBaseEntity.class)
+@Mixin(AbstractHorseEntity.class)
 public abstract class NoWander extends MobEntity {
     protected NoWander(EntityType<? extends MobEntity> entityType, World world) {
         super(entityType, world);

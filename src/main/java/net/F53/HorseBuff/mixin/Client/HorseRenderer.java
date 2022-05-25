@@ -9,7 +9,7 @@ import net.minecraft.client.render.entity.LivingEntityRenderer;
 import net.minecraft.client.render.entity.model.EntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.passive.HorseBaseEntity;
+import net.minecraft.entity.passive.AbstractHorseEntity;
 import net.minecraft.entity.passive.HorseEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -39,7 +39,7 @@ public abstract class HorseRenderer<T extends LivingEntity, M extends EntityMode
         r = 1;
         g = 1;
         b = 1;
-        if (livingEntity instanceof HorseBaseEntity) {
+        if (livingEntity instanceof AbstractHorseEntity) {
             if (ModConfig.getInstance().pitchFade.enabled && livingEntity.hasPassenger(MinecraftClient.getInstance().player)) {
                 ClientPlayerEntity player = MinecraftClient.getInstance().player;
                 assert player != null;
@@ -58,7 +58,7 @@ public abstract class HorseRenderer<T extends LivingEntity, M extends EntityMode
     @Redirect(method = "render(Lnet/minecraft/entity/LivingEntity;FFLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V",
     at = @At(value = "INVOKE", target = "net/minecraft/client/render/entity/LivingEntityRenderer.getRenderLayer (Lnet/minecraft/entity/LivingEntity;ZZZ)Lnet/minecraft/client/render/RenderLayer;"))
     RenderLayer makeRenderLayerTranslucent(LivingEntityRenderer<T, ? extends EntityModel<T>> instance, T entity, boolean showBody, boolean translucent, boolean showOutline) {
-        if (entity instanceof HorseBaseEntity) {
+        if (entity instanceof AbstractHorseEntity) {
             return RenderLayer.getItemEntityTranslucentCull(instance.getTexture(entity));
         }
         return getRenderLayer(entity, showBody, translucent, showOutline);
