@@ -39,18 +39,18 @@ Allow travel through portals without dismounting <a href="https://bugs.mojang.co
 </details>
 <details><summary> Remove break speed debuff</summary>
 
-Temp, video not made
+Allows players on horseback to mine at full speed.\
+Minecraft dramatically lowers break speed while a player is not on the ground.\
+
+![image](https://imgur.com/DKqrGOD.gif)
 
 </details>
 <details><summary> Improve "Step Height" capability </summary>
 
-Without:
+Increases horse step-height from 1 block to 1.1 blocks.\
+This makes riding horses around path blocks way less frustrating.
 
-![image](https://imgur.com/Kt8wS3K.gif)
-
-With:
-
-Temp, video not made
+![image](https://imgur.com/nvssVeA.gif)
 
 </details>
 
