@@ -28,7 +28,7 @@ public class OnCollideEnd {
 
     @Redirect(method = "onEntityCollision(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/Entity;)V", at = @At(value = "INVOKE", target = "net/minecraft/entity/Entity.moveToWorld (Lnet/minecraft/server/world/ServerWorld;)Lnet/minecraft/entity/Entity;"))
     public Entity bringRider(Entity vehicle, ServerWorld destination){
-        if (ModConfig.getInstance().portalPatch && vehicle.hasPassengers() && vehicle.getFirstPassenger() instanceof PlayerEntity) {
+        if (ModConfig.getInstance().portalPatch && vehicle.hasPassengers() && vehicle.getPrimaryPassenger() instanceof PlayerEntity) {
             // Get player
             Entity player = vehicle.getPrimaryPassenger();
             assert player != null;

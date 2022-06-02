@@ -56,10 +56,10 @@ public class HorseBuffInit implements ModInitializer {
 
 				runNextTick.add(() -> tpAndRemount(playerUUID, vehicleUUID, destination, depth+1));
 			} else {
-				player.unsetRemoved();
-				vehicle.unsetRemoved();
+				player.method_30076();
+				vehicle.method_30076();
 
-				player.setPosition(vehicle.getPos());
+				player.setPosition(vehicle.getX(), vehicle.getY(), vehicle.getZ());
 				player.startRiding(vehicle, true);
 			}
 		});

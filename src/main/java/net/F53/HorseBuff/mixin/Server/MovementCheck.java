@@ -14,7 +14,9 @@ import net.minecraft.entity.passive.HorseBaseEntity;
 public class MovementCheck {
 	@Shadow public ServerPlayerEntity player;
 
-	@ModifyConstant(method = "onVehicleMove(Lnet/minecraft/network/packet/c2s/play/VehicleMoveC2SPacket;)V", constant = @Constant(doubleValue = 0.0625D))
+	// 1.17+ first instance of 0.0625
+	// 1.16- second instance of 0.0625
+	@ModifyConstant(method = "onVehicleMove(Lnet/minecraft/network/packet/c2s/play/VehicleMoveC2SPacket;)V", constant = @Constant(doubleValue = 0.0625D, ordinal = 1) )
 	private double horseNoMovementCheck(double value){
 		if (this.player.getRootVehicle() instanceof HorseBaseEntity && ModConfig.getInstance().rubberBand)
 			return Double.POSITIVE_INFINITY;

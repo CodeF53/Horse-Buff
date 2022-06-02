@@ -2,9 +2,8 @@
   "required": true,
   "minVersion": "0.8",
   "package": "net.F53.HorseBuff.mixin",
-  "compatibilityLevel": "JAVA_16",
+  "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "Client.InventoryAccessor",
     "PortalHorse.OnCollideEnd",
     "PortalHorse.OnCollideNether",
     "PortalHorse.TickNether",
@@ -17,6 +16,7 @@
   ],
   "client": [
     "Client.HeadPitchOffset",
+    "Client.InventoryAccessor",
     "Client.HorseRenderer",
     "Client.JebHorseTintable",
     "Client.TransparentArmor",
