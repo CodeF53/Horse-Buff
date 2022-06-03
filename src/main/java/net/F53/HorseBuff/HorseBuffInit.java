@@ -1,3 +1,49 @@
+package net.f53.horsebuff;
+
+import net.minecraft.entity.Entity;
+import net.minecraft.client.Minecraft;
+
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+
+@Mod(modid = "horsebuff", name = "Horse Buff", version = "2.0.0")
+public class HorseBuffInit {
+	public static final Logger LOGGER = LogManager.getLogger("HorseBuff");
+
+	@EventHandler
+	public void init(FMLInitializationEvent event) {
+		LOGGER.info("Horse Buff Initialized");
+	}
+
+	public static boolean isJeb(Entity horse){
+		// TODO: config
+		return /*ModConfig.getInstance().jeb_Horses &&*/ horse.hasCustomName() && "jeb_".equals(horse.getName());
+	}
+
+	public static float getOpacity(){
+		LOGGER.info("TPP Value = " + Minecraft.getMinecraft().gameSettings.thirdPersonView);
+		// TODO
+		// TODO: config
+		/*if (Minecraft.getMinecraft().gameSettings.thirdPersonView == 0) {
+			int fadeStartAngle = ModConfig.getInstance().pitchFade.startAngle;
+			int fadeEndAngle = ModConfig.getInstance().pitchFade.endAngle;
+			int minOpacity = 100 - ModConfig.getInstance().pitchFade.maxTransparency;
+			float rate = (100f - minOpacity) / (fadeStartAngle - fadeEndAngle);
+
+			// ItemEntityTranslucentCull rendering is stupid, it stops rendering when transparency <= 10
+			minOpacity += 10;
+
+			return (Math.max(Math.min(100, rate * (player.renderPitch - fadeEndAngle)), minOpacity)) / 100f;
+		}*/
+		return 0.5F;
+	}
+}
+
+/*
 package net.F53.HorseBuff;
 
 import net.fabricmc.api.ModInitializer;
@@ -56,31 +102,13 @@ public class HorseBuffInit implements ModInitializer {
 
 				runNextTick.add(() -> tpAndRemount(playerUUID, vehicleUUID, destination, depth+1));
 			} else {
-				player.method_30076();
-				vehicle.method_30076();
+				player.unsetRemoved();
+				vehicle.unsetRemoved();
 
-				player.setPosition(vehicle.getX(), vehicle.getY(), vehicle.getZ());
+				player.setPosition(vehicle.getPos());
 				player.startRiding(vehicle, true);
 			}
 		});
 	}
-
-	public static boolean isJeb(Entity horse){
-		return ModConfig.getInstance().jeb_Horses && horse.hasCustomName() && "jeb_".equals(horse.getName().asString());
-	}
-
-	public static float getOpacity(ClientPlayerEntity player){
-		if (MinecraftClient.getInstance().options.getPerspective().isFirstPerson()) {
-			int fadeStartAngle = ModConfig.getInstance().pitchFade.startAngle;
-			int fadeEndAngle = ModConfig.getInstance().pitchFade.endAngle;
-			int minOpacity = 100 - ModConfig.getInstance().pitchFade.maxTransparency;
-			float rate = (100f - minOpacity) / (fadeStartAngle - fadeEndAngle);
-
-			// ItemEntityTranslucentCull rendering is stupid, it stops rendering when transparency <= 10
-			minOpacity += 10;
-
-			return (Math.max(Math.min(100, rate * (player.renderPitch - fadeEndAngle)), minOpacity)) / 100f;
-		}
-		return 1;
-	}
 }
+ */

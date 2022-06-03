@@ -16,6 +16,10 @@ classes/
 *.ipr
 *.iws
 
+# eclipse
+
+eclipse/
+
 # vscode
 
 .settings/

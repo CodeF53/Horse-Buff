@@ -1,0 +1,13 @@
+[
+{
+  "modid": "horsebuff",
+  "name": "Horse Buff",
+  "description": "Improve horses by removing stupid stuff and adding useful stuff.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "https://modrinth.com/mod/horsebuff",
+  "authorList": ["CodeF53#0241"],
+  "credits": "",
+  "logoFile": "assets/horsebuff/icon.png"
+}
+]

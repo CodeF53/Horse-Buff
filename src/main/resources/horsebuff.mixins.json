@@ -1,29 +1,16 @@
 {
   "required": true,
-  "minVersion": "0.8",
-  "package": "net.F53.HorseBuff.mixin",
+  "package": "net.f53.horsebuff.mixin",
   "compatibilityLevel": "JAVA_8",
+  "refmap": "horsebuff.refmap.json",
   "mixins": [
-    "PortalHorse.OnCollideEnd",
-    "PortalHorse.OnCollideNether",
-    "PortalHorse.TickNether",
-    "Server.BreakSpeed",
-    "Server.clearFutureTickEvents",
-    "Server.FairBreeds",
-    "Server.MovementCheck",
-    "Server.NoWander",
-    "Server.StepHeight"
+    "Client.HorseRenderer"
   ],
   "client": [
-    "Client.HeadPitchOffset",
-    "Client.InventoryAccessor",
-    "Client.HorseRenderer",
-    "Client.JebHorseTintable",
-    "Client.TransparentArmor",
-    "Client.TransparentLlamaDecor",
-    "Client.TransparentMarkings"
+    "Client.HorseRenderer"
   ],
   "injectors": {
     "defaultRequire": 1
-  }
+  },
+  "minVersion": "0.8"
 }
