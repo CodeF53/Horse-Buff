@@ -4,7 +4,7 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "horsebuff.refmap.json",
   "mixins": [
-    "Client.HorseRenderer"
+    "Server.NoWander"
   ],
   "client": [
     "Client.HorseRenderer"

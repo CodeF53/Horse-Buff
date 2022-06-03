@@ -13,6 +13,7 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle.forge'
 apply plugin: 'org.spongepowered.mixin'
 apply plugin: 'eclipse'
+apply plugin: 'idea'
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
 
@@ -24,6 +25,8 @@ minecraft {
     version = "${minecraft_version}-${forge_version}-${minecraft_version}"
     mappings = mappings_version
     runDir = "run"
+    clientJvmArgs += "-Dfml.coreMods.load=net.f53.horsebuff.core.CoreMod"
+    serverJvmArgs += "-Dfml.coreMods.load=net.f53.horsebuff.core.CoreMod"
     String resolved_core_config = mod_mixin_configs.replace('${mod_id}', mod_id)
     clientRunArgs += "--mixin ${resolved_core_config}"
     serverRunArgs += "--mixin ${resolved_core_config}"
@@ -32,9 +35,9 @@ minecraft {
 }
 
 repositories {
-    maven { url "https://maven.shedaniel.me" }
-    maven { url "https://maven.architectury.dev/" }
-    maven { url "https://dvs1.progwml6.com/files/maven/" }
+    maven { url = "https://maven.shedaniel.me" }
+    maven { url = "https://maven.architectury.dev/" }
+    maven { url = "https://dvs1.progwml6.com/files/maven/" }
     maven { url = "https://repo.spongepowered.org/maven" }
 }
 
