@@ -21,7 +21,7 @@ public class TransparentMarkings {
 
     private float opacity;
 
-    @Inject(method = "render(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;ILnet/minecraft/entity/passive/HorseEntity;FFFFFF)V",
+    @Inject(method = "render(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;ILnet/minecraft/world/entity/animal/horse/Horse;FFFFFF)V",
     at = @At("HEAD"))
     void fetchOpacity(PoseStack matrixStack, MultiBufferSource vertexConsumerProvider, int light, Horse horseEntity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch, CallbackInfo ci) {
         if (ModConfig.getInstance().pitchFade.enabled && horseEntity.hasPassenger(Minecraft.getInstance().player)) {
@@ -33,13 +33,13 @@ public class TransparentMarkings {
         }
     }
 
-    @Redirect(method = "render(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;ILnet/minecraft/entity/passive/HorseEntity;FFFFFF)V",
-            at = @At(value = "INVOKE", target = "net/minecraft/client/render/RenderLayer.getEntityTranslucent (Lnet/minecraft/util/Identifier;)Lnet/minecraft/client/render/RenderLayer;"))
+    @Redirect(method = "render(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;ILnet/minecraft/world/entity/animal/horse/Horse;FFFFFF)V",
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/RenderType;entityTranslucent(Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/client/renderer/RenderType;"))
     RenderType makeRenderLayerTranslucent(ResourceLocation texture) {
         return RenderType.itemEntityTranslucentCull(texture);
     }
 
-    @ModifyConstant(method = "render(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;ILnet/minecraft/entity/passive/HorseEntity;FFFFFF)V",
+    @ModifyConstant(method = "render(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;ILnet/minecraft/world/entity/animal/horse/Horse;FFFFFF)V",
     constant = @Constant(floatValue = 1.0f))
     float setOpacityForRender(float value){
         return opacity;

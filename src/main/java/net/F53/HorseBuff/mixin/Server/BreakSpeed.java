@@ -17,7 +17,7 @@ public abstract class BreakSpeed extends LivingEntity {
         super(entityType, world);
     }
 
-    @ModifyConstant(method = "getBlockBreakingSpeed(Lnet/minecraft/block/BlockState;)F", constant = @Constant(floatValue = 5.0F))
+    @ModifyConstant(method = "getDestroySpeed", constant = @Constant(floatValue = 5.0F))
     private float HorseBreakSpeed(float speedMultiplier){
         if (this.getRootVehicle() instanceof AbstractHorse && ModConfig.getInstance().breakSpeed)
             return 1.0F;

@@ -12,8 +12,8 @@ import net.minecraft.world.entity.animal.horse.Variant;
 
 @Mixin(HorseRenderer.class)
 public class JebHorseTintable {
-    @Redirect(method = "getTexture(Lnet/minecraft/entity/passive/HorseEntity;)Lnet/minecraft/util/Identifier;",
-    at = @At(value = "INVOKE", target = "net/minecraft/entity/passive/HorseEntity.getColor ()Lnet/minecraft/entity/passive/HorseColor;"))
+    @Redirect(method = "getTextureLocation(Lnet/minecraft/world/entity/animal/horse/Horse;)Lnet/minecraft/resources/ResourceLocation;",
+    at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/animal/horse/Horse;getVariant()Lnet/minecraft/world/entity/animal/horse/Variant;"))
     Variant jebHorseTintable(Horse instance){
         if (isJeb(instance)){
             return Variant.WHITE;

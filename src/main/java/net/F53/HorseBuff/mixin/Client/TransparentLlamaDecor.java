@@ -21,7 +21,7 @@ public class TransparentLlamaDecor {
 
     private float opacity;
 
-    @Inject(method = "render(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;ILnet/minecraft/entity/passive/LlamaEntity;FFFFFF)V",
+    @Inject(method = "render(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;ILnet/minecraft/world/entity/animal/horse/Llama;FFFFFF)V",
     at = @At("HEAD"))
     void fetchOpacity(PoseStack matrixStack, MultiBufferSource vertexConsumerProvider, int i, Llama llamaEntity, float f, float g, float h, float j, float k, float l, CallbackInfo ci) {
         if (ModConfig.getInstance().pitchFade.enabled && llamaEntity.hasPassenger(Minecraft.getInstance().player)) {
@@ -33,13 +33,13 @@ public class TransparentLlamaDecor {
         }
     }
 
-    @Redirect(method = "render(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;ILnet/minecraft/entity/passive/LlamaEntity;FFFFFF)V",
-    at = @At(value = "INVOKE", target = "net/minecraft/client/render/RenderLayer.getEntityCutoutNoCull (Lnet/minecraft/util/Identifier;)Lnet/minecraft/client/render/RenderLayer;"))
+    @Redirect(method = "render(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;ILnet/minecraft/world/entity/animal/horse/Llama;FFFFFF)V",
+    at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/RenderType;entityCutoutNoCull(Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/client/renderer/RenderType;"))
     RenderType makeRenderLayerTranslucent(ResourceLocation texture) {
         return RenderType.itemEntityTranslucentCull(texture);
     }
 
-    @ModifyConstant(method = "render(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;ILnet/minecraft/entity/passive/LlamaEntity;FFFFFF)V",
+    @ModifyConstant(method = "render(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;ILnet/minecraft/world/entity/animal/horse/Llama;FFFFFF)V",
     constant = @Constant(floatValue = 1.0f))
     float setOpacityForRender(float value){
         return opacity;

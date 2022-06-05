@@ -17,12 +17,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(HorseModel.class)
 public class HeadPitchOffset<T extends LivingEntity, M extends EntityModel<T>> {
-    @Shadow @Final protected ModelPart head;
+    @Shadow @Final protected ModelPart headParts;
 
     // Thanks dorianpb#9929 for the tip on where to mixin
-    @Inject(method = "setAngles(Lnet/minecraft/entity/passive/HorseBaseEntity;FFFFF)V", at = @At("TAIL"))
+    @Inject(method = "setupAnim(Lnet/minecraft/world/entity/animal/horse/AbstractHorse;FFFFF)V", at = @At("TAIL"))
     void headPitch(AbstractHorse horseBaseEntity, float f, float g, float h, float i, float j, CallbackInfo ci){
         if (horseBaseEntity.hasPassenger(Minecraft.getInstance().player) && Minecraft.getInstance().options.getCameraType().isFirstPerson())
-            this.head.xRot = Math.min(this.head.xRot + ModConfig.getInstance().horseHeadAngleOffset/100f, 1.5f);
+            this.headParts.xRot = Math.min(this.headParts.xRot + ModConfig.getInstance().horseHeadAngleOffset/100f, 1.5f);
     }
 }

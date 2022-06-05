@@ -20,8 +20,8 @@ abstract class FairBreeds extends Animal {
         super(entityType, world);
     }
 
-    @Inject(method = "setChildAttributes", at = @At(value = "TAIL"))
-    protected void onSetChildAttributes(AgeableMob mate, AbstractHorse child, CallbackInfo ci) {
+    @Inject(method = "setOffspringAttributes", at = @At(value = "TAIL"))
+    protected void setOffspringAttributes(AgeableMob mate, AbstractHorse child, CallbackInfo ci) {
         if (ModConfig.getInstance().fairBreeds) {
             // Logic - Set stat to average parent stat, +/- some random amount, limited to vanilla min/max values
 

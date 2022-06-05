@@ -14,17 +14,17 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(Minecraft.class)
 public abstract class InventoryAccessor {
-    @Shadow @Final private Tutorial tutorialManager;
+    @Shadow @Final private Tutorial tutorial;
 
     @Shadow public abstract void setScreen(@Nullable Screen screen);
 
     @Shadow @Nullable public LocalPlayer player;
 
-    @Redirect(method= "handleInputEvents()V", at = @At(value = "INVOKE", target = "net/minecraft/client/network/ClientPlayerEntity.openRidingInventory ()V"))
+    @Redirect(method= "handleKeybinds", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/player/LocalPlayer;sendOpenInventory()V"))
     void playerInventoryAccess(LocalPlayer instance){
         assert this.player != null;
         if (Minecraft.getInstance().options.keySprint.isDown()) {
-            tutorialManager.onOpenInventory();
+            tutorial.onOpenInventory();
             setScreen(new InventoryScreen(this.player));
         }
         else {

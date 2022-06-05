@@ -18,7 +18,7 @@ public class OnCollideEnd {
 
     // Allow entities with passengers
     // Has to be vehicle bringing player, otherwise you enter end with a burning horse
-    @Redirect(method = "onEntityCollision(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/Entity;)V", at = @At(value = "INVOKE", target = "net/minecraft/entity/Entity.hasPassengers ()Z"))
+    @Redirect(method = "entityInside", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/Entity;isVehicle()Z"))
     public boolean isVehicle(Entity instance){
         if (ModConfig.getInstance().portalPatch) {
             return false;
@@ -26,7 +26,7 @@ public class OnCollideEnd {
         return instance.isVehicle();
     }
 
-    @Redirect(method = "onEntityCollision(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/Entity;)V", at = @At(value = "INVOKE", target = "net/minecraft/entity/Entity.moveToWorld (Lnet/minecraft/server/world/ServerWorld;)Lnet/minecraft/entity/Entity;"))
+    @Redirect(method = "entityInside", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/Entity;changeDimension(Lnet/minecraft/server/level/ServerLevel;)Lnet/minecraft/world/entity/Entity;"))
     public Entity bringRider(Entity vehicle, ServerLevel destination){
         if (ModConfig.getInstance().portalPatch && vehicle.isVehicle() && vehicle.getFirstPassenger() instanceof Player) {
             // Get player

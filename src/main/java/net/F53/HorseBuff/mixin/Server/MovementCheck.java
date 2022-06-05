@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.ModifyConstant;
 public class MovementCheck {
 	@Shadow public ServerPlayer player;
 
-	@ModifyConstant(method = "onVehicleMove(Lnet/minecraft/network/packet/c2s/play/VehicleMoveC2SPacket;)V", constant = @Constant(doubleValue = 0.0625D))
+	@ModifyConstant(method = "handleMoveVehicle", constant = @Constant(doubleValue = 0.0625D))
 	private double horseNoMovementCheck(double value){
 		if (this.player.getRootVehicle() instanceof AbstractHorse && ModConfig.getInstance().rubberBand)
 			return Double.POSITIVE_INFINITY;

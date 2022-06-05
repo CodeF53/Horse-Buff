@@ -18,24 +18,24 @@ import java.util.UUID;
 @Mixin(Entity.class)
 public abstract class TickNether {
 
-    @Shadow protected boolean inNetherPortal;
+    @Shadow protected boolean isInsidePortal;
 
-    @Shadow protected int netherPortalTime;
+    @Shadow protected int portalTime;
 
-    @Shadow protected abstract void tickNetherPortalCooldown();
+    @Shadow protected abstract void processPortalCooldown();
 
-    @Shadow public abstract boolean hasVehicle();
+    @Shadow public abstract boolean isPassenger();
 
-    @Inject(method = "tickNetherPortal()V", at = @At("HEAD"))
+    @Inject(method = "handleNetherPortal", at = @At("HEAD"))
     public void riderTravel(CallbackInfo ci){
         Entity player = (Entity)(Object)this;
         if (player.level instanceof ServerLevel && player instanceof Player){
             if (player.getVehicle() != null){
                 int maxPortalTime = player.getPortalWaitTime();
-                if (inNetherPortal) {
+                if (isInsidePortal) {
                     MinecraftServer minecraftServer = ((ServerLevel)player.level).getServer();
                     ServerLevel destination = minecraftServer.getLevel(player.level.dimension() == Level.NETHER ? Level.OVERWORLD : Level.NETHER);
-                    if (destination != null && minecraftServer.isNetherEnabled() && netherPortalTime++ >= maxPortalTime) {
+                    if (destination != null && minecraftServer.isNetherEnabled() && portalTime++ >= maxPortalTime) {
                         // Get Vehicle
                         Entity vehicle = player.getVehicle();
 
@@ -60,23 +60,23 @@ public abstract class TickNether {
                             HorseBuffInit.tpAndRemount(playerUUID, vehicleUUID, destination, 0);
                         }
                     }
-                    inNetherPortal = false;
+                    isInsidePortal = false;
                 }
                 else {
-                    if (this.netherPortalTime > 0) {
-                        this.netherPortalTime -= 4;
+                    if (this.portalTime > 0) {
+                        this.portalTime -= 4;
                     }
-                    if (this.netherPortalTime < 0) {
-                        this.netherPortalTime = 0;
+                    if (this.portalTime < 0) {
+                        this.portalTime = 0;
                     }
                 }
-                tickNetherPortalCooldown();
+                processPortalCooldown();
             }
         }
     }
 
     // elsewhere, we allow vehicles to be marked as in nether portal, so we have to deny them teleporting
-    @Redirect(method = "tickNetherPortal()V", at = @At(value = "INVOKE", target = "net/minecraft/entity/Entity.hasVehicle ()Z"))
+    @Redirect(method = "handleNetherPortal", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/Entity;isPassenger()Z"))
     public boolean denyVehicleTravel(Entity instance){
         // if portalPatch, deny travel
         if (instance.isVehicle() && ModConfig.getInstance().portalPatch){
@@ -85,9 +85,9 @@ public abstract class TickNether {
         return instance.isPassenger();
     }
 
-    @ModifyConstant(method = "tickNetherPortal()V", constant = @Constant(intValue = 4))
+    @ModifyConstant(method = "handleNetherPortal", constant = @Constant(intValue = 4))
     public int netherPortalTime(int constant){
-        if (this.hasVehicle()){
+        if (this.isPassenger()){
             return 0;
         }
         return constant;

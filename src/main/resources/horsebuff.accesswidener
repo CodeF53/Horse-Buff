@@ -1,7 +1,7 @@
 accessWidener v2 named
 
-accessible method net/minecraft/entity/Entity resetNetherPortalCooldown ()V
+accessible method net/minecraft/world/entity/Entity setPortalCooldown ()V
 
-accessible method net/minecraft/entity/Entity moveToWorld (Lnet/minecraft/server/world/ServerWorld;)Lnet/minecraft/entity/Entity;
+accessible method net/minecraft/world/entity/Entity changeDimension (Lnet/minecraft/server/level/ServerLevel;)Lnet/minecraft/world/entity/Entity;
 
-accessible method net/minecraft/entity/Entity unsetRemoved ()V
+accessible method net/minecraft/world/entity/Entity unsetRemoved ()V
