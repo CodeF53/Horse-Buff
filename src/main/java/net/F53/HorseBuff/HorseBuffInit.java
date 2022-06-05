@@ -5,11 +5,11 @@ import net.fabricmc.api.ModInitializer;
 import net.F53.HorseBuff.config.ModConfig;
 
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.network.ClientPlayerEntity;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.world.ServerWorld;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -40,9 +40,9 @@ public class HorseBuffInit implements ModInitializer {
 	}
 
 	// Schedules player to be teleported to and mounted on its vehicle
-	public static void tpAndRemount(UUID playerUUID, UUID vehicleUUID, ServerWorld destination, int depth) {
+	public static void tpAndRemount(UUID playerUUID, UUID vehicleUUID, ServerLevel destination, int depth) {
 		runNextTick.add(() -> {
-			PlayerEntity player = destination.getPlayerByUuid(playerUUID);
+			Player player = destination.getPlayerByUUID(playerUUID);
 			Entity vehicle = destination.getEntity(vehicleUUID);
 
 			// wait until both the player and vehicle are actually in the dimension
@@ -59,18 +59,18 @@ public class HorseBuffInit implements ModInitializer {
 				player.unsetRemoved();
 				vehicle.unsetRemoved();
 
-				player.setPosition(vehicle.getPos());
+				player.setPos(vehicle.position());
 				player.startRiding(vehicle, true);
 			}
 		});
 	}
 
 	public static boolean isJeb(Entity horse){
-		return ModConfig.getInstance().jeb_Horses && horse.hasCustomName() && "jeb_".equals(horse.getName().asString());
+		return ModConfig.getInstance().jeb_Horses && horse.hasCustomName() && "jeb_".equals(horse.getName().getContents());
 	}
 
-	public static float getOpacity(ClientPlayerEntity player){
-		if (MinecraftClient.getInstance().options.getPerspective().isFirstPerson()) {
+	public static float getOpacity(LocalPlayer player){
+		if (Minecraft.getInstance().options.getCameraType().isFirstPerson()) {
 			int fadeStartAngle = ModConfig.getInstance().pitchFade.startAngle;
 			int fadeEndAngle = ModConfig.getInstance().pitchFade.endAngle;
 			int minOpacity = 100 - ModConfig.getInstance().pitchFade.maxTransparency;
@@ -79,7 +79,7 @@ public class HorseBuffInit implements ModInitializer {
 			// ItemEntityTranslucentCull rendering is stupid, it stops rendering when transparency <= 10
 			minOpacity += 10;
 
-			return (Math.max(Math.min(100, rate * (player.renderPitch - fadeEndAngle)), minOpacity)) / 100f;
+			return (Math.max(Math.min(100, rate * (player.xBob - fadeEndAngle)), minOpacity)) / 100f;
 		}
 		return 1;
 	}

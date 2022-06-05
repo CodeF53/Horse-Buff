@@ -1,10 +1,10 @@
 package net.F53.HorseBuff.mixin.PortalHorse;
 
 import net.F53.HorseBuff.config.ModConfig;
-import net.minecraft.block.EndPortalBlock;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.world.ServerWorld;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.block.EndPortalBlock;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
@@ -23,31 +23,31 @@ public class OnCollideEnd {
         if (ModConfig.getInstance().portalPatch) {
             return false;
         }
-        return instance.hasPassengers();
+        return instance.isVehicle();
     }
 
     @Redirect(method = "onEntityCollision(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/Entity;)V", at = @At(value = "INVOKE", target = "net/minecraft/entity/Entity.moveToWorld (Lnet/minecraft/server/world/ServerWorld;)Lnet/minecraft/entity/Entity;"))
-    public Entity bringRider(Entity vehicle, ServerWorld destination){
-        if (ModConfig.getInstance().portalPatch && vehicle.hasPassengers() && vehicle.getFirstPassenger() instanceof PlayerEntity) {
+    public Entity bringRider(Entity vehicle, ServerLevel destination){
+        if (ModConfig.getInstance().portalPatch && vehicle.isVehicle() && vehicle.getFirstPassenger() instanceof Player) {
             // Get player
-            Entity player = vehicle.getPrimaryPassenger();
+            Entity player = vehicle.getControllingPassenger();
             assert player != null;
 
             // Get UUIDs
-            UUID vehicleUUID = vehicle.getUuid();
-            UUID playerUUID = player.getUuid();
+            UUID vehicleUUID = vehicle.getUUID();
+            UUID playerUUID = player.getUUID();
 
             // Change player Dim
-            player.moveToWorld(destination);
+            player.changeDimension(destination);
 
             // Change vehicle Dim
-            vehicle.moveToWorld(destination);
+            vehicle.changeDimension(destination);
 
             // Safely rejoin player and vehicle once the game is ready
             HorseBuffInit.tpAndRemount(playerUUID, vehicleUUID, destination, 0);
 
             return vehicle;
         }
-        return vehicle.moveToWorld(destination);
+        return vehicle.changeDimension(destination);
     }
 }

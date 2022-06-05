@@ -1,44 +1,44 @@
 package net.F53.HorseBuff.mixin.Server;
 
 import net.F53.HorseBuff.config.ModConfig;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.passive.AnimalEntity;
-import net.minecraft.entity.passive.HorseBaseEntity;
-import net.minecraft.entity.passive.PassiveEntity;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.AgeableMob;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.animal.horse.AbstractHorse;
+import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 // Make breeding fair
-@Mixin(HorseBaseEntity.class)
-abstract class FairBreeds extends AnimalEntity {
+@Mixin(AbstractHorse.class)
+abstract class FairBreeds extends Animal {
 
-    protected FairBreeds(EntityType<? extends AnimalEntity> entityType, World world) {
+    protected FairBreeds(EntityType<? extends Animal> entityType, Level world) {
         super(entityType, world);
     }
 
     @Inject(method = "setChildAttributes", at = @At(value = "TAIL"))
-    protected void onSetChildAttributes(PassiveEntity mate, HorseBaseEntity child, CallbackInfo ci) {
+    protected void onSetChildAttributes(AgeableMob mate, AbstractHorse child, CallbackInfo ci) {
         if (ModConfig.getInstance().fairBreeds) {
             // Logic - Set stat to average parent stat, +/- some random amount, limited to vanilla min/max values
 
             // Health
             // 15-30
-            double Health = Logic(this.getAttributeBaseValue(EntityAttributes.GENERIC_MAX_HEALTH), mate.getAttributeBaseValue(EntityAttributes.GENERIC_MAX_HEALTH), 15, 30);
-            child.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue(Health);
+            double Health = Logic(this.getAttributeBaseValue(Attributes.MAX_HEALTH), mate.getAttributeBaseValue(Attributes.MAX_HEALTH), 15, 30);
+            child.getAttribute(Attributes.MAX_HEALTH).setBaseValue(Health);
 
             // Jump
             // 0.4-1.0
-            double JumpStrength = Logic(this.getAttributeBaseValue(EntityAttributes.HORSE_JUMP_STRENGTH), mate.getAttributeBaseValue(EntityAttributes.HORSE_JUMP_STRENGTH), 0.4, 1.0);
-            child.getAttributeInstance(EntityAttributes.HORSE_JUMP_STRENGTH).setBaseValue(JumpStrength);
+            double JumpStrength = Logic(this.getAttributeBaseValue(Attributes.JUMP_STRENGTH), mate.getAttributeBaseValue(Attributes.JUMP_STRENGTH), 0.4, 1.0);
+            child.getAttribute(Attributes.JUMP_STRENGTH).setBaseValue(JumpStrength);
 
             // Movement
             // 0.1125 - 0.3375
-            double MovementSpeed = Logic(this.getAttributeBaseValue(EntityAttributes.GENERIC_MOVEMENT_SPEED), mate.getAttributeBaseValue(EntityAttributes.GENERIC_MOVEMENT_SPEED), 0.1125, 0.3375);
-            child.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED).setBaseValue(MovementSpeed);
+            double MovementSpeed = Logic(this.getAttributeBaseValue(Attributes.MOVEMENT_SPEED), mate.getAttributeBaseValue(Attributes.MOVEMENT_SPEED), 0.1125, 0.3375);
+            child.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(MovementSpeed);
         }
     }
 
