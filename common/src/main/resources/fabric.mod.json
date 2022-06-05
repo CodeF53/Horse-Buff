@@ -1,18 +1,18 @@
 {
   "schemaVersion": 1,
   "id": "horsebuff",
+  "id": "horsebuff",
   "version": "${version}",
 
   "accessWidener" : "horsebuff.accesswidener",
 
-  "name": "HorseBuff",
-  "description": "Makes Horses better by removing stupid things",
-  "authors": [
-    "CodeF53#0241"
-  ],
+  "name": "${mod_name}",
+  "description": "${description}",
+  "authors": $authors,
   "contact": {
-    "homepage": "https://modrinth.com/mod/horsebuff",
-    "sources": "https://github.com/CodeF53/Horse-Buff"
+    "homepage": "${homepage}",
+    "sources": "${source}",
+    "issues": "${issues}"
   },
 
   "license": "CC BY-NC-SA",
@@ -32,8 +32,8 @@
   ],
 
   "depends": {
-    "fabricloader": ">=0.14.6",
-    "minecraft": "1.18.x",
-    "java": ">=17"
+    "fabricloader": ">=${fabric_loader_version}",
+    "minecraft": "${compatible_minecraft_versions}",
+    "java": ">=${java_version}"
   }
 }

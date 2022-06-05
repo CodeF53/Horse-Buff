@@ -4,11 +4,16 @@ plugins {
 
 architectury {
     platformSetupLoomIde()
-    fabric()
+    forge()
 }
 
 loom {
     accessWidenerPath = project(":common").loom.accessWidenerPath
+
+    forge {
+        convertAccessWideners = true
+        extraAccessWideners.add loom.accessWidenerPath.get().asFile.name
+    }
 }
 
 configurations {
@@ -16,48 +21,26 @@ configurations {
     shadowCommon // Don't use shadow from the shadow plugin because we don't want IDEA to index this.
     compileClasspath.extendsFrom common
     runtimeClasspath.extendsFrom common
-    developmentFabric.extendsFrom common
-
-    modIncludeImplementation
-
-    include.extendsFrom modIncludeImplementation
-    modImplementation.extendsFrom modIncludeImplementation
+    developmentForge.extendsFrom common
 }
 
 dependencies {
-    modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
+    forge "net.minecraftforge:forge:${rootProject.forge_version}"
 
-    // Fabric API modules used by HorseBuff
-    modIncludeImplementation(fabricApi.module("fabric-api-base", project.fabric_api_version))
-    modIncludeImplementation(fabricApi.module("fabric-rendering-data-attachment-v1", project.fabric_api_version))
-    modIncludeImplementation(fabricApi.module("fabric-lifecycle-events-v1", project.fabric_api_version))
-    modIncludeImplementation(fabricApi.module("fabric-registry-sync-v0", project.fabric_api_version))
-
-    // Cloth Config
-    modIncludeImplementation("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}"){
-        exclude(group: "net.fabricmc.fabric-api")
-    }
-    // Fabric API modules used by Cloth Config
-    modIncludeImplementation(fabricApi.module("fabric-screen-api-v1", project.fabric_api_version))
-    modIncludeImplementation(fabricApi.module("fabric-resource-loader-v0", project.fabric_api_version))
-
-    // Mod Menu
-    modImplementation("com.terraformersmc:modmenu:${project.mod_menu_version}")
-
-    // architectury stuff
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
-    shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive false }
+    shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive = false }
 }
 
 processResources {
     inputs.property "version", project.version
 
-    filesMatching("fabric.mod.json") {
+    filesMatching("META-INF/mods.toml") {
         expand "version": project.version
     }
 }
 
 shadowJar {
+    exclude "fabric.mod.json"
     exclude "architectury.common.json"
 
     configurations = [project.configurations.shadowCommon]
@@ -65,7 +48,6 @@ shadowJar {
 }
 
 remapJar {
-    injectAccessWidener = true
     input.set shadowJar.archiveFile
     dependsOn shadowJar
     classifier null
@@ -89,7 +71,7 @@ components.java {
 
 publishing {
     publications {
-        mavenFabric(MavenPublication) {
+        mavenForge(MavenPublication) {
             artifactId = rootProject.archives_base_name + "-" + project.name
             from components.java
         }
