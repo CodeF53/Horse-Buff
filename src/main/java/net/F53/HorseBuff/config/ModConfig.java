@@ -8,9 +8,23 @@ import me.shedaniel.autoconfig.annotation.*;
 
 @Config(name = "HorseBuff")
 public class ModConfig implements ConfigData{
-    // Config Structure
-    //    Saddled Horse Don't Wander
-    //    Breeding Changes
+    // Config Structure:
+    //  Server Tab:
+    //      noWander
+    //      fairBreeds
+    //      portalPatch
+    //      rubberBand
+    //      breakSpeed
+    //      stepHeight
+    //  Client Tab:
+    //      Horse Fade:
+    //          startAngle
+    //          endAngle
+    //          maxTransparency
+    //      horseHeadAngleOffset
+    //      jeb_Horses
+
+
     @ConfigEntry.Category("Server")
     @ConfigEntry.Gui.Tooltip
     public boolean noWander = true;
