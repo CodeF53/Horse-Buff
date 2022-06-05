@@ -4,7 +4,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
-import static net.F53.HorseBuff.HorseBuffInit.isJeb;
+import static net.F53.HorseBuff.utils.RenderUtils.isJeb;
 
 import net.minecraft.client.renderer.entity.HorseRenderer;
 import net.minecraft.world.entity.animal.horse.Horse;

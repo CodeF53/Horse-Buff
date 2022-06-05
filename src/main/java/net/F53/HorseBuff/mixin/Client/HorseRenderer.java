@@ -18,7 +18,8 @@ import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 
 import java.awt.*;
 
-import static net.F53.HorseBuff.HorseBuffInit.*;
+import static net.F53.HorseBuff.utils.RenderUtils.isJeb;
+import static net.F53.HorseBuff.utils.RenderUtils.getOpacity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 

@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import static net.F53.HorseBuff.HorseBuffInit.getOpacity;
+import static net.F53.HorseBuff.utils.RenderUtils.getOpacity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 

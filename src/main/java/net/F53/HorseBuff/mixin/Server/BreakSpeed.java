@@ -11,6 +11,7 @@ import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
 
 // Disable breakspeed debuff
+@SuppressWarnings("unused")
 @Mixin(Player.class)
 public abstract class BreakSpeed extends LivingEntity {
     protected BreakSpeed(EntityType<? extends LivingEntity> entityType, Level world) {

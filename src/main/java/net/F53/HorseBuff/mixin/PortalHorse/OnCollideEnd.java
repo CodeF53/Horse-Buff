@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
-import net.F53.HorseBuff.HorseBuffInit;
+import net.F53.HorseBuff.utils.TeleportHandler;
 
 import java.util.UUID;
 
@@ -44,7 +44,7 @@ public class OnCollideEnd {
             vehicle.changeDimension(destination);
 
             // Safely rejoin player and vehicle once the game is ready
-            HorseBuffInit.tpAndRemount(playerUUID, vehicleUUID, destination, 0);
+            TeleportHandler.tpAndRemount(playerUUID, vehicleUUID, destination, 0);
 
             return vehicle;
         }

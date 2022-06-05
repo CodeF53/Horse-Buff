@@ -1,6 +1,6 @@
 package net.F53.HorseBuff.mixin.PortalHorse;
 
-import net.F53.HorseBuff.HorseBuffInit;
+import net.F53.HorseBuff.utils.TeleportHandler;
 
 import net.F53.HorseBuff.config.ModConfig;
 import net.minecraft.server.MinecraftServer;
@@ -57,7 +57,7 @@ public abstract class TickNether {
                             vehicle.changeDimension(destination);
 
                             // Safely rejoin player and vehicle once the game is ready
-                            HorseBuffInit.tpAndRemount(playerUUID, vehicleUUID, destination, 0);
+                            TeleportHandler.tpAndRemount(playerUUID, vehicleUUID, destination, 0);
                         }
                     }
                     isInsidePortal = false;
