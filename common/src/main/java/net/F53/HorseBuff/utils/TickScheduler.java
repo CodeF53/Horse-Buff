@@ -1,6 +1,6 @@
 package net.F53.HorseBuff.utils;
 
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
+import dev.architectury.injectables.annotations.ExpectPlatform;
 
 import java.util.ArrayList;
 
@@ -9,17 +9,8 @@ public class TickScheduler {
     public static ArrayList<Runnable> runNextTick;
     public static ArrayList<Runnable> toRun;
 
+    @ExpectPlatform
     public static void initialize() {
-        toRun = new ArrayList<>();
-        runNextTick = new ArrayList<>();
-
-        ServerTickEvents.END_SERVER_TICK.register((server)->{
-            toRun.addAll(runNextTick);
-            runNextTick.clear();
-            while (toRun.size()>0){
-                toRun.get(0).run();
-                toRun.remove(0);
-            }
-        });
+        throw new AssertionError();
     }
 }

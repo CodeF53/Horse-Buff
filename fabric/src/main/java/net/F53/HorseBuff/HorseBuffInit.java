@@ -1,9 +1,9 @@
 package net.F53.HorseBuff;
 
+import net.F53.HorseBuff.utils.TickScheduler;
 import net.fabricmc.api.ModInitializer;
 
 import net.F53.HorseBuff.config.ModConfig;
-import net.F53.HorseBuff.utils.TickScheduler;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
