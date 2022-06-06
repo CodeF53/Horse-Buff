@@ -15,6 +15,8 @@ dependencies {
     modImplementation("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}") {
         exclude(group: "net.fabricmc.fabric-api")
     }
+    modImplementation("me.shedaniel.cloth:cloth-config-forge:${project.cloth_config_version}")
+
     modImplementation("com.terraformersmc:modmenu:${project.mod_menu_version}")
 }
 

@@ -4,10 +4,9 @@
   "package": "net.F53.HorseBuff.mixin",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
-    "Client.InventoryAccessor",
-    "PortalHorse.OnCollideEnd",
-    "PortalHorse.OnCollideNether",
-    "PortalHorse.TickNether",
+    "Server.PortalHorse.OnCollideEnd",
+    "Server.PortalHorse.OnCollideNether",
+    "Server.PortalHorse.TickNether",
     "Server.BreakSpeed",
     "Server.ClearFutureTickEvents",
     "Server.FairBreeds",
@@ -21,7 +20,8 @@
     "Client.JebHorseTintable",
     "Client.TransparentArmor",
     "Client.TransparentLlamaDecor",
-    "Client.TransparentMarkings"
+    "Client.TransparentMarkings",
+    "Client.InventoryAccessor",
   ],
   "injectors": {
     "defaultRequire": 1
