@@ -1,7 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "horsebuff",
-  "id": "horsebuff",
+  "id": "${mod_id}",
   "version": "${version}",
 
   "accessWidener" : "horsebuff.accesswidener",

@@ -31,6 +31,7 @@ subprojects { p ->
         def replaceProperties = [
                 version                      : mod_version,
                 mod_name                     : mod_name,
+                mod_id                       : mod_id,
                 authors                      : mod_authors,
                 description                  : mod_description,
                 homepage                     : mod_homepage,

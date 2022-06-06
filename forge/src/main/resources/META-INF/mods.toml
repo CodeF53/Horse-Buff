@@ -1,35 +1,17 @@
-modLoader = "javafml"
-loaderVersion = "[40,)"
-#issueTrackerURL = ""
-license = "Insert License Here"
+
+modLoader="javafml"
+loaderVersion="[36,41)" # This is typically bumped every Minecraft version by Forge.
+license="CC BY-NC-SA 4.0"
+issueTrackerURL="${issues}"
+
 
 [[mods]]
-modId = "examplemod"
-version = "${version}"
-displayName = "Example Mod"
-authors = "Me!"
-description = '''
-This is an example description! Tell everyone what your mod is about!
-'''
-#logoFile = ""
-
-[[dependencies.examplemod]]
-modId = "forge"
-mandatory = true
-versionRange = "[40,)"
-ordering = "NONE"
-side = "BOTH"
-
-[[dependencies.examplemod]]
-modId = "minecraft"
-mandatory = true
-versionRange = "[1.18.2,)"
-ordering = "NONE"
-side = "BOTH"
-
-[[dependencies.examplemod]]
-modId = "architectury"
-mandatory = true
-versionRange = "[4.4.59,)"
-ordering = "AFTER"
-side = "BOTH"
+modId = "${mod_id}"
+version= "${version}"
+displayName = "${mod_name}"
+authors = $authors
+displayURL = "${homepage}"
+description = "${description}"
+logoFile = "logo.png"
+catalogueImageIcon = "assets/horsebuff/icon.png"
+acceptableRemoteVersions="*"
