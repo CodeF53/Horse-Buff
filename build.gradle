@@ -7,7 +7,7 @@ architectury {
     minecraft = rootProject.minecraft_version
 }
 
-subprojects {
+subprojects { p ->
     apply plugin: "dev.architectury.loom"
 
     loom {
@@ -22,6 +22,51 @@ subprojects {
             // Parchment mappings (its mojmap + parameter mappings & javadoc)
             parchment("org.parchmentmc.data:parchment-${rootProject.minecraft_version}:${rootProject.parchment_version}@zip")
         }
+    }
+
+    // Put stuff from gradle.properties into the mod info
+    processResources {
+        def resourceTargets = ["fabric.mod.json", "META-INF/mods.toml"] // Location of where to put
+        def intoTargets = ["$buildDir/resources/main/"] // Location of the built resources folder
+        def replaceProperties = [
+                version                      : mod_version,
+                mod_name                     : mod_name,
+                authors                      : mod_authors,
+                description                  : mod_description,
+                homepage                     : mod_homepage,
+                source                       : mod_source,
+                issues                       : mod_issues,
+                minecraft_version            : minecraft_version,
+                compatible_minecraft_versions: compatible_minecraft_versions,
+                java_version                 : java_version,
+                fabric_loader_version        : fabric_loader_version,
+                forge_version                : forge_version
+        ]
+        // The left side is what gets replaced in the mod info and the right side is where to get it from in the gradle.properties
+        // TODO: Make Forge loader version also be replaced with non hardcoded value
+
+        inputs.properties replaceProperties
+        replaceProperties.put 'project', project
+        filesMatching(resourceTargets) {
+            expand replaceProperties
+        }
+
+        intoTargets.each { target ->
+            if (file(target).exists()) {
+                copy {
+                    from(sourceSets.main.resources) {
+                        include resourceTargets
+                        expand replaceProperties
+                    }
+                    into target
+                }
+            }
+        }
+    }
+
+    task copyCommonResources(type: Copy) {
+        from fileTree(project(":common").file("src/main/resources"))
+        into p.file("build/resources/main")
     }
 }
 

@@ -55,6 +55,8 @@ processResources {
     filesMatching("fabric.mod.json") {
         expand "version": project.version
     }
+
+    dependsOn(copyCommonResources)
 }
 
 shadowJar {
