@@ -1,6 +1,6 @@
 package net.F53.HorseBuff;
 
-import net.F53.HorseBuff.utils.TickScheduler;
+import net.F53.HorseBuff.utils.TickSchedulerInitializer;
 import net.fabricmc.api.ModInitializer;
 
 import net.F53.HorseBuff.config.ModConfig;
@@ -15,6 +15,6 @@ public class HorseBuffInit implements ModInitializer {
 	public void onInitialize() {
 		LOGGER.info("Horse Buff Initialized");
 		ModConfig.init();
-		TickScheduler.initialize();
+		TickSchedulerInitializer.initialize();
 	}
 }

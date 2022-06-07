@@ -9,11 +9,15 @@ architectury {
 
 loom {
     accessWidenerPath = project(":common").loom.accessWidenerPath
-
     forge {
         convertAccessWideners = true
         extraAccessWideners.add loom.accessWidenerPath.get().asFile.name
         mixinConfig "${mod_id}.mixins.json"
+    }
+    launches {
+        client {
+            property 'mixin.debug', 'true' // Tells forge to have debug on for Mixins
+        }
     }
 }
 
@@ -31,6 +35,9 @@ configurations {
 
 dependencies {
     forge "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+
+    // Remove the next line if you don't want to depend on the API
+    modApi "dev.architectury:architectury-forge:${rootProject.architectury_version}"
 
     // Cloth Config
     modImplementation("me.shedaniel.cloth:cloth-config-forge:${cloth_config_version}")

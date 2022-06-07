@@ -1,16 +1,23 @@
 package net.F53.HorseBuff.utils;
 
-import dev.architectury.injectables.annotations.ExpectPlatform;
-
 import java.util.ArrayList;
 
-// TODO: Will need a forge copy of this code that switches ServerTickEvents for whatever equivalent that it has
+
 public class TickScheduler {
     public static ArrayList<Runnable> runNextTick;
     public static ArrayList<Runnable> toRun;
 
-    @ExpectPlatform
     public static void initialize() {
-        throw new AssertionError();
+        TickScheduler.toRun = new ArrayList<>();
+        TickScheduler.runNextTick = new ArrayList<>();
+    }
+
+    public static void endServerTick(){
+        toRun.addAll(TickScheduler.runNextTick);
+        runNextTick.clear();
+        while (toRun.size()>0){
+            toRun.get(0).run();
+            toRun.remove(0);
+        }
     }
 }

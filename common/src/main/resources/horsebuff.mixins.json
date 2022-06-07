@@ -7,7 +7,7 @@
     "Server.PortalHorse.OnCollideEnd",
     "Server.PortalHorse.OnCollideNether",
     "Server.PortalHorse.TickNether",
-    "Server.BreakSpeed",
+
     "Server.ClearFutureTickEvents",
     "Server.FairBreeds",
     "Server.MovementCheck",
@@ -16,12 +16,12 @@
   ],
   "client": [
     "Client.HeadPitchOffset",
-    "Client.HorseRenderer",
+
     "Client.JebHorseTintable",
     "Client.TransparentArmor",
     "Client.TransparentLlamaDecor",
     "Client.TransparentMarkings",
-    "Client.InventoryAccessor",
+    "Client.InventoryAccessor"
   ],
   "injectors": {
     "defaultRequire": 1
