@@ -13,6 +13,7 @@ loom {
     forge {
         convertAccessWideners = true
         extraAccessWideners.add loom.accessWidenerPath.get().asFile.name
+        mixinConfig "${mod_id}.mixins.json"
     }
 }
 
@@ -22,12 +23,17 @@ configurations {
     compileClasspath.extendsFrom common
     runtimeClasspath.extendsFrom common
     developmentForge.extendsFrom common
+
+    modIncludeImplementation
+    include.extendsFrom modIncludeImplementation
+    modImplementation.extendsFrom modIncludeImplementation
 }
 
 dependencies {
-    forge "net.minecraftforge:forge:${rootProject.forge_version}"
+    forge "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
-    modImplementation("me.shedaniel.cloth:cloth-config-forge:${project.cloth_config_version}")
+    // Cloth Config
+    modImplementation("me.shedaniel.cloth:cloth-config-forge:${cloth_config_version}")
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive = false }

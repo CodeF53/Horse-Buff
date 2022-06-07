@@ -4,7 +4,7 @@ plugins {
 }
 
 architectury {
-    minecraft = rootProject.minecraft_version
+    minecraft = minecraft_version
 }
 
 subprojects { p ->
@@ -15,12 +15,12 @@ subprojects { p ->
     }
 
     dependencies {
-        minecraft "com.mojang:minecraft:${rootProject.minecraft_version}"
+        minecraft "com.mojang:minecraft:${minecraft_version}"
         mappings loom.layered() {
             // Mojmap mappings
             officialMojangMappings()
             // Parchment mappings (its mojmap + parameter mappings & javadoc)
-            parchment("org.parchmentmc.data:parchment-${rootProject.minecraft_version}:${rootProject.parchment_version}@zip")
+            parchment("org.parchmentmc.data:parchment-${minecraft_version}:${parchment_version}@zip")
         }
     }
 
@@ -71,6 +71,8 @@ subprojects { p ->
     }
 }
 
+
+
 allprojects {
     apply plugin: "java"
     apply plugin: "architectury-plugin"
@@ -96,5 +98,13 @@ allprojects {
 
     java {
         withSourcesJar()
+    }
+}
+minecraft {
+    runs {
+        client {
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
+        }
     }
 }
