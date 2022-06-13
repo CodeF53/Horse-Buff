@@ -21,7 +21,7 @@ public abstract class NoWander extends Mob {
 
     @Shadow public abstract boolean isSaddled();
 
-    @ModifyArg(method = "travel", at = @At(value = "INVOKE", target = "net/minecraft/world/entity/animal/Animal.travel (Lnet/minecraft/world/phys/Vec3;)V", ordinal = 0))
+    @ModifyArg(method = "travel", at = @At(value = "INVOKE", target = "net/minecraft/world/entity/animal/Animal.travel (Lnet/minecraft/world/phys/Vec3;)V", ordinal = 1))
     private Vec3 disableWandering(Vec3 input) {
         if (ModConfig.getInstance().noWander && isSaddled() && this.getLeashHolder() == null)
             return(Vec3.ZERO);
