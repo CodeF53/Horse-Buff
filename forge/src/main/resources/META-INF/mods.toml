@@ -12,6 +12,6 @@ displayName = "${mod_name}"
 authors = $authors
 displayURL = "${homepage}"
 description = "${description}"
-logoFile = "logo.png"
+logoFile = "assets/horsebuff/icon.png"
 catalogueImageIcon = "assets/horsebuff/icon.png"
 acceptableRemoteVersions="*"

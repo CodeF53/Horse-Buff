@@ -7,7 +7,6 @@
     "Server.PortalHorse.OnCollideEnd",
     "Server.PortalHorse.OnCollideNether",
     "Server.PortalHorse.TickNether",
-    "Server.BreakSpeed",
     "Server.ClearFutureTickEvents",
     "Server.FairBreeds",
     "Server.MovementCheck",

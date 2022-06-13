@@ -1,6 +1,7 @@
 package net.F53.HorseBuff.mixin.Server;
 
 import net.F53.HorseBuff.config.ModConfig;
+
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.animal.horse.AbstractHorse;
@@ -19,10 +20,9 @@ public abstract class BreakSpeed extends LivingEntity {
         super(entityType, world);
     }
 
-    // TODO: figure out why uncommenting this leads to "no refmap"
-    //@ModifyConstant(method = "getDestroySpeed", constant = @Constant(floatValue = 5.0F, ordinal = 1))
+    @ModifyConstant(method = "getDestroySpeed", constant = @Constant(floatValue = 5.0F, ordinal = 1))
     private float HorseBreakSpeed(float speedMultiplier){
-        if (this.getRootVehicle() instanceof AbstractHorse && ModConfig.getInstance().breakSpeed)
+        if (this.isPassenger() && this.getVehicle() instanceof AbstractHorse && ModConfig.getInstance().breakSpeed)
             return 1.0F;
         return speedMultiplier;
     }
