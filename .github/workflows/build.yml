@@ -11,11 +11,8 @@ jobs:
     strategy:
       matrix:
         # Use these Java versions
-        java: [
-          17    # Minimum supported by Minecraft
-        ]
-        # and run on both Linux and Windows
-        os: [ubuntu-20.04, windows-latest]
+        java: [ 17 ]
+        os: [ubuntu-20.04]
     runs-on: ${{ matrix.os }}
     steps:
       - name: checkout repository
@@ -27,13 +24,13 @@ jobs:
         with:
           java-version: ${{ matrix.java }}
       - name: make gradle wrapper executable
-        if: ${{ runner.os != 'Windows' }}
         run: chmod +x ./gradlew
       - name: build
-        run: ./gradlew build
+        run: ./gradlew forge:build;./gradlew fabric:build
       - name: capture build artifacts
-        if: ${{ runner.os == 'Linux' && matrix.java == '17' }} # Only upload artifacts built from latest java on one OS
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: Artifacts
-          path: build/libs/
+          path: |
+            Fabric/build/libs/
+            Forge/build/libs/
