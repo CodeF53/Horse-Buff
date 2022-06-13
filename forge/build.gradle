@@ -16,7 +16,8 @@ loom {
     }
     launches {
         client {
-            property 'mixin.debug', 'true' // Tells forge to have debug on for Mixins
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
         }
     }
 }
