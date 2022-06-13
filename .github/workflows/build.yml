@@ -28,7 +28,7 @@ jobs:
       - name: build
         run: ./gradlew forge:build;./gradlew fabric:build
       - name: capture build artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: Artifacts
           path: |
