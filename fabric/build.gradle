@@ -24,27 +24,27 @@ configurations {
 }
 
 dependencies {
-    modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
+    modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
 
     // Remove the next line if you don't want to depend on the API
-    modApi "dev.architectury:architectury-fabric:${rootProject.architectury_version}"
+    modApi "dev.architectury:architectury-fabric:${architectury_version}"
 
     // Fabric API modules used by HorseBuff
-    modIncludeImplementation(fabricApi.module("fabric-api-base", project.fabric_api_version))
-    modIncludeImplementation(fabricApi.module("fabric-rendering-data-attachment-v1", project.fabric_api_version))
-    modIncludeImplementation(fabricApi.module("fabric-lifecycle-events-v1", project.fabric_api_version))
-    modIncludeImplementation(fabricApi.module("fabric-registry-sync-v0", project.fabric_api_version))
+    modIncludeImplementation(fabricApi.module("fabric-api-base", fabric_api_version))
+    modIncludeImplementation(fabricApi.module("fabric-rendering-data-attachment-v1", fabric_api_version))
+    modIncludeImplementation(fabricApi.module("fabric-lifecycle-events-v1", fabric_api_version))
+    modIncludeImplementation(fabricApi.module("fabric-registry-sync-v0", fabric_api_version))
 
     // Cloth Config
-    modIncludeImplementation("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}"){
+    modIncludeImplementation("me.shedaniel.cloth:cloth-config-fabric:${cloth_config_version}"){
         exclude(group: "net.fabricmc.fabric-api")
     }
     // Fabric API modules used by Cloth Config
-    modIncludeImplementation(fabricApi.module("fabric-screen-api-v1", project.fabric_api_version))
-    modIncludeImplementation(fabricApi.module("fabric-resource-loader-v0", project.fabric_api_version))
+    modIncludeImplementation(fabricApi.module("fabric-screen-api-v1", fabric_api_version))
+    modIncludeImplementation(fabricApi.module("fabric-resource-loader-v0", fabric_api_version))
 
     // Mod Menu
-    modImplementation("com.terraformersmc:modmenu:${project.mod_menu_version}")
+    modImplementation("com.terraformersmc:modmenu:${mod_menu_version}")
 
     // architectury stuff
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
@@ -82,19 +82,5 @@ sourcesJar {
 components.java {
     withVariantsFromConfiguration(project.configurations.shadowRuntimeElements) {
         skip()
-    }
-}
-
-publishing {
-    publications {
-        mavenFabric(MavenPublication) {
-            artifactId = rootProject.archives_base_name + "-" + project.name
-            from components.java
-        }
-    }
-
-    // See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
-    repositories {
-        // Add repositories to publish to here.
     }
 }

@@ -2,16 +2,16 @@
 modLoader="javafml"
 loaderVersion="[36,41)" # This is typically bumped every Minecraft version by Forge.
 license="CC BY-NC-SA 4.0"
-issueTrackerURL="${issues}"
+issueTrackerURL="https://github.com/CodeF53/Horse-Buff/issues"
 
 
 [[mods]]
-modId = "${mod_id}"
+modId = "horsebuff"
 version= "${version}"
-displayName = "${mod_name}"
-authors = $authors
-displayURL = "${homepage}"
-description = "${description}"
+displayName = "Horse Buff"
+authors = ["CodeF53#0241"]
+displayURL = "https://modrinth.com/mod/horsebuff"
+description = "Improve horses by removing stupid stuff and adding useful stuff."
 logoFile = "assets/horsebuff/icon.png"
 catalogueImageIcon = "assets/horsebuff/icon.png"
 acceptableRemoteVersions="*"

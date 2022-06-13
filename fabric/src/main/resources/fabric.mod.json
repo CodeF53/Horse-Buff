@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "id": "${mod_id}",
+  "id": "horsebuff",
   "version": "${version}",
 
   "accessWidener" : "horsebuff.accesswidener",
 
-  "name": "${mod_name}",
-  "description": "${description}",
-  "authors": $authors,
+  "name": "Horse Buff",
+  "description": "Improve horses by removing stupid stuff and adding useful stuff.",
+  "authors": ["CodeF53#0241"],
   "contact": {
-    "homepage": "${homepage}",
-    "sources": "${source}",
-    "issues": "${issues}"
+    "homepage": "https://modrinth.com/mod/horsebuff",
+    "sources": "https://github.com/CodeF53/Horse-Buff",
+    "issues": "https://github.com/CodeF53/Horse-Buff/issues"
   },
 
   "license": "CC BY-NC-SA",

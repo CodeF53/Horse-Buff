@@ -1,6 +1,6 @@
 plugins {
     id "architectury-plugin" version "3.4-SNAPSHOT"
-    id "dev.architectury.loom" version "0.11.0-SNAPSHOT" apply false
+    id "dev.architectury.loom" version "0.12.0-SNAPSHOT" apply false
 }
 
 architectury {
@@ -10,18 +10,12 @@ architectury {
 subprojects { p ->
     apply plugin: "dev.architectury.loom"
 
-    loom {
-        silentMojangMappingsLicense()
-    }
+    loom { silentMojangMappingsLicense() }
 
     dependencies {
         minecraft "com.mojang:minecraft:${minecraft_version}"
-        mappings loom.layered() {
-            // Mojmap mappings
-            officialMojangMappings()
-            // Parchment mappings (its mojmap + parameter mappings & javadoc)
-            parchment("org.parchmentmc.data:parchment-${minecraft_version}:${parchment_version}@zip")
-        }
+        // Mojmap mappings
+        mappings loom.officialMojangMappings()
     }
 
     // Put stuff from gradle.properties into the mod info
@@ -30,13 +24,6 @@ subprojects { p ->
         def intoTargets = ["$buildDir/resources/main/"] // Location of the built resources folder
         def replaceProperties = [
                 version                      : mod_version,
-                mod_name                     : mod_name,
-                mod_id                       : mod_id,
-                authors                      : mod_authors,
-                description                  : mod_description,
-                homepage                     : mod_homepage,
-                source                       : mod_source,
-                issues                       : mod_issues,
                 minecraft_version            : minecraft_version,
                 compatible_minecraft_versions: compatible_minecraft_versions,
                 java_version                 : java_version,
@@ -78,9 +65,9 @@ allprojects {
     apply plugin: "architectury-plugin"
     apply plugin: "maven-publish"
 
-    archivesBaseName = rootProject.archives_base_name
-    version = rootProject.mod_version
-    group = rootProject.maven_group
+    archivesBaseName = archives_base_name
+    version = mod_version+"-"+minecraft_version
+    group = maven_group
 
     repositories {
         // Parchment Mappings
@@ -93,7 +80,7 @@ allprojects {
 
     tasks.withType(JavaCompile) {
         options.encoding = "UTF-8"
-        options.release = 17
+        options.release = Integer.parseInt(java_version)
     }
 
     java {
