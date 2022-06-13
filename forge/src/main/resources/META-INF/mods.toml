@@ -12,6 +12,6 @@ displayName = "Horse Buff"
 authors = ["CodeF53#0241"]
 displayURL = "https://modrinth.com/mod/horsebuff"
 description = "Improve horses by removing stupid stuff and adding useful stuff."
-logoFile = "assets/horsebuff/icon.png"
+logoFile = "icon.png"
 catalogueImageIcon = "assets/horsebuff/icon.png"
 acceptableRemoteVersions="*"

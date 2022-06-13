@@ -28,7 +28,7 @@
   },
   "mixins": [
     "horsebuff.mixins.json",
-    "horsebuff-fabric.mixins.json"
+    "horsebuff.fabric.mixins.json"
   ],
 
   "depends": {
