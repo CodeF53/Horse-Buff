@@ -7,6 +7,7 @@ import net.F53.HorseBuff.config.ModConfig;
 
 import net.minecraftforge.client.ConfigGuiHandler;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 
 import org.apache.logging.log4j.LogManager;
@@ -19,5 +20,10 @@ public class HorseBuffInit {
 		MinecraftForge.EVENT_BUS.register(BreakSpeed.class);
 		TickSchedulerInitializer.initialize();
 		ModConfig.init();
+
+		// bind the Config button in the forge mod menu to our config screen
+		ModLoadingContext.get().registerExtensionPoint(ConfigGuiHandler.ConfigGuiFactory.class, () ->
+				new ConfigGuiHandler.ConfigGuiFactory((client, parent) ->
+						AutoConfig.getConfigScreen(ModConfig.class, parent).get()));
 	}
 }

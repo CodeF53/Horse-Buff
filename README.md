@@ -1,7 +1,6 @@
 ## todo for the port:
-- make forge config menu see autoconfig
-- embed autoconfig in forge (shade?)
-- fix `horsebuff.mixins.json` not getting refmap appended in output jar
+- embed autoconfig in forge (cursed, Ran is doing this)
+- fix `horsebuff.mixins.json` not getting refmap appended in output jar (black magic, Ran is doing this)
 
 
 # Horse Buff
