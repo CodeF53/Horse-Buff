@@ -1,7 +1,7 @@
-package HorseBuff;
+package net.F53.HorseBuff;
 
-import HorseBuff.Server.BreakSpeed;
-import HorseBuff.utils.TickSchedulerInitializer;
+import net.F53.HorseBuff.Server.BreakSpeed;
+import net.F53.HorseBuff.utils.TickSchedulerInitializer;
 import me.shedaniel.autoconfig.AutoConfig;
 import net.F53.HorseBuff.config.ModConfig;
 
@@ -15,7 +15,7 @@ import org.apache.logging.log4j.Logger;
 
 @Mod("horsebuff")
 public class HorseBuffInit {
-	public static final Logger LOGGER = LogManager.getLogger("HorseBuff");
+	public static final Logger LOGGER = LogManager.getLogger("net/F53/HorseBuff");
 	public HorseBuffInit() {
 		MinecraftForge.EVENT_BUS.register(BreakSpeed.class);
 		TickSchedulerInitializer.initialize();

@@ -4,9 +4,24 @@
   "package": "net.F53.HorseBuff.mixin",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
-    "Server.BreakSpeed"
+    "Server.BreakSpeed",
+    "Server.PortalHorse.OnCollideEnd",
+    "Server.PortalHorse.OnCollideNether",
+    "Server.PortalHorse.TickNether",
+    "Server.ClearFutureTickEvents",
+    "Server.FairBreeds",
+    "Server.MovementCheck",
+    "Server.NoWander",
+    "Server.StepHeight"
   ],
   "client": [
+    "Client.HeadPitchOffset",
+    "Client.HorseRenderer",
+    "Client.JebHorseTintable",
+    "Client.TransparentArmor",
+    "Client.TransparentLlamaDecor",
+    "Client.TransparentMarkings",
+    "Client.InventoryAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

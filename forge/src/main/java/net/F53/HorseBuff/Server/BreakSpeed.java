@@ -1,4 +1,4 @@
-package HorseBuff.Server;
+package net.F53.HorseBuff.Server;
 
 import net.F53.HorseBuff.config.ModConfig;
 

@@ -1,6 +1,4 @@
-package HorseBuff.utils;
-
-import net.F53.HorseBuff.utils.TickScheduler;
+package net.F53.HorseBuff.utils;
 
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.TickEvent;
