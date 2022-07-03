@@ -24,6 +24,8 @@ import static net.F53.HorseBuff.HorseBuffInit.*;
 @Mixin(LivingEntityRenderer.class)
 public abstract class HorseRenderer<T extends LivingEntity, M extends EntityModel<T>> {
 
+    private boolean isHorse;
+
     private float opacity;
 
     private float r;
@@ -35,11 +37,13 @@ public abstract class HorseRenderer<T extends LivingEntity, M extends EntityMode
     @Inject(method = "render(Lnet/minecraft/entity/LivingEntity;FFLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V",
     at = @At("HEAD"))
     void fetchOpacityAndJeb(T livingEntity, float yaw, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, CallbackInfo ci) {
+        isHorse = false;
         opacity = 1;
         r = 1;
         g = 1;
         b = 1;
         if (livingEntity instanceof AbstractHorseEntity) {
+            isHorse = true;
             if (ModConfig.getInstance().pitchFade.enabled && livingEntity.hasPassenger(MinecraftClient.getInstance().player)) {
                 ClientPlayerEntity player = MinecraftClient.getInstance().player;
                 assert player != null;
@@ -67,10 +71,12 @@ public abstract class HorseRenderer<T extends LivingEntity, M extends EntityMode
     @ModifyArgs(method = "render(Lnet/minecraft/entity/LivingEntity;FFLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V",
     at = @At(value = "INVOKE", target = "net/minecraft/client/render/entity/model/EntityModel.render (Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumer;IIFFFF)V"))
     void setOpacityAndChromaForRender(Args args){
-        args.set(4, r);
-        args.set(5, g);
-        args.set(6, b);
+        if (isHorse) {
+            args.set(4, r);
+            args.set(5, g);
+            args.set(6, b);
 
-        args.set(7, opacity);
+            args.set(7, opacity);
+        }
     }
 }
