@@ -1,0 +1,7 @@
+accessWidener v2 named
+
+accessible method net/minecraft/world/entity/Entity setPortalCooldown ()V
+
+accessible method net/minecraft/world/entity/Entity changeDimension (Lnet/minecraft/server/level/ServerLevel;)Lnet/minecraft/world/entity/Entity;
+
+accessible method net/minecraft/world/entity/Entity unsetRemoved ()V
