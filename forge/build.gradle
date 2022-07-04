@@ -15,7 +15,6 @@ loom {
         extraAccessWideners.add loom.accessWidenerPath.get().asFile.name
 
         mixinConfig "horsebuff-common.mixins.json"
-//        mixinConfig "horsebuff-forge.mixins.json"
     }
 }
 

@@ -4,7 +4,6 @@
   "package": "net.F53.HorseBuff.mixin",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
-    "Server.BreakSpeed",
     "Server.ClearFutureTickEvents",
     "Server.FairBreeds",
     "Server.MovementCheck",

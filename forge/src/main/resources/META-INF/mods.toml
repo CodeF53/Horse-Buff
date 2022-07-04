@@ -1,6 +1,5 @@
-
 modLoader="javafml"
-loaderVersion="[36,41)" # This is typically bumped every Minecraft version by Forge.
+loaderVersion="[36,)" # This is typically bumped every Minecraft version by Forge.
 license="CC BY-NC-SA 4.0"
 issueTrackerURL="https://github.com/CodeF53/Horse-Buff/issues"
 
