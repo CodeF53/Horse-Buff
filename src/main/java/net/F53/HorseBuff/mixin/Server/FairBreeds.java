@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 // Make breeding fair
-@Mixin(AbstractHorseEntity.class)
+@Mixin(value = AbstractHorseEntity.class, priority = 1050)
 abstract class FairBreeds extends AnimalEntity {
 
     protected FairBreeds(EntityType<? extends AnimalEntity> entityType, World world) {

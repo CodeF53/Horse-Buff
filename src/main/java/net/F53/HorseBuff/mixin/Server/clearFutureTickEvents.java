@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(World.class)
+@Mixin(value = World.class, priority = 1050)
 public class clearFutureTickEvents {
     @Inject(method = "close()V", at = @At("HEAD"))
     public void clearFutureTickEvents(CallbackInfo ci) {

@@ -13,7 +13,7 @@ import net.F53.HorseBuff.HorseBuffInit;
 
 import java.util.UUID;
 
-@Mixin(EndPortalBlock.class)
+@Mixin(value = EndPortalBlock.class, priority = 1050)
 public class OnCollideEnd {
 
     // Allow entities with passengers

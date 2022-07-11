@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 import static net.F53.HorseBuff.HorseBuffInit.isJeb;
 
-@Mixin(HorseEntityRenderer.class)
+@Mixin(value = HorseEntityRenderer.class, priority = 1050)
 public class JebHorseTintable {
     @Redirect(method = "getTexture(Lnet/minecraft/entity/passive/HorseEntity;)Lnet/minecraft/util/Identifier;",
     at = @At(value = "INVOKE", target = "net/minecraft/entity/passive/HorseEntity.getColor ()Lnet/minecraft/entity/passive/HorseColor;"))

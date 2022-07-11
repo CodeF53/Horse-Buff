@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 
 // Lower wander speed for saddled horses
-@Mixin(AbstractHorseEntity.class)
+@Mixin(value = AbstractHorseEntity.class, priority = 1050)
 public abstract class NoWander extends MobEntity {
     protected NoWander(EntityType<? extends MobEntity> entityType, World world) {
         super(entityType, world);

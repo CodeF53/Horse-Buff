@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import static net.F53.HorseBuff.HorseBuffInit.getOpacity;
 
-@Mixin(LlamaDecorFeatureRenderer.class)
+@Mixin(value = LlamaDecorFeatureRenderer.class, priority = 1050)
 public class TransparentLlamaDecor {
 
     private float opacity;
