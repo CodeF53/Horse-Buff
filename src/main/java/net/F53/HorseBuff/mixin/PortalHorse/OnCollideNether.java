@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 
 // allow Entities w/ Vehicles and Vehicles to be set as in nether portal
-@Mixin(value = NetherPortalBlock.class, priority = 1050)
+@Mixin(NetherPortalBlock.class)
 public class OnCollideNether {
     @Redirect(method = "onEntityCollision(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/Entity;)V", at = @At(value = "INVOKE", target = "net/minecraft/entity/Entity.hasVehicle ()Z"))
     public boolean hasVehicle(Entity instance){

@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
 
 // Disable breakspeed debuff
-@Mixin(value = PlayerEntity.class, priority = 1050)
+@Mixin(value = PlayerEntity.class, priority = 960)
 public abstract class BreakSpeed extends LivingEntity {
     protected BreakSpeed(EntityType<? extends LivingEntity> entityType, World world) {
         super(entityType, world);

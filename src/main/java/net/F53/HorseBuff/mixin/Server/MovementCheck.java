@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
 
 // Disable movement checks for Horses, fixing MC-100830
-@Mixin(value = ServerPlayNetworkHandler.class, priority = 1050)
+@Mixin(value = ServerPlayNetworkHandler.class, priority = 960)
 public class MovementCheck {
 	@Shadow public ServerPlayerEntity player;
 

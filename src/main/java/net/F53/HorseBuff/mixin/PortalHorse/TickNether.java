@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.UUID;
 
-@Mixin(value = Entity.class, priority = 1050)
+@Mixin(Entity.class)
 public abstract class TickNether {
 
     @Shadow protected boolean inNetherPortal;

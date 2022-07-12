@@ -21,7 +21,7 @@ import java.awt.*;
 
 import static net.F53.HorseBuff.HorseBuffInit.*;
 
-@Mixin(value = LivingEntityRenderer.class, priority = 1050)
+@Mixin(value = LivingEntityRenderer.class, priority = 960)
 public abstract class HorseRenderer<T extends LivingEntity, M extends EntityModel<T>> {
 
     private boolean isHorse;

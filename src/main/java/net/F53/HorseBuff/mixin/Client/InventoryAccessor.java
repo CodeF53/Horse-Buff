@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
-@Mixin(value = MinecraftClient.class, priority = 1050)
+@Mixin(value = MinecraftClient.class, priority = 960)
 public abstract class InventoryAccessor {
     @Shadow @Final private TutorialManager tutorialManager;
 

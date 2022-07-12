@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 
-@Mixin(value = HorseEntityModel.class, priority = 1050)
+@Mixin(value = HorseEntityModel.class, priority = 960)
 public class HeadPitchOffset<T extends LivingEntity, M extends EntityModel<T>> {
     @Shadow @Final protected ModelPart head;
 
