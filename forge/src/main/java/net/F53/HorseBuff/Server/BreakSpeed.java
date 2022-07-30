@@ -11,7 +11,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 public class BreakSpeed {
     @SubscribeEvent
     public static void blockBreakSpeed(PlayerEvent.BreakSpeed event) {
-        Player player = event.getPlayer();
+        Player player = event.getEntity();
         // cancels out breakspeed debuff given while riding horses
         if (player.isPassenger() && player.getVehicle() instanceof AbstractHorse && ModConfig.getInstance().breakSpeed) {
             event.setNewSpeed(event.getOriginalSpeed() * 5.0F);

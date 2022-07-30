@@ -24,6 +24,11 @@ configurations {
     compileClasspath.extendsFrom common
     runtimeClasspath.extendsFrom common
     developmentForge.extendsFrom common
+
+    modIncludeImplementation
+
+    include.extendsFrom modIncludeImplementation
+    modImplementation.extendsFrom modIncludeImplementation
 }
 
 dependencies {
@@ -33,7 +38,7 @@ dependencies {
     shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive = false }
 
     // Cloth Config
-    implementation "me.shedaniel.cloth:cloth-config-forge:${cloth_config_version}"
+    modIncludeImplementation("me.shedaniel.cloth:cloth-config-forge:${cloth_config_version}")
 }
 
 processResources {

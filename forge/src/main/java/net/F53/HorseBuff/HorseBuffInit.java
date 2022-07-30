@@ -5,8 +5,8 @@ import net.F53.HorseBuff.utils.TickSchedulerInitializer;
 import me.shedaniel.autoconfig.AutoConfig;
 import net.F53.HorseBuff.config.ModConfig;
 
-import net.minecraftforge.client.ConfigGuiHandler;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.client.ConfigScreenHandler;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 
@@ -22,8 +22,8 @@ public class HorseBuffInit {
 		ModConfig.init();
 
 		// bind the Config button in the forge mod menu to our config screen
-		ModLoadingContext.get().registerExtensionPoint(ConfigGuiHandler.ConfigGuiFactory.class, () ->
-				new ConfigGuiHandler.ConfigGuiFactory((client, parent) ->
+		ModLoadingContext.get().registerExtensionPoint(ConfigScreenHandler.ConfigScreenFactory.class, () ->
+				new ConfigScreenHandler.ConfigScreenFactory((client, parent) ->
 						AutoConfig.getConfigScreen(ModConfig.class, parent).get()));
 	}
 }

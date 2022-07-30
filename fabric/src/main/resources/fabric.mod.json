@@ -28,10 +28,9 @@
     ]
   },
   "mixins": [
-    "horsebuff-common.mixins.json",
-    "horsebuff-fabric.mixins.json"
+    "horsebuff-fabric.mixins.json",
+    "horsebuff-common.mixins.json"
   ],
-
   "depends": {
     "fabricloader": ">=0.14.6",
     "minecraft": "1.19.x",
