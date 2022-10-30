@@ -4,7 +4,6 @@
   "package": "net.F53.HorseBuff.mixin",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
-    "Client.InventoryAccessor",
     "PortalHorse.OnCollideEnd",
     "PortalHorse.OnCollideNether",
     "PortalHorse.TickNether",
@@ -16,6 +15,7 @@
     "Server.StepHeight"
   ],
   "client": [
+    "Client.InventoryAccessor",
     "Client.HeadPitchOffset",
     "Client.HorseRenderer",
     "Client.JebHorseTintable",
