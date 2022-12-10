@@ -22,11 +22,11 @@ public abstract class TickNether {
 
     @Shadow protected int netherPortalTime;
 
-    @Shadow protected abstract void tickNetherPortalCooldown();
+    @Shadow protected abstract void tickPortalCooldown();
 
     @Shadow public abstract boolean hasVehicle();
 
-    @Inject(method = "tickNetherPortal()V", at = @At("HEAD"))
+    @Inject(method = "tickPortal()V", at = @At("HEAD"))
     public void riderTravel(CallbackInfo ci){
         Entity player = (Entity)(Object)this;
         if (player.world instanceof ServerWorld && player instanceof PlayerEntity){
@@ -49,11 +49,11 @@ public abstract class TickNether {
                             UUID playerUUID = player.getUuid();
 
                             // Change player Dim
-                            player.resetNetherPortalCooldown();
+                            player.resetPortalCooldown();
                             player.moveToWorld(destination);
 
                             // Change vehicle Dim
-                            vehicle.resetNetherPortalCooldown();
+                            vehicle.resetPortalCooldown();
                             vehicle.moveToWorld(destination);
 
                             // Safely rejoin player and vehicle once the game is ready
@@ -70,13 +70,13 @@ public abstract class TickNether {
                         this.netherPortalTime = 0;
                     }
                 }
-                tickNetherPortalCooldown();
+                tickPortalCooldown();
             }
         }
     }
 
     // elsewhere, we allow vehicles to be marked as in nether portal, so we have to deny them teleporting
-    @Redirect(method = "tickNetherPortal()V", at = @At(value = "INVOKE", target = "net/minecraft/entity/Entity.hasVehicle ()Z"))
+    @Redirect(method = "tickPortal()V", at = @At(value = "INVOKE", target = "net/minecraft/entity/Entity.hasVehicle ()Z"))
     public boolean denyVehicleTravel(Entity instance){
         // if portalPatch, deny travel
         if (instance.hasPassengers() && ModConfig.getInstance().portalPatch){
@@ -85,7 +85,7 @@ public abstract class TickNether {
         return instance.hasVehicle();
     }
 
-    @ModifyConstant(method = "tickNetherPortal()V", constant = @Constant(intValue = 4))
+    @ModifyConstant(method = "tickPortal()V", constant = @Constant(intValue = 4))
     public int netherPortalTime(int constant){
         if (this.hasVehicle()){
             return 0;

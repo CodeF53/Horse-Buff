@@ -12,11 +12,11 @@ import static net.F53.HorseBuff.HorseBuffInit.isJeb;
 @Mixin(value = HorseEntityRenderer.class, priority = 960)
 public class JebHorseTintable {
     @Redirect(method = "getTexture(Lnet/minecraft/entity/passive/HorseEntity;)Lnet/minecraft/util/Identifier;",
-    at = @At(value = "INVOKE", target = "net/minecraft/entity/passive/HorseEntity.getColor ()Lnet/minecraft/entity/passive/HorseColor;"))
+    at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/passive/HorseEntity;getVariant()Lnet/minecraft/entity/passive/HorseColor;"))
     HorseColor jebHorseTintable(HorseEntity instance){
         if (isJeb(instance)){
             return HorseColor.WHITE;
         }
-        return instance.getColor();
+        return instance.getVariant();
     }
 }
