@@ -66,7 +66,7 @@ public class HorseBuffInit implements ModInitializer {
 	}
 
 	public static boolean isJeb(Entity horse){
-		return ModConfig.getInstance().jeb_Horses && horse.hasCustomName() && "jeb_".equals(horse.getName().getContent());
+		return ModConfig.getInstance().jeb_Horses && horse.hasCustomName() && "jeb_".equals(horse.getName().getString());
 	}
 
 	public static float getOpacity(ClientPlayerEntity player){

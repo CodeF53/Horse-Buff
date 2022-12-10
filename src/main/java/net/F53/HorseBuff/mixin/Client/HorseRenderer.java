@@ -49,7 +49,7 @@ public abstract class HorseRenderer<T extends LivingEntity, M extends EntityMode
                 assert player != null;
                 opacity = getOpacity(player);
             }
-            if (livingEntity instanceof HorseEntity && isJeb(livingEntity)) {
+            if (isJeb(livingEntity)) {
                 float hueOffset = (livingEntity.getUuid().hashCode()%5000)/5000f + (System.currentTimeMillis()%5000)/5000f;
                 Color color = new Color(Color.HSBtoRGB(hueOffset, 0.8f, 1));
                 r = color.getRed()/255f;
