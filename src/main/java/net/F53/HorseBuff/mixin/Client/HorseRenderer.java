@@ -1,5 +1,7 @@
 package net.F53.HorseBuff.mixin.Client;
 
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.F53.HorseBuff.config.ModConfig;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
@@ -10,7 +12,6 @@ import net.minecraft.client.render.entity.model.EntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.passive.AbstractHorseEntity;
-import net.minecraft.entity.passive.HorseEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.*;
@@ -31,8 +32,6 @@ public abstract class HorseRenderer<T extends LivingEntity, M extends EntityMode
     private float r;
     private float g;
     private float b;
-
-    @Shadow protected abstract RenderLayer getRenderLayer(T entity, boolean showBody, boolean translucent, boolean showOutline);
 
     @Inject(method = "render(Lnet/minecraft/entity/LivingEntity;FFLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V",
     at = @At("HEAD"))
@@ -59,13 +58,14 @@ public abstract class HorseRenderer<T extends LivingEntity, M extends EntityMode
         }
     }
 
-    @Redirect(method = "render(Lnet/minecraft/entity/LivingEntity;FFLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V",
-    at = @At(value = "INVOKE", target = "net/minecraft/client/render/entity/LivingEntityRenderer.getRenderLayer (Lnet/minecraft/entity/LivingEntity;ZZZ)Lnet/minecraft/client/render/RenderLayer;"))
-    RenderLayer makeRenderLayerTranslucent(LivingEntityRenderer<T, ? extends EntityModel<T>> instance, T entity, boolean showBody, boolean translucent, boolean showOutline) {
-        if (entity instanceof AbstractHorseEntity) {
+    @WrapOperation(method = "render(Lnet/minecraft/entity/LivingEntity;FFLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V",
+    at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/entity/LivingEntityRenderer;getRenderLayer(Lnet/minecraft/entity/LivingEntity;ZZZ)Lnet/minecraft/client/render/RenderLayer;"))
+    RenderLayer makeRenderLayerTranslucent(LivingEntityRenderer<T, ? extends EntityModel<T>> instance, T entity, boolean showBody, boolean translucent, boolean showOutline, Operation<RenderLayer> original) {
+        if (showBody && entity instanceof AbstractHorseEntity && opacity < 1) {
             return RenderLayer.getItemEntityTranslucentCull(instance.getTexture(entity));
+        } else {
+            return original.call(instance, entity, showBody, translucent, showOutline);
         }
-        return getRenderLayer(entity, showBody, translucent, showOutline);
     }
 
     @ModifyArgs(method = "render(Lnet/minecraft/entity/LivingEntity;FFLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V",
@@ -75,8 +75,7 @@ public abstract class HorseRenderer<T extends LivingEntity, M extends EntityMode
             args.set(4, r);
             args.set(5, g);
             args.set(6, b);
-
-            args.set(7, opacity);
+            args.set(7, Math.min(args.get(7), opacity));
         }
     }
 }

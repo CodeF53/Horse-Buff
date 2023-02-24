@@ -20,12 +20,9 @@
 
   "environment": "*",
   "entrypoints": {
-    "main": [
-      "net.F53.HorseBuff.HorseBuffInit"
-    ],
-    "modmenu": [
-      "net.F53.HorseBuff.config.ModMenuIntegration"
-    ]
+    "main": [ "net.F53.HorseBuff.HorseBuffInit" ],
+    "modmenu": [ "net.F53.HorseBuff.config.ModMenuIntegration" ],
+    "preLaunch": [ "com.llamalad7.mixinextras.MixinExtrasBootstrap::init" ]
   },
   "mixins": [
     "horsebuff.mixins.json"

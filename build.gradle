@@ -27,6 +27,9 @@ repositories {
 
 	// Mod Menu
 	maven { url "https://maven.terraformersmc.com/" }
+
+	// Mixin Extras
+	maven { url 'https://jitpack.io' }
 }
 
 dependencies {
@@ -52,6 +55,11 @@ dependencies {
 
 	// Mod Menu
 	modImplementation("com.terraformersmc:modmenu:${project.mod_menu_version}")
+
+	// Mixin Extras
+	include "com.github.LlamaLad7:MixinExtras:${project.mixinextras_version}"
+	implementation("com.github.LlamaLad7:MixinExtras:${project.mixinextras_version}")
+	annotationProcessor("com.github.LlamaLad7:MixinExtras:${project.mixinextras_version}")
 }
 
 processResources {
