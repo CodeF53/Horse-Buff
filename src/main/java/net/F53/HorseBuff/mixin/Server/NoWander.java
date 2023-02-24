@@ -20,6 +20,7 @@ public abstract class NoWander extends MobEntity {
 
     @Shadow public abstract boolean isSaddled();
 
+    // TODO: fix this mixin.
     @ModifyArg(method = "travel(Lnet/minecraft/util/math/Vec3d;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/passive/AnimalEntity;travel(Lnet/minecraft/util/math/Vec3d;)V", ordinal = 0))
     private Vec3d lowerWanderSpeed(Vec3d input) {
         if (ModConfig.getInstance().noWander && isSaddled() && this.getHoldingEntity() == null)
