@@ -20,7 +20,7 @@ public class OnCollideEnd {
     public Entity bringRider(Entity vehicle, ServerWorld destination, Operation<Entity> original){
         if (ModConfig.getInstance().portalPatch && vehicle.hasPassengers() && vehicle.getFirstPassenger() instanceof PlayerEntity) {
             // Get player
-            Entity player = vehicle.getPrimaryPassenger();
+            Entity player = vehicle.getControllingPassenger();
             assert player != null;
 
             // Get UUIDs
