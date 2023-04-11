@@ -9,74 +9,75 @@
 Improve horses by removing stupid stuff and adding useful stuff.
 
 ### Server Changes:
-<details><summary> 
+<details><summary>
 Allow travel through portals without dismounting <a href="https://bugs.mojang.com/browse/MC-67">(MC-67)</a>*
 </summary>
 <sub><sup>*only fixes the bug for players riding vehicles as fully fixing the bug would screw with technical minecraft</sup></sub>
 
-https://user-images.githubusercontent.com/37855219/164040733-b99b9c70-f346-485a-b0eb-56322dcd19dc.mp4
+![image](https://i.imgur.com/cvph0Ye.gif)
 
-https://user-images.githubusercontent.com/37855219/164042297-e8cb0885-1911-482c-a59a-30f2eec8e25c.mp4
+![image](https://i.imgur.com/JeJNEgO.gif)
 
 </details>
 <details><summary> Fix rubberbanding on stairs/slabs "Horse moved wrongly!" <a href="https://bugs.mojang.com/browse/MC-100830">(MC-100830)</a></summary>
 
-https://user-images.githubusercontent.com/37855219/163895099-0a01a410-c1c6-490e-9a01-5c489ec4801f.mp4
-   
+![image](https://i.imgur.com/bXu7lt4.gif)
+
 </details>
-<details><summary> Better Breeding Logic</summary>
-   
-   1. Take average of the parents' traits
-   2. Random amount added/subtracted from said average
+<details><summary> Better Breeding Logic *</summary>
+
+1. Take average of the parents' traits
+2. Random amount added/subtracted from said average
       - +/- 10% of range between max and min
-   3. clamp to vanilla min/max stat
-   
+3. clamp to vanilla min/max stat
+
+(removed in 1.19.4 because they fixed this themselves)
 </details>
 <details><summary> Saddled Horses don't wander</summary>
 
-https://user-images.githubusercontent.com/37855219/163895736-6b68bd17-a3b3-43f9-8031-443e6de68635.mp4
-   
+![image](https://i.imgur.com/E0ZGzMU.gif)
+
 </details>
 <details><summary> Remove break speed debuff</summary>
 
-Temp, video not made
-   
+Allows players on horseback to mine at full speed.\
+Minecraft dramatically lowers break speed while a player is not on the ground.
+
+![image](https://i.imgur.com/DKqrGOD.gif)
+
 </details>
 <details><summary> Improve "Step Height" capability </summary>
 
-Without:
+Increases horse step-height from 1 block to 1.1 blocks.\
+This makes riding horses around path blocks way less frustrating.
 
-https://user-images.githubusercontent.com/37855219/167529335-bea46c66-4ee2-4e3f-9391-f8cf2960d58a.mp4
-
-With:
-
-Temp, video not made
+![image](https://i.imgur.com/nvssVeA.gif)
 
 </details>
 
 
 ### Client Changes:
 <details><summary> Fade Horse as you look down</summary>
-   
-https://user-images.githubusercontent.com/37855219/163889148-a7c4b787-1979-44b6-a514-f881f501aa73.mp4
-   
+
+![image](https://i.imgur.com/kwtmFVd.gif)
+
 </details>
 
 <details><summary> Horse Head Pitch offset</summary>
 
 ![image](https://user-images.githubusercontent.com/37855219/163890939-87f3b255-176a-49df-ad4d-ec5b41a3b54a.png)
-   
+
 </details>
 
 <details><summary> Horses named `jeb_` become rainbow</summary>
 
-https://user-images.githubusercontent.com/37855219/163889351-5caaded0-ff7e-40ab-8192-3ec88dc38a5a.mp4
-   
+![image](https://i.imgur.com/QTk8w33.gif)
+
 </details>
 <details><summary> Sprint + Inventory to open survival inventory</summary>
 
-https://user-images.githubusercontent.com/37855219/168519188-7ecd8e7b-85fe-4960-8053-8a290f81d200.mp4
+![image](https://i.imgur.com/8oOswAR.png)
+
+*Horse Buff pulls from your Minecraft keybinds, so if you change your inventory/sprint key, that will change what you need to press to access your survival inventory
 
 </details>
-
-
