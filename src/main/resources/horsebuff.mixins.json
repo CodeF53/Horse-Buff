@@ -11,7 +11,8 @@
     "Server.MovementCheck",
     "Server.NoBuck",
     "Server.NoWander",
-    "Server.StepHeight"
+    "Server.StepHeight",
+    "Server.Swim"
   ],
   "client": [
     "Client.HeadPitchOffset",

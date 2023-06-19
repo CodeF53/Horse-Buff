@@ -27,6 +27,9 @@
   "text.autoconfig.HorseBuff.option.noBuck": "Disable Random Bucking",
   "text.autoconfig.HorseBuff.option.noBuck.@Tooltip": "Yes - Prevents horses from randomly bucking while mounted, no more random stops!\nNo - vanilla behavior",
 
+  "text.autoconfig.HorseBuff.option.swim": "Horse Swimming",
+  "text.autoconfig.HorseBuff.option.swim.@Tooltip": "Yes - Lets horses swim when you are riding them.\nNo - Horses sink when you ride them in water (vanilla behavior)",
+
   "text.autoconfig.HorseBuff.option.pitchFade": "Horse Fade",
   "text.autoconfig.HorseBuff.option.pitchFade.@Tooltip": "When mounted, the horse gets more transparent the further you look down",
 

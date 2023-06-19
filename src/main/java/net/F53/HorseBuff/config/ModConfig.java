@@ -40,6 +40,10 @@ public class ModConfig implements ConfigData{
     @ConfigEntry.Gui.Tooltip
     public boolean noBuck = true;
 
+    @ConfigEntry.Category("Server")
+    @ConfigEntry.Gui.Tooltip
+    public boolean swim = true;
+
     @ConfigEntry.Category("Client")
     @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Gui.CollapsibleObject
