@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(value = World.class, priority = 960)
-public class clearFutureTickEvents {
+public class ClearFutureTickEvents {
     @Inject(method = "close()V", at = @At("HEAD"))
     public void clearFutureTickEvents(CallbackInfo ci) {
         HorseBuffInit.runNextTick.clear();
