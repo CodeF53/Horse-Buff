@@ -7,15 +7,16 @@
     "PortalHorse.OnCollideEnd",
     "PortalHorse.TickNether",
     "Server.BreakSpeed",
-    "Server.clearFutureTickEvents",
+    "Server.ClearFutureTickEvents",
     "Server.MovementCheck",
+    "Server.NoBuck",
     "Server.NoWander",
     "Server.StepHeight"
   ],
   "client": [
-    "Client.InventoryAccessor",
     "Client.HeadPitchOffset",
     "Client.HorseRenderer",
+    "Client.InventoryAccessor",
     "Client.JebHorseTintable",
     "Client.TransparentArmor",
     "Client.TransparentLlamaDecor",

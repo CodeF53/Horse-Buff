@@ -5,3 +5,5 @@ accessible method net/minecraft/entity/Entity resetPortalCooldown ()V
 accessible method net/minecraft/entity/Entity moveToWorld (Lnet/minecraft/server/world/ServerWorld;)Lnet/minecraft/entity/Entity;
 
 accessible method net/minecraft/entity/Entity unsetRemoved ()V
+
+accessible field net/minecraft/entity/passive/AbstractHorseEntity jumping Z

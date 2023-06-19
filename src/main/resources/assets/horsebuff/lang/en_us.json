@@ -24,6 +24,8 @@
   "text.autoconfig.HorseBuff.option.stepHeight": "Buff Stepheight",
   "text.autoconfig.HorseBuff.option.stepHeight.@Tooltip": "Yes - Increases horse stepheight from 1 block to 1.1 blocks, making travel much smoother around path blocks.\nNo - vanilla behavior",
 
+  "text.autoconfig.HorseBuff.option.noBuck": "Disable Random Bucking",
+  "text.autoconfig.HorseBuff.option.noBuck.@Tooltip": "Yes - Prevents horses from randomly bucking while mounted, no more random stops!\nNo - vanilla behavior",
 
   "text.autoconfig.HorseBuff.option.pitchFade": "Horse Fade",
   "text.autoconfig.HorseBuff.option.pitchFade.@Tooltip": "When mounted, the horse gets more transparent the further you look down",
