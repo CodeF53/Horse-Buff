@@ -11,10 +11,9 @@ import org.spongepowered.asm.mixin.injection.ModifyConstant;
 @Mixin(value = AbstractHorseEntity.class, priority = 960)
 public class StepHeight {
 	@ModifyConstant(method = "<init>(Lnet/minecraft/entity/EntityType;Lnet/minecraft/world/World;)V", constant = @Constant(floatValue = 1.0f))
-	private float horseHigherStepHeight(float value){
-		if (ModConfig.getInstance().stepHeight) {
+	private float horseHigherStepHeight(float value) {
+		if (ModConfig.getInstance().stepHeight)
 			return 1.1f;
-		}
 		return value;
 	}
 }

@@ -9,16 +9,9 @@ import me.shedaniel.autoconfig.annotation.*;
 
 @Config(name = ModInfo.MODID)
 public class ModConfig implements ConfigData{
-    // Config Structure
-    //    Saddled Horse Don't Wander
-    //    Breeding Changes
     @ConfigEntry.Category("Server")
     @ConfigEntry.Gui.Tooltip
     public boolean noWander = true;
-
-    @ConfigEntry.Category("Server")
-    @ConfigEntry.Gui.Tooltip
-    public boolean fairBreeds = true;
 
     @ConfigEntry.Category("Server")
     @ConfigEntry.Gui.Tooltip
@@ -34,7 +27,7 @@ public class ModConfig implements ConfigData{
 
     @ConfigEntry.Category("Server")
     @ConfigEntry.Gui.Tooltip
-    public boolean stepHeight = false;
+    public boolean stepHeight = true;
 
     @ConfigEntry.Category("Server")
     @ConfigEntry.Gui.Tooltip
