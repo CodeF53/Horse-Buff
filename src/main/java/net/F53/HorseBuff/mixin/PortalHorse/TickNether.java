@@ -15,8 +15,9 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-
 import java.util.UUID;
+
+import static net.F53.HorseBuff.utils.TeleportHandler.tpAndRemount;
 
 @Mixin(Entity.class)
 public abstract class TickNether {
@@ -60,7 +61,7 @@ public abstract class TickNether {
                             vehicle.moveToWorld(destination);
 
                             // Safely rejoin player and vehicle once the game is ready
-                            HorseBuffInit.tpAndRemount(playerUUID, vehicleUUID, destination, 0);
+                            tpAndRemount(playerUUID, vehicleUUID, destination, 0);
                         }
                     }
                     inNetherPortal = false;

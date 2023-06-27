@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import static net.F53.HorseBuff.HorseBuffInit.getOpacity;
+import static net.F53.HorseBuff.utils.RenderUtils.getOpacity;
 
 @Mixin(value = HorseArmorFeatureRenderer.class, priority = 960)
 public class TransparentArmor {

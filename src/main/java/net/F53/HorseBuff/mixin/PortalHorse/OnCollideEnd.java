@@ -9,10 +9,9 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-
-import net.F53.HorseBuff.HorseBuffInit;
-
 import java.util.UUID;
+
+import static net.F53.HorseBuff.utils.TeleportHandler.tpAndRemount;
 
 @Mixin(EndPortalBlock.class)
 public class OnCollideEnd {
@@ -34,7 +33,7 @@ public class OnCollideEnd {
             vehicle.moveToWorld(destination);
 
             // Safely rejoin player and vehicle once the game is ready
-            HorseBuffInit.tpAndRemount(playerUUID, vehicleUUID, destination, 0);
+            tpAndRemount(playerUUID, vehicleUUID, destination, 0);
 
             return vehicle;
         } else {

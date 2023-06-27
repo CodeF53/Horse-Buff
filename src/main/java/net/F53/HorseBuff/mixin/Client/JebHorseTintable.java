@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
-import static net.F53.HorseBuff.HorseBuffInit.isJeb;
+import static net.F53.HorseBuff.utils.RenderUtils.isJeb;
 
 @Mixin(value = HorseEntityRenderer.class, priority = 960)
 public class JebHorseTintable {

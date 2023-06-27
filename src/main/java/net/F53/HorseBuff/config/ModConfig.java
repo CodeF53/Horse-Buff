@@ -2,12 +2,12 @@ package net.F53.HorseBuff.config;
 
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer;
-import net.F53.HorseBuff.ModInfo;
 import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.*;
 
 
-@Config(name = ModInfo.MODID)
+@SuppressWarnings("CanBeFinal")
+@Config(name = "HorseBuff")
 public class ModConfig implements ConfigData{
     @ConfigEntry.Category("Server")
     @ConfigEntry.Gui.Tooltip
