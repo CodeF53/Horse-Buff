@@ -33,12 +33,12 @@ public abstract class TickNether {
     @Inject(method = "tickPortal()V", at = @At("HEAD"))
     public void riderTravel(CallbackInfo ci){
         Entity player = (Entity)(Object)this;
-        if (player.world instanceof ServerWorld && player instanceof PlayerEntity){
+        if (player.getWorld() instanceof ServerWorld && player instanceof PlayerEntity){
             if (player.getVehicle() != null){
                 int maxPortalTime = player.getMaxNetherPortalTime();
                 if (inNetherPortal) {
-                    MinecraftServer minecraftServer = ((ServerWorld)player.world).getServer();
-                    ServerWorld destination = minecraftServer.getWorld(player.world.getRegistryKey() == World.NETHER ? World.OVERWORLD : World.NETHER);
+                    MinecraftServer minecraftServer = ((ServerWorld)player.getWorld()).getServer();
+                    ServerWorld destination = minecraftServer.getWorld(player.getWorld().getRegistryKey() == World.NETHER ? World.OVERWORLD : World.NETHER);
                     if (destination != null && minecraftServer.isNetherAllowed() && netherPortalTime++ >= maxPortalTime) {
                         // Get Vehicle
                         Entity vehicle = player.getVehicle();

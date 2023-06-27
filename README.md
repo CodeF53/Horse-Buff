@@ -31,7 +31,7 @@ Allow travel through portals without dismounting <a href="https://bugs.mojang.co
       - +/- 10% of range between max and min
 3. clamp to vanilla min/max stat
 
-(removed in 1.19.4 because they fixed this themselves)
+(removed in 1.19.4 because they fixed it)
 </details>
 <details><summary> Saddled Horses don't wander</summary>
 

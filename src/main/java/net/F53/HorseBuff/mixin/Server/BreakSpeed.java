@@ -19,7 +19,7 @@ public abstract class BreakSpeed extends LivingEntity {
 
     @ModifyReturnValue(method = "getBlockBreakingSpeed", at = @At("RETURN"))
     private float horseBreakSpeed(float original) {
-        if (!this.onGround && this.getRootVehicle() instanceof AbstractHorseEntity && ModConfig.getInstance().breakSpeed)
+        if (!this.isOnGround() && this.getRootVehicle() instanceof AbstractHorseEntity && ModConfig.getInstance().breakSpeed)
             return original * 5f;
         return original;
     }
