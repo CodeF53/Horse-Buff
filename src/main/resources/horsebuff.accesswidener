@@ -7,3 +7,7 @@ accessible method net/minecraft/entity/Entity moveToWorld (Lnet/minecraft/server
 accessible method net/minecraft/entity/Entity unsetRemoved ()V
 
 accessible field net/minecraft/entity/passive/AbstractHorseEntity jumping Z
+
+accessible field net/minecraft/entity/Entity netherPortalTime I
+
+accessible field net/minecraft/entity/Entity inNetherPortal Z

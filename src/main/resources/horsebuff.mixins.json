@@ -4,6 +4,7 @@
   "package": "net.F53.HorseBuff.mixin",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
+    "PortalHorse.AllowPortalUse",
     "PortalHorse.OnCollideEnd",
     "PortalHorse.TickNether",
     "Server.BreakSpeed",

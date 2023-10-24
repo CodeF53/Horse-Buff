@@ -1,108 +1,54 @@
 package net.F53.HorseBuff.mixin.PortalHorse;
 
-import com.llamalad7.mixinextras.injector.ModifyReturnValue;
-import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
-import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import net.F53.HorseBuff.HorseBuffInit;
+import com.llamalad7.mixinextras.sugar.Local;
 
 import net.F53.HorseBuff.config.ModConfig;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.passive.AbstractHorseEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.command.CommandOutput;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.world.World;
+import net.minecraft.util.Nameable;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.entity.EntityLike;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.*;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import java.util.UUID;
 
 import static net.F53.HorseBuff.utils.TeleportHandler.tpAndRemount;
 
 @Mixin(Entity.class)
-public abstract class TickNether {
+public abstract class TickNether implements Nameable, EntityLike, CommandOutput {
+    @Shadow protected abstract void fall(double heightDifference, boolean onGround, BlockState state, BlockPos landedPosition);
 
-    @Shadow protected boolean inNetherPortal;
+    @Redirect(method = "tickPortal", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/MinecraftServer;isNetherAllowed()Z"))
+    private boolean tickNether(MinecraftServer minecraftServer, @Local(ordinal = 1) ServerWorld destination) {
+        // ensure we don't do any teleportation when nether isn't even allowed
+        if (!minecraftServer.isNetherAllowed())
+            return false;
 
-    @Shadow protected int netherPortalTime;
-
-    @Shadow protected abstract void tickPortalCooldown();
-
-    @Shadow public abstract boolean hasVehicle();
-
-    @Inject(method = "tickPortal()V", at = @At("HEAD"))
-    public void riderTravel(CallbackInfo ci){
-        Entity player = (Entity)(Object)this;
-        if (player.getWorld() instanceof ServerWorld && player instanceof PlayerEntity){
-            if (player.getVehicle() != null){
-                int maxPortalTime = player.getMaxNetherPortalTime();
-                if (inNetherPortal) {
-                    MinecraftServer minecraftServer = ((ServerWorld)player.getWorld()).getServer();
-                    ServerWorld destination = minecraftServer.getWorld(player.getWorld().getRegistryKey() == World.NETHER ? World.OVERWORLD : World.NETHER);
-                    if (destination != null && minecraftServer.isNetherAllowed() && netherPortalTime++ >= maxPortalTime) {
-                        // Get Vehicle
-                        Entity vehicle = player.getVehicle();
-
-                        // Split
-                        vehicle.detach();
-
-                        // in some cases some of these values are null, causing problems, just don't teleport if they are null
-                        if (player.getPos() != null && vehicle.getPos() != null) {
-                            // Get UUIDs
-                            UUID vehicleUUID = vehicle.getUuid();
-                            UUID playerUUID = player.getUuid();
-
-                            // Change player Dim
-                            player.resetPortalCooldown();
-                            player.moveToWorld(destination);
-
-                            // Change vehicle Dim
-                            vehicle.resetPortalCooldown();
-                            vehicle.moveToWorld(destination);
-
-                            // Safely rejoin player and vehicle once the game is ready
-                            tpAndRemount(playerUUID, vehicleUUID, destination, 0);
-                        }
-                    }
-                    inNetherPortal = false;
-                }
-                else {
-                    if (this.netherPortalTime > 0) {
-                        this.netherPortalTime -= 4;
-                    }
-                    if (this.netherPortalTime < 0) {
-                        this.netherPortalTime = 0;
-                    }
-                }
-                tickPortalCooldown();
-            }
-        }
-    }
-
-    @ModifyReturnValue(method = "canUsePortals", at = @At(value = "RETURN"))
-    public boolean allowPortalTravel(boolean original) {
-        if (ModConfig.getInstance().portalPatch) {
+        // ensure horse
+        if (!((Object) this instanceof AbstractHorseEntity vehicle))
             return true;
-        }
-        return original;
-    }
 
-    // elsewhere, we allow vehicles to be marked as in nether portal, so we have to deny them teleporting so we can teleport them ourselves
-    @WrapOperation(method = "tickPortal()V", at = @At(value = "INVOKE", target = "net/minecraft/entity/Entity.hasVehicle ()Z"))
-    public boolean denyVehicleTravel(Entity instance, Operation<Boolean> original){
-        // if portalPatch, deny travel
-        if (instance.hasPassengers() && ModConfig.getInstance().portalPatch){
+        // ensure Patch is enabled and player is controlling
+        if (!(ModConfig.getInstance().portalPatch
+            && vehicle.hasControllingPassenger()
+            && vehicle.getControllingPassenger() instanceof PlayerEntity player))
             return true;
-        } else {
-            return original.call(instance);
-        }
-    }
 
-    @ModifyConstant(method = "tickPortal()V", constant = @Constant(intValue = 4))
-    public int netherPortalTime(int constant){
-        if (this.hasVehicle()){
-            return 0;
+        // manually tick player portal time (it cant go up naturally due to being mounted)
+        // when player could go, go
+        if (player.netherPortalTime++ >= player.getMaxNetherPortalTime()) {
+            // reset portal statuses, so we don't immediately teleport back
+            player.inNetherPortal = false;
+            vehicle.inNetherPortal = false;
+            tpAndRemount(vehicle, destination, false);
         }
-        return constant;
+
+        // prevent vanilla handling teleportation
+        return false;
     }
 }
