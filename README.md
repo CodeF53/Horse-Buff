@@ -54,12 +54,15 @@ This makes riding horses around path blocks way less frustrating.
 ![image](https://i.imgur.com/nvssVeA.gif)
 
 </details>
+
+### Client Changes:
 <details><summary> Allow swimming while Mounted </summary>
 
 Normally Horses will sink in water when you are riding them.\
 This makes you float on the surface as if they weren't mounted
 
 </details>
+
 <details><summary> Prevent "Bucking" </summary>
 
 Normally horses will randomly "Buck", stopping dead in their tracks while you are riding them.\
@@ -67,7 +70,6 @@ This prevents them from doing that.
 
 </details>
 
-### Client Changes:
 <details><summary> Fade Horse as you look down</summary>
 
 ![image](https://i.imgur.com/kwtmFVd.gif)
