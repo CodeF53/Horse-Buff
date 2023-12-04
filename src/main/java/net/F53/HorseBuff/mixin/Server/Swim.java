@@ -18,32 +18,32 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class Swim {
     @Inject(method = "travelControlled", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;travel(Lnet/minecraft/util/math/Vec3d;)V", shift = At.Shift.BEFORE))
     private void fakeSwim(PlayerEntity controllingPlayer, Vec3d movementInput, CallbackInfo ci) {
-        AbstractHorseEntity horseEntity = (AbstractHorseEntity) (Object) this;
+        if (!((Object)this instanceof AbstractHorseEntity)) {return;}
+        AbstractHorseEntity horseInstance = (AbstractHorseEntity) (Object) this;
+        if (!shouldSwim(horseInstance)) {return;}
 
-        if (shouldSwim(horseEntity)) {
-            if (horseEntity.getFluidHeight(FluidTags.WATER) > horseEntity.getSwimHeight()) {
-                horseEntity.addVelocity(0, 0.08, 0);
-            }
+        if (horseInstance.getFluidHeight(FluidTags.WATER) > horseInstance.getSwimHeight()) {
+            horseInstance.addVelocity(0, 0.08, 0);
         }
     }
 
     @Unique
-    private boolean shouldSwim(AbstractHorseEntity horseEntity) {
-        if (horseEntity instanceof HorseEntity) {
+    private boolean shouldSwim(AbstractHorseEntity horseInstance) {
+        if (horseInstance instanceof HorseEntity ||
+            horseInstance instanceof DonkeyEntity ||
+            horseInstance instanceof MuleEntity) {
             return ModConfig.getInstance().swimHorse;
-        } else if (horseEntity instanceof MuleEntity) {
-            return ModConfig.getInstance().swimHorse;
-        } else if (horseEntity instanceof DonkeyEntity) {
-            return ModConfig.getInstance().swimHorse;
+        }
 
-        } else if (horseEntity instanceof CamelEntity) {
-            return ModConfig.getInstance().swimCamel;
-
-        } else if (horseEntity instanceof SkeletonHorseEntity) {
-            return ModConfig.getInstance().swimDead;
-        } else if (horseEntity instanceof ZombieHorseEntity) {
+        if (horseInstance instanceof SkeletonHorseEntity ||
+            horseInstance instanceof ZombieHorseEntity) {
             return ModConfig.getInstance().swimDead;
         }
-        return false;
+
+        if (horseInstance instanceof CamelEntity) {
+            return ModConfig.getInstance().swimCamel;
+        }
+
+        return false; // you should never be able to reach this, but if you do it defaults to vanilla behavior
     }
 }
