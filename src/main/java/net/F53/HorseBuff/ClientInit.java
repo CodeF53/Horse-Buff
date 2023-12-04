@@ -11,7 +11,7 @@ public class ClientInit implements ClientModInitializer {
     public static KeyBinding horsePlayerInventory = KeyBindingHelper.registerKeyBinding(new KeyBinding(
             "text.HorseBuff.keybinding.horsePlayerInventory",
             InputUtil.Type.KEYSYM,
-            GLFW.GLFW_MOD_ALT,
+            GLFW.GLFW_KEY_LEFT_ALT,
             "text.HorseBuff.keybinding.category"
     ));
 

@@ -33,7 +33,7 @@
   "text.autoconfig.HorseBuff.option.swimCamel": "Camels Swim",
   "text.autoconfig.HorseBuff.option.swimCamel.@Tooltip": "Yes - Lets camels swim when you are riding them.\nNo - Camels sink when you ride them in water (vanilla behavior)",
 
-  "text.autoconfig.HorseBuff.option.swimDead": "Horse, Mules, and Donkeys Swim",
+  "text.autoconfig.HorseBuff.option.swimDead": "Undead Horses Swim",
   "text.autoconfig.HorseBuff.option.swimDead.@Tooltip": "Yes - Lets Skeleton and Zombie horses swim when you are riding them.\nNo - Skeleton and Zombie horses sink when you ride them in water (vanilla behavior)",
 
   "text.autoconfig.HorseBuff.option.pitchFade": "Horse Fade",
