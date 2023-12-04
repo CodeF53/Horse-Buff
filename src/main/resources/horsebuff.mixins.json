@@ -12,14 +12,14 @@
     "Server.MovementCheck",
     "Server.NoBuck",
     "Server.NoWander",
-    "Server.StepHeight",
-    "Server.Swim"
+    "Server.StepHeight"
   ],
   "client": [
     "Client.HeadPitchOffset",
     "Client.HorseRenderer",
     "Client.InventoryAccessor",
     "Client.JebHorseTintable",
+    "Client.Swim",
     "Client.TransparentArmor",
     "Client.TransparentLlamaDecor",
     "Client.TransparentMarkings"
