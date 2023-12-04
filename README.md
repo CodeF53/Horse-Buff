@@ -61,7 +61,7 @@ This makes riding horses around path blocks way less frustrating.
 Normally Horses will sink in water when you are riding them.\
 This makes you float on the surface as if they weren't mounted.\
 The default configs turn this ability off for skeleton and zombie horses, and camels.\
-Have you ever seen a camel swim? i think not!
+Have you ever seen a camel swim? I think not!
 
 </details>
 
@@ -95,6 +95,6 @@ This prevents them from doing that.
 * Pre 1.20.2
   * Horse Buff pulls from your Minecraft keybinds, so if you change your inventory/sprint key, that will change what you need to press to access your survival inventory
 * Post 1.20.2
-  * A keybind for opening your inventory while on a horse has been added. Sprint + Inv (CTRL + E) is still the default, but you can change it now
+  * A keybind for opening your inventory while on a horse has been added. ALT + Inv (ALT + E) is now the default, but you can change it to whatever you like
 
 </details>
