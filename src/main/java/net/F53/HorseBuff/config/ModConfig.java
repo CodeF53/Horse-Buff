@@ -35,11 +35,15 @@ public class ModConfig implements ConfigData{
 
     @ConfigEntry.Category("Server")
     @ConfigEntry.Gui.Tooltip
-    public boolean swim = true;
+    public boolean swimHorse = true;
 
     @ConfigEntry.Category("Server")
     @ConfigEntry.Gui.Tooltip
-    public boolean undeadSwim = false;
+    public boolean swimCamel = false;
+
+    @ConfigEntry.Category("Server")
+    @ConfigEntry.Gui.Tooltip
+    public boolean swimDead = false;
 
     @ConfigEntry.Category("Client")
     @ConfigEntry.Gui.Tooltip

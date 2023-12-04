@@ -59,7 +59,9 @@ This makes riding horses around path blocks way less frustrating.
 <details><summary> Allow swimming while Mounted </summary>
 
 Normally Horses will sink in water when you are riding them.\
-This makes you float on the surface as if they weren't mounted
+This makes you float on the surface as if they weren't mounted.\
+The default configs turn this ability off for skeleton and zombie horses, and camels.\
+Have you ever seen a camel swim? i think not!
 
 </details>
 
