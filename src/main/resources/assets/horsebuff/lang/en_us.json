@@ -27,8 +27,14 @@
   "text.autoconfig.HorseBuff.option.noBuck": "Disable Random Bucking",
   "text.autoconfig.HorseBuff.option.noBuck.@Tooltip": "Yes - Prevents horses from randomly bucking while mounted, no more random stops!\nNo - vanilla behavior",
 
-  "text.autoconfig.HorseBuff.option.swim": "Horse Swimming",
-  "text.autoconfig.HorseBuff.option.swim.@Tooltip": "Yes - Lets horses swim when you are riding them.\nNo - Horses sink when you ride them in water (vanilla behavior)",
+  "text.autoconfig.HorseBuff.option.swimHorse": "Horse, Mules, and Donkeys Swim",
+  "text.autoconfig.HorseBuff.option.swimHorse.@Tooltip": "Yes - Lets horses, mules, and donkeys swim when you are riding them.\nNo - Horses, mules, and donkeys sink when you ride them in water (vanilla behavior)",
+
+  "text.autoconfig.HorseBuff.option.swimCamel": "Camels Swim",
+  "text.autoconfig.HorseBuff.option.swimCamel.@Tooltip": "Yes - Lets camels swim when you are riding them.\nNo - Camels sink when you ride them in water (vanilla behavior)",
+
+  "text.autoconfig.HorseBuff.option.swimDead": "Horse, Mules, and Donkeys Swim",
+  "text.autoconfig.HorseBuff.option.swimDead.@Tooltip": "Yes - Lets Skeleton and Zombie horses swim when you are riding them.\nNo - Skeleton and Zombie horses sink when you ride them in water (vanilla behavior)",
 
   "text.autoconfig.HorseBuff.option.pitchFade": "Horse Fade",
   "text.autoconfig.HorseBuff.option.pitchFade.@Tooltip": "When mounted, the horse gets more transparent the further you look down",
