@@ -48,5 +48,9 @@
   "text.autoconfig.HorseBuff.option.horseHeadAngleOffset.@Tooltip": "When mounted, horse heads are angled an extra N degrees down\n   0 is disabled\n   30 is good for visibility and style\n   45 is good for breaking necks",
 
   "text.autoconfig.HorseBuff.option.jeb_Horses": "jeb_ Horses",
-  "text.autoconfig.HorseBuff.option.jeb_Horses.@Tooltip": "Like sheep, horses will become RGB when named \"jeb\""
+  "text.autoconfig.HorseBuff.option.jeb_Horses.@Tooltip": "Like sheep, horses will become RGB when named \"jeb\"",
+
+
+  "text.HorseBuff.keybinding.category": "Horse Buff",
+  "text.HorseBuff.keybinding.horsePlayerInventory": "Open Inventory on Horse"
 }

@@ -87,10 +87,12 @@ This prevents them from doing that.
 ![image](https://i.imgur.com/QTk8w33.gif)
 
 </details>
-<details><summary> Sprint + Inventory to open survival inventory</summary>
+<details><summary> Hotkey to open survival inventory</summary>
 
 ![image](https://i.imgur.com/8oOswAR.png)
-
-*Horse Buff pulls from your Minecraft keybinds, so if you change your inventory/sprint key, that will change what you need to press to access your survival inventory
+* Pre 1.20.2
+  * Horse Buff pulls from your Minecraft keybinds, so if you change your inventory/sprint key, that will change what you need to press to access your survival inventory
+* Post 1.20.2
+  * A keybind for opening your inventory while on a horse has been added. Sprint + Inv (CTRL + E) is still the default, but you can change it now
 
 </details>

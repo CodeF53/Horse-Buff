@@ -40,7 +40,7 @@ dependencies {
 	// Fabric API
 	//modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 	modIncludeImplementation(fabricApi.module("fabric-api-base", project.fabric_version))
-	modIncludeImplementation(fabricApi.module("fabric-rendering-data-attachment-v1", project.fabric_version))
+	//modIncludeImplementation(fabricApi.module("fabric-rendering-data-attachment-v1", project.fabric_version)) // This tends to spit out errors, not sure why
 	modIncludeImplementation(fabricApi.module("fabric-lifecycle-events-v1", project.fabric_version))
 	modIncludeImplementation(fabricApi.module("fabric-registry-sync-v0", project.fabric_version))
 

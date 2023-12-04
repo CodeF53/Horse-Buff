@@ -21,6 +21,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [ "net.F53.HorseBuff.HorseBuffInit" ],
+    "client": [ "net.F53.HorseBuff.ClientInit" ],
     "modmenu": [ "net.F53.HorseBuff.config.ModMenuIntegration" ]
   },
   "mixins": [
@@ -28,8 +29,9 @@
   ],
 
   "depends": {
-    "fabricloader": ">=0.14.6",
-    "minecraft": ">=1.20 <1.20.2-",
-    "java": ">=17"
+    "fabricloader": ">=0.15.0",
+    "minecraft": ">=1.20.2",
+    "java": ">=17",
+    "fabric-key-binding-api-v1": "*"
   }
 }

@@ -33,9 +33,13 @@ public class ModConfig implements ConfigData{
     @ConfigEntry.Gui.Tooltip
     public boolean noBuck = true;
 
-    @ConfigEntry.Category("Client")
+    @ConfigEntry.Category("Server")
     @ConfigEntry.Gui.Tooltip
     public boolean swim = true;
+
+    @ConfigEntry.Category("Server")
+    @ConfigEntry.Gui.Tooltip
+    public boolean undeadSwim = false;
 
     @ConfigEntry.Category("Client")
     @ConfigEntry.Gui.Tooltip
