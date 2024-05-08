@@ -10,6 +10,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.passive.HorseEntity;
 import net.minecraft.util.Identifier;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
@@ -18,12 +19,13 @@ import static net.F53.HorseBuff.utils.RenderUtils.getOpacity;
 @Mixin(value = HorseArmorFeatureRenderer.class, priority = 960)
 public class TransparentArmor {
 
+    @Unique
     private float opacity;
 
     @Inject(method = "render(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;ILnet/minecraft/entity/passive/HorseEntity;FFFFFF)V",
     at = @At("HEAD"))
     void fetchOpacity(MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, HorseEntity horseEntity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch, CallbackInfo ci) {
-        if (horseEntity.hasArmorInSlot() && ModConfig.getInstance().pitchFade.enabled && horseEntity.hasPassenger(MinecraftClient.getInstance().player)) {
+        if (horseEntity.isWearingBodyArmor() && ModConfig.getInstance().pitchFade.enabled && horseEntity.hasPassenger(MinecraftClient.getInstance().player)) {
             ClientPlayerEntity player = MinecraftClient.getInstance().player;
             assert player != null;
             opacity = getOpacity(player);
