@@ -7,11 +7,12 @@
     "PortalHorse.AllowPortalUse",
     "PortalHorse.OnCollideEnd",
     "PortalHorse.TickNether",
+    "Server.AllowRaft",
     "Server.ClearFutureTickEvents",
+    "Server.MountedModifiers",
     "Server.MovementCheck",
     "Server.NoBuck",
-    "Server.NoWander",
-    "Server.MountedModifiers"
+    "Server.NoWander"
   ],
   "client": [
     "Client.HeadPitchOffset",
