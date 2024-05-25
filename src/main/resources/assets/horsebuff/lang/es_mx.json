@@ -1,0 +1,59 @@
+{
+  "text.autoconfig.HorseBuff.title": "Configuración de Horse Buff",
+
+  "text.autoconfig.HorseBuff.category.Server": "Servidor",
+  "text.autoconfig.HorseBuff.category.Client": "Cliente",
+
+
+
+  "text.autoconfig.HorseBuff.option.noWander": "Los Caballos no vagan",
+  "text.autoconfig.HorseBuff.option.noWander.@Tooltip": "Sí: los caballos con silla no vagarán. No: los caballos con silla vagarán",
+
+  "text.autoconfig.HorseBuff.option.fairBreeds": "Cambios en el algoritmo de cría",
+  "text.autoconfig.HorseBuff.option.fairBreeds.@Tooltip": "Sí: el juego utiliza un algoritmo de cría alternativo. No: el juego utiliza el algoritmo de cría estándar",
+
+  "text.autoconfig.HorseBuff.option.portalPatch": "Viajar a través de Portales",
+  "text.autoconfig.HorseBuff.option.portalPatch.@Tooltip": "Sí: te permite viajar a través de portales del Nether y del End mientras estás montado en un caballo. No: comportamiento estándar",
+
+  "text.autoconfig.HorseBuff.option.rubberBand": "Corregir el Retroceso en las Escaleras",
+  "text.autoconfig.HorseBuff.option.rubberBand.@Tooltip": "Sí: aumenta la tolerancia del servidor para la velocidad de movimiento del caballo, corrigiendo el retroceso. No: comportamiento estándar",
+
+  "text.autoconfig.HorseBuff.option.breakSpeed": "Eliminar la Penalización de Velocidad al Minar",
+  "text.autoconfig.HorseBuff.option.breakSpeed.@Tooltip": "Sí: permite minar a velocidad máxima mientras estás montado en un caballo. No: reduce drásticamente la velocidad de minería mientras estás montado en un caballo (comportamiento estándar)",
+
+  "text.autoconfig.HorseBuff.option.stepHeight": "Mejorar la Altura de Paso",
+  "text.autoconfig.HorseBuff.option.stepHeight.@Tooltip": "Sí: aumenta la altura de paso del caballo de 1 bloque a 1.1 bloques, lo que facilita el desplazamiento por bloques de camino. No: comportamiento estándar",
+
+  "text.autoconfig.HorseBuff.option.noBuck": "Desactivar el Empuje Aleatorio",
+  "text.autoconfig.HorseBuff.option.noBuck.@Tooltip": "Sí: evita que los caballos se empujen aleatoriamente mientras estás montado, ¡no más paradas aleatorias! No: comportamiento estándar",
+
+  "text.autoconfig.HorseBuff.option.swimHorse": "Caballos, Mulas y Burros Nadan",
+  "text.autoconfig.HorseBuff.option.swimHorse.@Tooltip": "Sí: permite que los caballos, mulas y burros naden cuando los montas. No: los caballos, mulas y burros se hunden cuando los montas en agua (comportamiento estándar)",
+
+  "text.autoconfig.HorseBuff.option.swimCamel": "Los Camellos Nadan",
+  "text.autoconfig.HorseBuff.option.swimCamel.@Tooltip": "Sí: permite que los camellos naden cuando los montas. No: los camellos se hunden cuando los montas en agua (comportamiento estándar)",
+
+  "text.autoconfig.HorseBuff.option.swimDead": "Los Caballos No Muertos Nadan",
+  "text.autoconfig.HorseBuff.option.swimDead.@Tooltip": "Sí: permite que los caballos esqueleto y los caballos zombi naden cuando los montas. No: los caballos esqueleto y los caballos zombi se hunden cuando los montas en agua (comportamiento estándar)",
+
+  "text.autoconfig.HorseBuff.option.pitchFade": "Transparencia del Caballo",
+  "text.autoconfig.HorseBuff.option.pitchFade.@Tooltip": "Cuando estás montado, el caballo se vuelve más transparente a medida que miras hacia abajo",
+
+  "text.autoconfig.HorseBuff.option.pitchFade.enabled": "Habilitado",
+
+  "text.autoconfig.HorseBuff.option.pitchFade.startAngle": "Ángulo de transparencia del 0%",
+  "text.autoconfig.HorseBuff.option.pitchFade.startAngle.@Tooltip": "El caballo no se desvanecerá por encima de este ángulo. Mirar por debajo de él comenzará a disminuir la opacidad",
+  "text.autoconfig.HorseBuff.option.pitchFade.endAngle": "Ángulo máximo de transparencia",
+  "text.autoconfig.HorseBuff.option.pitchFade.endAngle.@Tooltip": "Por debajo de este ángulo, el caballo es tan transparente como puede ser",
+  "text.autoconfig.HorseBuff.option.pitchFade.maxTransparency": "Transparencia máxima",
+  "text.autoconfig.HorseBuff.option.pitchFade.maxTransparency.@Tooltip": "Qué tan transparente puede ser el caballo. 100 es invisible",
+
+  "text.autoconfig.HorseBuff.option.horseHeadAngleOffset": "Desplazamiento de Inclinación de la Cabeza del Caballo",
+  "text.autoconfig.HorseBuff.option.horseHeadAngleOffset.@Tooltip": "Cuando estás montado, las cabezas de los caballos se inclinan N grados adicionales hacia abajo.\n   0 está desactivado.\n   30 es bueno para visibilidad y estilo.\n   45 es bueno para romper cuellos",
+
+  "text.autoconfig.HorseBuff.option.jeb_Horses": "Caballos jeb_",
+  "text.autoconfig.HorseBuff.option.jeb_Horses.@Tooltip": "Al igual que las ovejas, los caballos se vuelven RGB cuando se les pone el nombre \"jeb\"",
+
+  "text.HorseBuff.keybinding.category": "Horse Buff",
+  "text.HorseBuff.keybinding.horsePlayerInventory": "Abrir Inventario desde el Caballo"
+}
