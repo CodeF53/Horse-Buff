@@ -20,7 +20,7 @@ public class Swim {
     private void fakeSwim(PlayerEntity controllingPlayer, Vec3d movementInput, CallbackInfo ci) {
         if (!((Object)this instanceof AbstractHorseEntity)) {return;}
         AbstractHorseEntity horseInstance = (AbstractHorseEntity) (Object) this;
-        if (!shouldSwim(horseInstance)) {return;}
+        if (!hb$shouldSwim(horseInstance)) {return;}
 
         if (horseInstance.getFluidHeight(FluidTags.WATER) > horseInstance.getSwimHeight()) {
             horseInstance.addVelocity(0, 0.08, 0);
@@ -28,7 +28,7 @@ public class Swim {
     }
 
     @Unique
-    private boolean shouldSwim(AbstractHorseEntity horseInstance) {
+    private boolean hb$shouldSwim(AbstractHorseEntity horseInstance) {
         if (horseInstance instanceof HorseEntity ||
             horseInstance instanceof DonkeyEntity ||
             horseInstance instanceof MuleEntity) {

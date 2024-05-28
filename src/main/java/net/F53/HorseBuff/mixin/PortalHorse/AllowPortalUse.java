@@ -10,10 +10,12 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 
 @Mixin(AbstractHorseEntity.class)
 public abstract class AllowPortalUse extends LivingEntity {
-    @Shadow public abstract @Nullable LivingEntity getControllingPassenger();
+    @Shadow
+    public abstract @Nullable LivingEntity getControllingPassenger();
 
     // constructor to make compiler happy
     protected AllowPortalUse(EntityType<? extends LivingEntity> entityType, World world) {
@@ -22,7 +24,7 @@ public abstract class AllowPortalUse extends LivingEntity {
 
     @Override
     public boolean canUsePortals() {
-        if (!this.portalPatchApplies())
+        if (!this.hb$portalPatchApplies())
             return super.canUsePortals();
 
         return true;
@@ -31,7 +33,7 @@ public abstract class AllowPortalUse extends LivingEntity {
     @Override
     public void setInNetherPortal(BlockPos pos) {
         // make player inherit horse portal position when mounted
-        if (this.portalPatchApplies())
+        if (this.hb$portalPatchApplies())
             this.getControllingPassenger().setInNetherPortal(pos);
 
         super.setInNetherPortal(pos);
@@ -39,7 +41,7 @@ public abstract class AllowPortalUse extends LivingEntity {
 
     @Override
     public void resetPortalCooldown() {
-        if (this.portalPatchApplies()) {
+        if (this.hb$portalPatchApplies()) {
             // inherit portal cooldown of controlling passenger
             this.setPortalCooldown(this.getControllingPassenger().getDefaultPortalCooldown());
             return;
@@ -47,9 +49,10 @@ public abstract class AllowPortalUse extends LivingEntity {
         super.resetPortalCooldown();
     }
 
-    private boolean portalPatchApplies() {
+    @Unique
+    private boolean hb$portalPatchApplies() {
         return (ModConfig.getInstance().portalPatch
-            && this.hasControllingPassenger()
-            && this.getControllingPassenger() instanceof PlayerEntity);
+                && this.hasControllingPassenger()
+                && this.getControllingPassenger() instanceof PlayerEntity);
     }
 }

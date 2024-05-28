@@ -14,10 +14,10 @@ public class TickScheduler {
         ServerTickEvents.END_SERVER_TICK.register(server -> endServerTick());
     }
 
-    public static void endServerTick(){
+    public static void endServerTick() {
         toRun.addAll(runNextTick);
         runNextTick.clear();
-        while (toRun.size()>0){
+        while (!toRun.isEmpty()) {
             toRun.get(0).run();
             toRun.remove(0);
         }

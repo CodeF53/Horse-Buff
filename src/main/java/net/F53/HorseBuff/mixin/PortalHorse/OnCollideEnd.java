@@ -18,8 +18,8 @@ public class OnCollideEnd {
     public Entity bringRider(Entity vehicle, ServerWorld destination, Operation<Entity> original) {
         // guard clause to make vanilla handle natural teleportations
         if (!(ModConfig.getInstance().portalPatch
-            && vehicle instanceof AbstractHorseEntity
-            && vehicle.hasControllingPassenger()))
+                && vehicle instanceof AbstractHorseEntity
+                && vehicle.hasControllingPassenger()))
             return original.call(vehicle, destination);
 
         // Teleport then safely rejoin player and vehicle once the game is ready

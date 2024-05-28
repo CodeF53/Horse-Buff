@@ -13,54 +13,62 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.passive.AbstractHorseEntity;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.*;
+import org.spongepowered.asm.mixin.Unique;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyArgs;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 
 import java.awt.*;
 
-import static net.F53.HorseBuff.utils.RenderUtils.*;
+import static net.F53.HorseBuff.utils.RenderUtils.getOpacity;
+import static net.F53.HorseBuff.utils.RenderUtils.isJeb;
 
 @Mixin(value = LivingEntityRenderer.class, priority = 960)
 public abstract class HorseRenderer<T extends LivingEntity, M extends EntityModel<T>> {
+    @Unique
+    private boolean hb$isHorse;
 
-    private boolean isHorse;
+    @Unique
+    private float hb$opacity;
 
-    private float opacity;
-
-    private float r;
-    private float g;
-    private float b;
+    @Unique
+    private float hb$r;
+    @Unique
+    private float hb$g;
+    @Unique
+    private float hb$b;
 
     @Inject(method = "render(Lnet/minecraft/entity/LivingEntity;FFLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V",
-    at = @At("HEAD"))
+            at = @At("HEAD"))
     void fetchOpacityAndJeb(T livingEntity, float yaw, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, CallbackInfo ci) {
-        isHorse = false;
-        opacity = 1;
-        r = 1;
-        g = 1;
-        b = 1;
+        hb$isHorse = false;
+        hb$opacity = 1;
+        hb$r = 1;
+        hb$g = 1;
+        hb$b = 1;
         if (livingEntity instanceof AbstractHorseEntity) {
-            isHorse = true;
+            hb$isHorse = true;
             if (ModConfig.getInstance().pitchFade.enabled && livingEntity.hasPassenger(MinecraftClient.getInstance().player)) {
                 ClientPlayerEntity player = MinecraftClient.getInstance().player;
                 assert player != null;
-                opacity = getOpacity(player);
+                hb$opacity = getOpacity(player);
             }
             if (isJeb(livingEntity)) {
-                float hueOffset = (livingEntity.getUuid().hashCode()%5000)/5000f + (System.currentTimeMillis()%5000)/5000f;
+                float hueOffset = (livingEntity.getUuid().hashCode() % 5000) / 5000f + (System.currentTimeMillis() % 5000) / 5000f;
                 Color color = new Color(Color.HSBtoRGB(hueOffset, 0.8f, 1));
-                r = color.getRed()/255f;
-                g = color.getGreen()/255f;
-                b = color.getBlue()/255f;
+                hb$r = color.getRed() / 255f;
+                hb$g = color.getGreen() / 255f;
+                hb$b = color.getBlue() / 255f;
             }
         }
     }
 
     @WrapOperation(method = "render(Lnet/minecraft/entity/LivingEntity;FFLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V",
-    at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/entity/LivingEntityRenderer;getRenderLayer(Lnet/minecraft/entity/LivingEntity;ZZZ)Lnet/minecraft/client/render/RenderLayer;"))
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/entity/LivingEntityRenderer;getRenderLayer(Lnet/minecraft/entity/LivingEntity;ZZZ)Lnet/minecraft/client/render/RenderLayer;"))
     RenderLayer makeRenderLayerTranslucent(LivingEntityRenderer<T, ? extends EntityModel<T>> instance, T entity, boolean showBody, boolean translucent, boolean showOutline, Operation<RenderLayer> original) {
-        if (showBody && entity instanceof AbstractHorseEntity && opacity < 1) {
+        if (showBody && entity instanceof AbstractHorseEntity && hb$opacity < 1) {
             return RenderLayer.getItemEntityTranslucentCull(instance.getTexture(entity));
         } else {
             return original.call(instance, entity, showBody, translucent, showOutline);
@@ -68,13 +76,13 @@ public abstract class HorseRenderer<T extends LivingEntity, M extends EntityMode
     }
 
     @ModifyArgs(method = "render(Lnet/minecraft/entity/LivingEntity;FFLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V",
-    at = @At(value = "INVOKE", target = "net/minecraft/client/render/entity/model/EntityModel.render (Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumer;IIFFFF)V"))
-    void setOpacityAndChromaForRender(Args args){
-        if (isHorse) {
-            args.set(4, r);
-            args.set(5, g);
-            args.set(6, b);
-            args.set(7, Math.min(args.get(7), opacity));
+            at = @At(value = "INVOKE", target = "net/minecraft/client/render/entity/model/EntityModel.render (Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumer;IIFFFF)V"))
+    void setOpacityAndChromaForRender(Args args) {
+        if (hb$isHorse) {
+            args.set(4, hb$r);
+            args.set(5, hb$g);
+            args.set(6, hb$b);
+            args.set(7, Math.min(args.get(7), hb$opacity));
         }
     }
 }
