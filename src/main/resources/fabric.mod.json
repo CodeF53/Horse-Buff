@@ -2,9 +2,7 @@
   "schemaVersion": 1,
   "id": "horsebuff",
   "version": "${version}",
-
-  "accessWidener" : "horsebuff.accesswidener",
-
+  "accessWidener": "horsebuff.accesswidener",
   "name": "HorseBuff",
   "description": "Makes Horses better by removing stupid things",
   "authors": [
@@ -14,23 +12,31 @@
     "homepage": "https://modrinth.com/mod/horsebuff",
     "sources": "https://github.com/CodeF53/Horse-Buff"
   },
-
   "license": "CC BY-NC-SA",
   "icon": "assets/horsebuff/icon.png",
-
   "environment": "*",
   "entrypoints": {
-    "main": [ "net.F53.HorseBuff.HorseBuffInit" ],
-    "client": [ "net.F53.HorseBuff.ClientInit" ],
-    "modmenu": [ "net.F53.HorseBuff.config.ModMenuIntegration" ]
+    "main": [
+      "net.F53.HorseBuff.HorseBuffInit"
+    ],
+    "client": [
+      "net.F53.HorseBuff.ClientInit"
+    ],
+    "modmenu": [
+      "net.F53.HorseBuff.config.ModMenuIntegration"
+    ]
   },
   "mixins": [
     "horsebuff.mixins.json"
   ],
-
   "depends": {
     "fabricloader": ">=0.15.11",
-    "minecraft": ">=1.20.6",
-    "java": ">=17"
+    "minecraft": ">=1.21-",
+    "java": ">=17",
+    "fabric-api": "*",
+    "cloth-config": "*"
+  },
+  "suggests": {
+    "modmenu": "*"
   }
 }
