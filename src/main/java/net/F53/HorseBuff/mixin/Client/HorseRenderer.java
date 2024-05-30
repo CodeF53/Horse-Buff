@@ -12,16 +12,23 @@ import net.minecraft.util.DyeColor;
 import net.minecraft.util.math.ColorHelper.Argb;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(value = LivingEntityRenderer.class, priority = 960)
 public abstract class HorseRenderer {
+    @Inject(method = "render(Lnet/minecraft/entity/LivingEntity;FFLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V", at = @At("HEAD"))
+    void getAlpha(CallbackInfo ci, @Local(argsOnly = true) LivingEntity entity, @Share("alpha") LocalIntRef alpha) {
+        if (entity instanceof AbstractHorseEntity)
+            alpha.set(RenderUtils.getAlpha(entity));
+    }
+
     @ModifyArg(method = "render(Lnet/minecraft/entity/LivingEntity;FFLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V",
             at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/entity/model/EntityModel;render(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumer;III)V"),
             index = 4)
     int setOpacityAndChromaForRender(int color, @Local(argsOnly = true, ordinal = 1) float tickDelta, @Local(argsOnly = true) LivingEntity entity, @Share("alpha") LocalIntRef alpha) {
         if (!(entity instanceof AbstractHorseEntity)) return color;
-        alpha.set(RenderUtils.getAlpha(entity));
         if (RenderUtils.isJeb(entity)) {
             // see net/minecraft/client/render/entity/feature/SheepWoolFeatureRenderer
             int dyeIndex = entity.age / 25 + entity.getId();
@@ -39,10 +46,10 @@ public abstract class HorseRenderer {
     @ModifyArg(method = "render(Lnet/minecraft/entity/LivingEntity;FFLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V",
             at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/entity/LivingEntityRenderer;getRenderLayer(Lnet/minecraft/entity/LivingEntity;ZZZ)Lnet/minecraft/client/render/RenderLayer;"),
             index = 2)
-    boolean makeRenderLayerTranslucent(boolean translucent, @Local(argsOnly = true) LivingEntity entity, @Share("alpha") LocalIntRef alpha) {
+    boolean makeRenderLayerTranslucent(boolean translucent, @Local(argsOnly = true) LivingEntity entity, @Share("alpha") LocalIntRef alphaRef) {
         if (translucent) return true;
         if (entity instanceof AbstractHorseEntity)
-            return alpha.get() != 255;
+            return alphaRef.get() != 255;
         return false;
     }
 }
