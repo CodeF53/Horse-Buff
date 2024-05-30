@@ -9,92 +9,120 @@
 Improve horses by removing stupid stuff and adding useful stuff.
 
 ### Server Changes:
-<details><summary>
-Allow travel through portals without dismounting <a href="https://bugs.mojang.com/browse/MC-67">(MC-67)</a>*
-</summary>
-<sub><sup>*only fixes the bug for players riding vehicles as fully fixing the bug would screw with technical minecraft</sup></sub>
+<details>
+  <summary>Horses Sit in Rafts</summary>
 
-![image](https://i.imgur.com/cvph0Ye.gif)
+  Rafts only because its impossible to break boats when they are in a boat.
 
-![image](https://i.imgur.com/JeJNEgO.gif)
-
+  ![player sitting in a bamboo raft in a river with a horse](https://cdn.modrinth.com/data/cached_images/d2faef4b56e873ee8a20816b5276e52aa1b20bbc.png)
 </details>
-<details><summary> Fix rubberbanding on stairs/slabs "Horse moved wrongly!" <a href="https://bugs.mojang.com/browse/MC-100830">(MC-100830)</a></summary>
 
-![image](https://i.imgur.com/bXu7lt4.gif)
+<details>
+  <summary>
+    Fix rubber banding on stairs/slabs "Horse moved wrongly!"
+    <a href="https://bugs.mojang.com/browse/MC-100830">(MC-100830)</a>
+  </summary>
 
+  ![side by side comparison of going up a staircase with/without the mod. The without frequently goes back a couple of steps in a disorienting manner. The with doesn't have that and results in travel being faster](https://i.imgur.com/bXu7lt4.gif)
 </details>
-<details><summary> Better Breeding Logic *</summary>
 
-1. Take average of the parents' traits
-2. Random amount added/subtracted from said average
-      - +/- 10% of range between max and min
-3. clamp to vanilla min/max stat
+<details>
+  <summary> Saddled Horses don't wander</summary>
 
-(removed in 1.19.4 because they fixed it)
+  ![horse standing in place with a saddle on, extremely sped up](https://i.imgur.com/E0ZGzMU.gif)
 </details>
-<details><summary> Saddled Horses don't wander</summary>
 
-![image](https://i.imgur.com/E0ZGzMU.gif)
+<details>
+  <summary>Remove break speed debuff</summary>
 
+  Normally being mounted on a horse makes you mine at 1/5 the speed.
+  Now you can actually do stuff on horseback
+
+  ![side by side of mining sand on a horse with/without it enabled. It is significantly faster on horseback](https://i.imgur.com/DKqrGOD.gif)
 </details>
-<details><summary> Remove break speed debuff</summary>
 
-Allows players on horseback to mine at full speed.\
-Minecraft dramatically lowers break speed while a player is not on the ground.
+<details>
+  <summary>Improve "Step Height" capability</summary>
 
-![image](https://i.imgur.com/DKqrGOD.gif)
+  Increases horse step-height from 1 block to 1.1 blocks.\
+  This makes riding horses around path blocks way less frustrating.
 
-</details>
-<details><summary> Improve "Step Height" capability </summary>
-
-Increases horse step-height from 1 block to 1.1 blocks.\
-This makes riding horses around path blocks way less frustrating.
-
-![image](https://i.imgur.com/nvssVeA.gif)
-
+  ![side by side comparison of going down a path with the mod. Horse stops dead at a 1.1 block jump with it off, continues going without a hitch with it on](https://i.imgur.com/nvssVeA.gif)
 </details>
 
 ### Client Changes:
-<details><summary> Allow swimming while Mounted </summary>
+<details>
+  <summary>Allow swimming while Mounted</summary>
 
-Normally Horses will sink in water when you are riding them.\
-This makes you float on the surface as if they weren't mounted.\
-The default config turns this ability off for skeleton and zombie horses, and camels.\
-Have you ever seen a camel swim? I think not!
+  Normally Horses will sink in water when you are riding them.
+  This makes you float on the surface as if they weren't mounted.
+  The default config turns this ability off for undead horses and camels.
 
+  ![swimming in river on horseback without sinking](https://cdn.modrinth.com/data/IrrG0G8l/images/7235272ecbaa4682e915335f31b0b5e730b43a51.gif)
 </details>
 
-<details><summary> Prevent "Bucking" </summary>
+<details>
+  <summary> Prevent "Bucking" </summary>
 
-Normally horses will randomly "Buck", stopping dead in their tracks while you are riding them.\
-This prevents them from doing that.
-
+  Normally horses will randomly "Buck", stopping dead in their tracks while you are riding them.
+  This prevents them from doing that.
 </details>
 
-<details><summary> Fade Horse as you look down</summary>
+<details>
+  <summary> Fade Horse as you look down</summary>
 
-![image](https://i.imgur.com/kwtmFVd.gif)
-
+  ![going down a hill into a cave, looking down through horse for better navigation](https://i.imgur.com/kwtmFVd.gif)
 </details>
 
-<details><summary> Horse Head Pitch offset</summary>
+<details>
+  <summary>Horse Head Pitch offset</summary>
 
-![image](https://user-images.githubusercontent.com/37855219/163890939-87f3b255-176a-49df-ad4d-ec5b41a3b54a.png)
+  Option to lower horse's head down up to 45 degrees to improve visibility.
 
+  ![comparison of 0 vs 45 degree offset](https://user-images.githubusercontent.com/37855219/163890939-87f3b255-176a-49df-ad4d-ec5b41a3b54a.png)
 </details>
 
-<details><summary> Horses named `jeb_` become rainbow</summary>
+<details>
+  <summary> Horses named `jeb_` become rainbow</summary>
 
-![image](https://i.imgur.com/QTk8w33.gif)
-
+  ![Jeb_ rainbow horse, like the sheep easter egg](https://i.imgur.com/QTk8w33.gif)
 </details>
-<details><summary> Hotkey to open survival inventory</summary>
 
-![image](https://i.imgur.com/8oOswAR.png)
-* Pre 1.20.2
-  * Horse Buff pulls from your Minecraft keybinds, so if you change your inventory/sprint key, that will change what you need to press to access your survival inventory
-* Post 1.20.2
-  * A keybind for opening your inventory while on a horse has been added. ALT + Inv (ALT + E) is now the default, but you can change it to whatever you like
+<details>
+  <summary>Hotkey to open survival inventory</summary>
 
+  ![image](https://i.imgur.com/8oOswAR.png)
+  * Pre 1.20.2
+    * Horse Buff pulls from your Minecraft keybinds, so if you change your inventory/sprint key, that will change what you need to press to access your survival inventory
+  * Post 1.20.2
+    * A keybind for opening your inventory while on a horse has been added. ALT + Inv (ALT + E) is now the default, but you can change it to whatever you like
 </details>
+
+### Legacy features (removed due to them being added to the game officially)
+<details>
+  <summary>
+    [Server Side]
+    Allow travel through portals without dismounting
+    (1.16.5 - 1.20.6)
+  </summary>
+
+  <a href="https://bugs.mojang.com/browse MC-67">Minecraft Bug Tracker (MC-67) [Fixed]</a>
+  ![going through a nether portal on horseback without dismounting](https://i.imgur.com/cvph0Ye.gif)
+  ![going through an end portal on horseback without dismounting](https://i.imgur.com/JeJNEgO.gif)
+</details>
+
+<details>
+  <summary>
+    [Server Side]
+    Better Breeding Logic
+    (1.16.5 - 1.19.3)
+  </summary>
+
+  1. Take average of the parents' traits
+  2. Random amount added/subtracted from said average
+        - +/- 10% of range between max and min
+  3. clamp to vanilla min/max stat
+</details>
+
+### Related:
+Can't find your horse? Get [Horse Trumpet](https://modrinth.com/datapack/horse-trumpet)!
