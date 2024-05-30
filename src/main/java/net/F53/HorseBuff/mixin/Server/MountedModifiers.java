@@ -10,6 +10,7 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.passive.AbstractHorseEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -24,9 +25,9 @@ public abstract class MountedModifiers extends LivingEntity {
     }
 
     @Unique
-    EntityAttributeModifier mountedStepHeight = new EntityAttributeModifier("HorseBuff-MountedStepHeight", 0.1, EntityAttributeModifier.Operation.ADD_VALUE);
+    EntityAttributeModifier mountedStepHeight = new EntityAttributeModifier(new Identifier("horse-buff", "mounted-step-height"), 0.1, EntityAttributeModifier.Operation.ADD_VALUE);
     @Unique
-    EntityAttributeModifier mountedBreakSpeed = new EntityAttributeModifier("HorseBuff-MountedBreakSpeed", 5, EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE);
+    EntityAttributeModifier mountedBreakSpeed = new EntityAttributeModifier(new Identifier("horse-buff", "mounted-break-speed"), 5, EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE);
 
     @Override
     public boolean startRiding(Entity entity, boolean force) {
