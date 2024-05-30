@@ -125,4 +125,12 @@ Improve horses by removing stupid stuff and adding useful stuff.
 </details>
 
 ### Related:
-Can't find your horse? Get [Horse Trumpet](https://modrinth.com/datapack/horse-trumpet)!
+#### Server Side:
+- Can't find your horse? Get [Horse Trumpet](https://modrinth.com/datapack/horse-trumpet) (highlights your horse) or [Horse Whistle](https://modrinth.com/mod/eugenes-whistle-spur) (horse runs/tps to you)
+- Stop banging your head into stuff and taking damage [VehicleFix](https://modrinth.com/mod/vehiclefix) [Ride through forests with ease](https://modrinth.com/mod/leaf-me-alone)
+- Horse stat overhaul (horses get better the more you use them) [Superb Steeds](https://modrinth.com/mod/superb-steeds)
+- Upgrade horse speed with [Horseshoes](https://modrinth.com/mod/horseshoes)
+
+#### Client Side:
+- See how good your horse is [Horse Stats Vanilla](https://modrinth.com/mod/horsestatsvanilla)
+- [Better Mount HUD](https://modrinth.com/mod/better-mount-hud)
