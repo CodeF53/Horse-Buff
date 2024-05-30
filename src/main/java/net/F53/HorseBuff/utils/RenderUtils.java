@@ -2,26 +2,24 @@ package net.F53.HorseBuff.utils;
 
 import net.F53.HorseBuff.config.ModConfig;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.Entity;
 
 public class RenderUtils {
-    public static boolean isJeb(Entity horse){
-        return ModConfig.getInstance().jeb_Horses && horse.hasCustomName() && "jeb_".equals(horse.getName().getString());
+    public static boolean isJeb(Entity entity) {
+        return ModConfig.getInstance().jeb_Horses && entity.hasCustomName() && "jeb_".equals(entity.getName().getString());
     }
 
-    public static float getOpacity(ClientPlayerEntity player){
-        if (MinecraftClient.getInstance().options.getPerspective().isFirstPerson()) {
-            int fadeStartAngle = ModConfig.getInstance().pitchFade.startAngle;
-            int fadeEndAngle = ModConfig.getInstance().pitchFade.endAngle;
-            int minOpacity = 100 - ModConfig.getInstance().pitchFade.maxTransparency;
-            float rate = (100f - minOpacity) / (fadeStartAngle - fadeEndAngle);
+    public static int getAlpha(Entity horse) {
+        ModConfig.FadeConfig pitchFadeConfig = ModConfig.getInstance().pitchFade;
+        if (!pitchFadeConfig.enabled) return 255;
+        MinecraftClient client = MinecraftClient.getInstance();
+        if (client.player == null || !client.options.getPerspective().isFirstPerson() || !horse.hasPassenger(client.player))
+            return 255;
 
-            // ItemEntityTranslucentCull rendering is stupid, it stops rendering when transparency <= 10
-            minOpacity += 10;
+        int minAlpha = 255 - Math.round(pitchFadeConfig.maxTransparency * 2.25f);
+        int rate = (255 - minAlpha) / (pitchFadeConfig.startAngle - pitchFadeConfig.endAngle);
+        int unclampedAlpha = Math.round(rate * (client.player.renderPitch - pitchFadeConfig.endAngle));
 
-            return (Math.max(Math.min(100, rate * (player.renderPitch - fadeEndAngle)), minOpacity)) / 100f;
-        }
-        return 1;
+        return Math.min(Math.max(unclampedAlpha, minAlpha), 255);
     }
 }
