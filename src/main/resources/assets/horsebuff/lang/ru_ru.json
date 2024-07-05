@@ -1,0 +1,62 @@
+{
+  "text.autoconfig.HorseBuff.title": "Настройки лошадиных улучшений",
+
+  "text.autoconfig.HorseBuff.category.Server": "Сервер",
+  "text.autoconfig.HorseBuff.category.Client": "Клиент",
+
+
+
+  "text.autoconfig.HorseBuff.option.noWander": "Отключить блуждание лошадей",
+  "text.autoconfig.HorseBuff.option.noWander.@Tooltip": "Да — осёдланные лошади не будут блуждать.\nНет — осёдланные лошади будут блуждать.",
+
+  "text.autoconfig.HorseBuff.option.fairBreeds": "Изменения в размножении",
+  "text.autoconfig.HorseBuff.option.fairBreeds.@Tooltip": "Да — будет использоваться альтернативный алгоритм разведения.\nНет — будет использоваться ванильный алгоритм разведения.",
+
+  "text.autoconfig.HorseBuff.option.portalPatch": "Езда через порталы",
+  "text.autoconfig.HorseBuff.option.portalPatch.@Tooltip": "Да — Позволяет вам путешествовать через порталы Незера и Энда верхом на лошади.\nНет — ванильное поведение.",
+
+  "text.autoconfig.HorseBuff.option.rubberBand": "Исправить застревание на ступеньках",
+  "text.autoconfig.HorseBuff.option.rubberBand.@Tooltip": "Да — Увеличивает толерантность сервера к скорости передвижения лошади, устраняя застревание.\nНет — ванильное поведение.",
+
+  "text.autoconfig.HorseBuff.option.breakSpeed": "Снять ограничение скорости копания при езде верхом",
+  "text.autoconfig.HorseBuff.option.breakSpeed.@Tooltip": "Да — Позволяет вести копание на полной скорости верхом на лошади.\nНет — Значительно замедляет скорость копания во время езды верхом (ванильное поведение).",
+
+  "text.autoconfig.HorseBuff.option.stepHeight": "Увеличить высоту шага",
+  "text.autoconfig.HorseBuff.option.stepHeight.@Tooltip": "Да — Увеличивает высоту шага лошади с 1 до 1.1 блоков, что делает передвижение по блокам тропы намного более плавным.\nНет — ванильное поведение.",
+
+  "text.autoconfig.HorseBuff.option.noBuck": "Отключить случайное взбрыкивание",
+  "text.autoconfig.HorseBuff.option.noBuck.@Tooltip": "Да — Предотвращает случайное взбрыкивание лошадей во время езды верхом, больше никаких случайных остановок!\nНет — ванильное поведение.",
+
+  "text.autoconfig.HorseBuff.option.swimHorse": "Лошади, мулы и ослы плавают",
+  "text.autoconfig.HorseBuff.option.swimHorse.@Tooltip": "Да — Позволяет лошадям, мулам и ослам плавать, когда вы едете на них верхом.\nНет — Лошади, мулы и ослы тонут, когда вы едете на них верхом в воде (ванильное поведение).",
+
+  "text.autoconfig.HorseBuff.option.swimCamel": "Верблюды плавают",
+  "text.autoconfig.HorseBuff.option.swimCamel.@Tooltip": "Да — Позволяет верблюдам плавать, когда вы едете на них верхом.\nНет — Camels sink when you ride them in water (ванильное поведение).",
+
+  "text.autoconfig.HorseBuff.option.swimDead": "Лошади-нежити плавают",
+  "text.autoconfig.HorseBuff.option.swimDead.@Tooltip": "Да — Позволяет лошадям-скелетам и лошадям-зомби плавать, когда вы едете на них верхом.\nНет — Лошади-скелеты и лошади-зомби тонут, когда вы катаетесь на них в воде (ванильное поведение).",
+
+  "text.autoconfig.HorseBuff.option.pitchFade": "Прозрачность лошади",
+  "text.autoconfig.HorseBuff.option.pitchFade.@Tooltip": "Когда вы садитесь верхом, лошадь становится более прозрачной, чем дальше вы смотрите вниз.",
+
+  "text.autoconfig.HorseBuff.option.pitchFade.enabled": "Включено",
+
+  "text.autoconfig.HorseBuff.option.pitchFade.startAngle": "Угол прозрачности 0%",
+  "text.autoconfig.HorseBuff.option.pitchFade.startAngle.@Tooltip": "Выше этого угла лошадь не будет прозрачной\nесли посмотреть ниже, то непрозрачность начнёт уменьшаться.",
+  "text.autoconfig.HorseBuff.option.pitchFade.endAngle": "Максимальный угол прозрачности",
+  "text.autoconfig.HorseBuff.option.pitchFade.endAngle.@Tooltip": "Ниже этого угла лошадь настолько прозрачна, насколько это возможно.",
+  "text.autoconfig.HorseBuff.option.pitchFade.maxTransparency": "Максимальная прозрачность",
+  "text.autoconfig.HorseBuff.option.pitchFade.maxTransparency.@Tooltip": "Насколько прозрачной может стать лошадь\n100 означает невидимость.",
+
+
+
+  "text.autoconfig.HorseBuff.option.horseHeadAngleOffset": "Смещение угла наклона головы лошади",
+  "text.autoconfig.HorseBuff.option.horseHeadAngleOffset.@Tooltip": "Когда вы садитесь верхом, головы лошадей наклонены еще на N градусов вниз\n   Отключено при 0\n   30 — хорошо для видимости и стиля\n   45 — хорошо, чтобы ломать шеи.",
+
+  "text.autoconfig.HorseBuff.option.jeb_Horses": "Лошади «jeb_»",
+  "text.autoconfig.HorseBuff.option.jeb_Horses.@Tooltip": "Как и овцы, лошади станут переливаться цветами, если названы «jeb_».",
+
+
+  "text.HorseBuff.keybinding.category": "Улучшения лошадей",
+  "text.HorseBuff.keybinding.horsePlayerInventory": "Открыть инвентарь на лошади"
+}
