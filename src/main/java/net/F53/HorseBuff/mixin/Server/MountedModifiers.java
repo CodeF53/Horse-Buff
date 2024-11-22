@@ -25,9 +25,9 @@ public abstract class MountedModifiers extends LivingEntity {
     }
 
     @Unique
-    EntityAttributeModifier mountedStepHeight = new EntityAttributeModifier(new Identifier("horse-buff", "mounted-step-height"), 0.1, EntityAttributeModifier.Operation.ADD_VALUE);
+    EntityAttributeModifier mountedStepHeight = new EntityAttributeModifier(Identifier.of("horse-buff", "mounted-step-height"), 0.1, EntityAttributeModifier.Operation.ADD_VALUE);
     @Unique
-    EntityAttributeModifier mountedBreakSpeed = new EntityAttributeModifier(new Identifier("horse-buff", "mounted-break-speed"), 5, EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE);
+    EntityAttributeModifier mountedBreakSpeed = new EntityAttributeModifier(Identifier.of("horse-buff", "mounted-break-speed"), 5, EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE);
 
     @Override
     public boolean startRiding(Entity entity, boolean force) {
