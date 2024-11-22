@@ -30,7 +30,7 @@ public class TransparentLlamaDecor {
 
     @WrapOperation(method = "render(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;ILnet/minecraft/entity/passive/LlamaEntity;FFFFFF)V",
             at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/entity/model/LlamaEntityModel;render(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumer;II)V"))
-    void modifyOverlayAlpha(LlamaEntityModel<?> instance, MatrixStack matrixStack, VertexConsumer vertexConsumer, int light, int overlay, Operation<Void> original, @Share("alpha") LocalIntRef alpha) {
-        instance.render(matrixStack, vertexConsumer, light, overlay, ColorHelper.Argb.withAlpha(alpha.get(), 0xFFFFFF));
+    void modifyOverlayAlpha(LlamaEntityModel instance, MatrixStack matrixStack, VertexConsumer vertexConsumer, int light, int overlay, Operation<Void> original, @Share("alpha") LocalIntRef alpha) {
+        instance.render(matrixStack, vertexConsumer, light, overlay, ColorHelper.withAlpha(alpha.get(), 0xFFFFFF));
     }
 }

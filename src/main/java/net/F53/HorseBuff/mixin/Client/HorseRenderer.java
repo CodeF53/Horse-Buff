@@ -9,7 +9,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.passive.AbstractHorseEntity;
 import net.minecraft.entity.passive.SheepEntity;
 import net.minecraft.util.DyeColor;
-import net.minecraft.util.math.ColorHelper.Argb;
+import net.minecraft.util.math.ColorHelper;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -36,11 +36,11 @@ public abstract class HorseRenderer {
             int currentDye = SheepEntity.getRgbColor(DyeColor.byId(dyeIndex % numDyes));
             int nextDye = SheepEntity.getRgbColor(DyeColor.byId((dyeIndex + 1) % numDyes));
             float dyeTransitionProgress = ((float) (entity.age % 25) + tickDelta) / 25.0f;
-            color = Argb.lerp(dyeTransitionProgress, currentDye, nextDye);
+            color = ColorHelper.lerp(dyeTransitionProgress, currentDye, nextDye);
             // increase brightness by a bit because the horse texture is a bit dark
-            color = Argb.getArgb(Math.min(Argb.getRed(color) * 2, 255), Math.min(Argb.getGreen(color) * 2, 255), Math.min(Argb.getBlue(color) * 2, 255));
+            color = ColorHelper.getArgb(Math.min(ColorHelper.getRed(color) * 2, 255), Math.min(ColorHelper.getGreen(color) * 2, 255), Math.min(ColorHelper.getBlue(color) * 2, 255));
         }
-        return Argb.withAlpha(alpha.get(), color);
+        return ColorHelper.withAlpha(alpha.get(), color);
     }
 
     @ModifyArg(method = "render(Lnet/minecraft/entity/LivingEntity;FFLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V",

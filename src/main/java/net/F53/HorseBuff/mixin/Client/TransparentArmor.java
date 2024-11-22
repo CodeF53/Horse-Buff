@@ -9,7 +9,7 @@ import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.entity.feature.HorseArmorFeatureRenderer;
 import net.minecraft.entity.passive.HorseEntity;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.ColorHelper.Argb;
+import net.minecraft.util.math.ColorHelper;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
@@ -30,6 +30,6 @@ public class TransparentArmor {
             at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/entity/model/HorseEntityModel;render(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumer;III)V"),
             index = 4)
     int setOpacityForRender(int color, @Share("alpha") LocalIntRef alpha) {
-        return Argb.withAlpha(Math.min(Math.max(0, Argb.getAlpha(color)), alpha.get()), color);
+        return ColorHelper.withAlpha(Math.min(Math.max(0, ColorHelper.getAlpha(color)), alpha.get()), color);
     }
 }

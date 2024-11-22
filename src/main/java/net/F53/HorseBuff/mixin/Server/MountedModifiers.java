@@ -36,12 +36,12 @@ public abstract class MountedModifiers extends LivingEntity {
             return result;
 
         if (ModConfig.getInstance().stepHeight) {
-            EntityAttributeInstance stepHeight = horse.getAttributeInstance(EntityAttributes.GENERIC_STEP_HEIGHT);
+            EntityAttributeInstance stepHeight = horse.getAttributeInstance(EntityAttributes.STEP_HEIGHT);
             if (stepHeight != null) stepHeight.addTemporaryModifier(mountedStepHeight);
         }
 
         if (ModConfig.getInstance().breakSpeed) {
-            EntityAttributeInstance breakSpeed = getAttributeInstance(EntityAttributes.PLAYER_BLOCK_BREAK_SPEED);
+            EntityAttributeInstance breakSpeed = getAttributeInstance(EntityAttributes.BLOCK_BREAK_SPEED);
             if (breakSpeed != null) breakSpeed.addTemporaryModifier(mountedBreakSpeed);
         }
         return result;
@@ -59,10 +59,10 @@ public abstract class MountedModifiers extends LivingEntity {
             return;
         }
 
-        EntityAttributeInstance stepHeight = horse.getAttributeInstance(EntityAttributes.GENERIC_STEP_HEIGHT);
+        EntityAttributeInstance stepHeight = horse.getAttributeInstance(EntityAttributes.STEP_HEIGHT);
         if (stepHeight != null) stepHeight.removeModifier(mountedStepHeight);
 
-        EntityAttributeInstance breakSpeed = getAttributeInstance(EntityAttributes.PLAYER_BLOCK_BREAK_SPEED);
+        EntityAttributeInstance breakSpeed = getAttributeInstance(EntityAttributes.BLOCK_BREAK_SPEED);
         if (breakSpeed != null) breakSpeed.removeModifier(mountedBreakSpeed);
 
         super.stopRiding();
