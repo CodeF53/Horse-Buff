@@ -2,11 +2,15 @@ package net.F53.HorseBuff.utils;
 
 import net.F53.HorseBuff.config.ModConfig;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.render.entity.HorseEntityRenderer;
+import net.minecraft.client.render.entity.state.HorseEntityRenderState;
 import net.minecraft.entity.Entity;
+import net.minecraft.text.Text;
 
 public class RenderUtils {
-    public static boolean isJeb(Entity entity) {
-        return ModConfig.getInstance().jeb_Horses && entity.hasCustomName() && "jeb_".equals(entity.getName().getString());
+    public static boolean isJeb(HorseEntityRenderState entity) {
+        if (entity.customName != null)
+            return ModConfig.getInstance().jeb_Horses && entity.customName.equals(Text.of("jeb_"));
     }
 
     public static int getAlpha(Entity horse) {
