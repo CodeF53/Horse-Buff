@@ -11,6 +11,7 @@ public class RenderUtils {
     public static boolean isJeb(HorseEntityRenderState entity) {
         if (entity.customName != null)
             return ModConfig.getInstance().jeb_Horses && entity.customName.equals(Text.of("jeb_"));
+        else return false;
     }
 
     public static int getAlpha(Entity horse) {
