@@ -9,9 +9,7 @@ import net.minecraft.text.Text;
 
 public class RenderUtils {
     public static boolean isJeb(HorseEntityRenderState entity) {
-        if (entity.customName != null)
-            return ModConfig.getInstance().jeb_Horses && entity.customName.equals(Text.of("jeb_"));
-        else return false;
+        return ModConfig.getInstance().jeb_Horses && entity.customName != null && "jeb_".equals(entity.customName.getString());
     }
 
     public static int getAlpha(Entity horse) {
