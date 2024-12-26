@@ -18,15 +18,6 @@ Improve horses by removing stupid stuff and adding useful stuff.
 </details>
 
 <details>
-  <summary>
-    Fix rubber banding on stairs/slabs "Horse moved wrongly!"
-    <a href="https://bugs.mojang.com/browse/MC-100830">(MC-100830)</a>
-  </summary>
-
-  ![side by side comparison of going up a staircase with/without the mod. The without frequently goes back a couple of steps in a disorienting manner. The with doesn't have that and results in travel being faster](https://i.imgur.com/bXu7lt4.gif)
-</details>
-
-<details>
   <summary> Saddled Horses don't wander</summary>
 
   ![horse standing in place with a saddle on, extremely sped up](https://i.imgur.com/E0ZGzMU.gif)
@@ -105,6 +96,14 @@ Improve horses by removing stupid stuff and adding useful stuff.
 </details>
 
 ### Legacy features (removed due to them being added to the game officially)
+<details>
+  <summary>
+    [Server Side] Fix rubber banding on stairs/slabs "Horse moved wrongly!"
+    <a href="https://bugs.mojang.com/browse/MC-100830">(<s>MC-100830</s>)</a> (1.16.5 - 1.21.3)
+  </summary>
+
+![side by side comparison of going up a staircase with/without the mod. The without frequently goes back a couple of steps in a disorienting manner. The with doesn't have that and results in travel being faster](https://i.imgur.com/bXu7lt4.gif)
+</details>
 <details>
   <summary>
     [Server Side]

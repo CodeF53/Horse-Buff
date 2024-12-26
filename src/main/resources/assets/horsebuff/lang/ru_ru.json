@@ -9,9 +9,6 @@
   "text.autoconfig.HorseBuff.option.noWander": "Отключить блуждание лошадей",
   "text.autoconfig.HorseBuff.option.noWander.@Tooltip": "Да — осёдланные лошади не будут блуждать.\nНет — осёдланные лошади будут блуждать.",
 
-  "text.autoconfig.HorseBuff.option.rubberBand": "Исправить застревание на ступеньках",
-  "text.autoconfig.HorseBuff.option.rubberBand.@Tooltip": "Да — Увеличивает толерантность сервера к скорости передвижения лошади, устраняя застревание.\nНет — ванильное поведение.",
-
   "text.autoconfig.HorseBuff.option.breakSpeed": "Снять ограничение скорости копания при езде верхом",
   "text.autoconfig.HorseBuff.option.breakSpeed.@Tooltip": "Да — Позволяет вести копание на полной скорости верхом на лошади.\nНет — Значительно замедляет скорость копания во время езды верхом (ванильное поведение).",
 

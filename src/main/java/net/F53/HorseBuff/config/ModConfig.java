@@ -16,10 +16,6 @@ public class ModConfig implements ConfigData{
 
     @ConfigEntry.Category("Server")
     @ConfigEntry.Gui.Tooltip
-    public boolean rubberBand = true;
-
-    @ConfigEntry.Category("Server")
-    @ConfigEntry.Gui.Tooltip
     public boolean breakSpeed = true;
 
     @ConfigEntry.Category("Server")

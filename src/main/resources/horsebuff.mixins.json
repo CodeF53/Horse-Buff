@@ -6,7 +6,6 @@
   "mixins": [
     "Server.AllowRaft",
     "Server.MountedModifiers",
-    "Server.MovementCheck",
     "Server.NoBuck",
     "Server.NoWander"
   ],

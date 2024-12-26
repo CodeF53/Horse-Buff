@@ -9,9 +9,6 @@
   "text.autoconfig.HorseBuff.option.noWander": "Los Caballos no vagan",
   "text.autoconfig.HorseBuff.option.noWander.@Tooltip": "Sí: los caballos con silla no vagarán. No: los caballos con silla vagarán",
 
-  "text.autoconfig.HorseBuff.option.rubberBand": "Corregir el Retroceso en las Escaleras",
-  "text.autoconfig.HorseBuff.option.rubberBand.@Tooltip": "Sí: aumenta la tolerancia del servidor para la velocidad de movimiento del caballo, corrigiendo el retroceso. No: comportamiento estándar",
-
   "text.autoconfig.HorseBuff.option.breakSpeed": "Eliminar la Penalización de Velocidad al Minar",
   "text.autoconfig.HorseBuff.option.breakSpeed.@Tooltip": "Sí: permite minar a velocidad máxima mientras estás montado en un caballo. No: reduce drásticamente la velocidad de minería mientras estás montado en un caballo (comportamiento estándar)",
 

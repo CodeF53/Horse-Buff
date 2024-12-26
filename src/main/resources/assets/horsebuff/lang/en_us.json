@@ -9,9 +9,6 @@
   "text.autoconfig.HorseBuff.option.noWander": "No Horse Wandering",
   "text.autoconfig.HorseBuff.option.noWander.@Tooltip": "Yes - saddled horses wont wander.\nNo - saddled horses will wander",
 
-  "text.autoconfig.HorseBuff.option.rubberBand": "Fix Rubberbanding on Stairs",
-  "text.autoconfig.HorseBuff.option.rubberBand.@Tooltip": "Yes - Increases server tolerance for Horse movement speed, fixing rubberbanding.\nNo - vanilla behavior",
-
   "text.autoconfig.HorseBuff.option.breakSpeed": "Remove Riding Breakspeed Debuff",
   "text.autoconfig.HorseBuff.option.breakSpeed.@Tooltip": "Yes - Allows mining at full speed while on horseback.\nNo - Dramatically slows mining speed while on horseback (vanilla behavior)",
 

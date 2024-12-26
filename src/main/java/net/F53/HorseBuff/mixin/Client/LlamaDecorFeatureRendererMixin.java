@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(value = LlamaDecorFeatureRenderer.class, priority = 960)
 public class LlamaDecorFeatureRendererMixin {
 
-    @Inject(method = "render(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;Lnet/minecraft/client/render/entity/state/LlamaEntityRenderState;Lnet/minecraft/item/ItemStack;Lnet/minecraft/util/Identifier;I)V",
+    @Inject(method = "render(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;Lnet/minecraft/client/render/entity/state/LlamaEntityRenderState;Lnet/minecraft/item/ItemStack;Lnet/minecraft/registry/RegistryKey;I)V",
             at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/entity/model/LlamaEntityModel;setAngles(Lnet/minecraft/client/render/entity/state/LlamaEntityRenderState;)V",
                     shift = At.Shift.AFTER))
     void updatePlayerPassenger(CallbackInfo callbackInfo, @Local(argsOnly = true) LlamaEntityRenderState llamaEntityRenderState, @Local LlamaEntityModel llamaEntityModel) {
