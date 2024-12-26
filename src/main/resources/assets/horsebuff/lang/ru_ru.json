@@ -9,12 +9,6 @@
   "text.autoconfig.HorseBuff.option.noWander": "Отключить блуждание лошадей",
   "text.autoconfig.HorseBuff.option.noWander.@Tooltip": "Да — осёдланные лошади не будут блуждать.\nНет — осёдланные лошади будут блуждать.",
 
-  "text.autoconfig.HorseBuff.option.fairBreeds": "Изменения в размножении",
-  "text.autoconfig.HorseBuff.option.fairBreeds.@Tooltip": "Да — будет использоваться альтернативный алгоритм разведения.\nНет — будет использоваться ванильный алгоритм разведения.",
-
-  "text.autoconfig.HorseBuff.option.portalPatch": "Езда через порталы",
-  "text.autoconfig.HorseBuff.option.portalPatch.@Tooltip": "Да — Позволяет вам путешествовать через порталы Незера и Энда верхом на лошади.\nНет — ванильное поведение.",
-
   "text.autoconfig.HorseBuff.option.rubberBand": "Исправить застревание на ступеньках",
   "text.autoconfig.HorseBuff.option.rubberBand.@Tooltip": "Да — Увеличивает толерантность сервера к скорости передвижения лошади, устраняя застревание.\nНет — ванильное поведение.",
 

@@ -11,7 +11,8 @@ import org.spongepowered.asm.mixin.injection.ModifyConstant;
 
 // Disable movement checks for Players on Horses, fixing MC-100830
 @Mixin(value = ServerPlayNetworkHandler.class, priority = 960)
-public class MovementCheck {
+public abstract class MovementCheck {
+
 	@Shadow public ServerPlayerEntity player;
 
 	// TODO: figure out safer alternative to ModifyConstant here (not easy)

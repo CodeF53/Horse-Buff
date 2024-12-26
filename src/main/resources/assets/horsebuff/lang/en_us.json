@@ -9,12 +9,6 @@
   "text.autoconfig.HorseBuff.option.noWander": "No Horse Wandering",
   "text.autoconfig.HorseBuff.option.noWander.@Tooltip": "Yes - saddled horses wont wander.\nNo - saddled horses will wander",
 
-  "text.autoconfig.HorseBuff.option.fairBreeds": "Breeding Changes",
-  "text.autoconfig.HorseBuff.option.fairBreeds.@Tooltip": "Yes - game uses alternate breeding algorithm.\nNo - game uses vanilla breeding algorithm",
-
-  "text.autoconfig.HorseBuff.option.portalPatch": "Ride Through Portals",
-  "text.autoconfig.HorseBuff.option.portalPatch.@Tooltip": "Yes - Allows you to travel through nether and end portals while mounted on horseback.\nNo - vanilla behavior",
-
   "text.autoconfig.HorseBuff.option.rubberBand": "Fix Rubberbanding on Stairs",
   "text.autoconfig.HorseBuff.option.rubberBand.@Tooltip": "Yes - Increases server tolerance for Horse movement speed, fixing rubberbanding.\nNo - vanilla behavior",
 
