@@ -2,23 +2,25 @@
   "required": true,
   "minVersion": "0.8",
   "package": "net.F53.HorseBuff.mixin",
-  "compatibilityLevel": "JAVA_16",
+  "compatibilityLevel": "JAVA_21",
   "mixins": [
     "Server.AllowRaft",
     "Server.MountedModifiers",
-    "Server.MovementCheck",
     "Server.NoBuck",
     "Server.NoWander"
   ],
   "client": [
     "Client.HeadPitchOffset",
-    "Client.HorseRenderer",
+    "Client.HorseArmorFeatureRendererMixin",
     "Client.InventoryAccessor",
     "Client.JebHorseTintable",
+    "Client.LivingEntityRendererMixin",
+    "Client.LlamaDecorFeatureRendererMixin",
+    "Client.RideableEquippableEntityModelMixin",
+    "Client.RideableEntityRenderStateMixin",
     "Client.Swim",
-    "Client.TransparentArmor",
-    "Client.TransparentLlamaDecor",
-    "Client.TransparentMarkings"
+    "Client.TransparentEquipment",
+    "Client.TransparentHorseMarkings"
   ],
   "injectors": {
     "defaultRequire": 1

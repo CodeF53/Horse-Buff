@@ -12,18 +12,9 @@ Improve horses by removing stupid stuff and adding useful stuff.
 <details>
   <summary>Horses Sit in Rafts</summary>
 
-  Rafts only because its impossible to break boats when they are in a boat.
+  Rafts only because its impossible to break boats when they are in a boat. Works with horses, donkeys, mules, zombie horses, skeleton horses, camels and llamas.
 
   ![player sitting in a bamboo raft in a river with a horse](https://cdn.modrinth.com/data/cached_images/d2faef4b56e873ee8a20816b5276e52aa1b20bbc.png)
-</details>
-
-<details>
-  <summary>
-    Fix rubber banding on stairs/slabs "Horse moved wrongly!"
-    <a href="https://bugs.mojang.com/browse/MC-100830">(MC-100830)</a>
-  </summary>
-
-  ![side by side comparison of going up a staircase with/without the mod. The without frequently goes back a couple of steps in a disorienting manner. The with doesn't have that and results in travel being faster](https://i.imgur.com/bXu7lt4.gif)
 </details>
 
 <details>
@@ -71,6 +62,8 @@ Improve horses by removing stupid stuff and adding useful stuff.
 <details>
   <summary> Fade Horse as you look down</summary>
 
+  The same applies to donkeys, mules, zombie horses, skeleton horses, camels and llamas.
+
   ![going down a hill into a cave, looking down through horse for better navigation](https://i.imgur.com/kwtmFVd.gif)
 </details>
 
@@ -78,6 +71,7 @@ Improve horses by removing stupid stuff and adding useful stuff.
   <summary>Horse Head Pitch offset</summary>
 
   Option to lower horse's head down up to 45 degrees to improve visibility.
+  Works with horses, donkeys, mules, zombie horses and skeleton horses.
 
   ![comparison of 0 vs 45 degree offset](https://user-images.githubusercontent.com/37855219/163890939-87f3b255-176a-49df-ad4d-ec5b41a3b54a.png)
 </details>
@@ -85,7 +79,10 @@ Improve horses by removing stupid stuff and adding useful stuff.
 <details>
   <summary> Horses named `jeb_` become rainbow</summary>
 
+  The same can be applied to donkeys, mules, camels, llamas, zombie horses and skeleton horses.
+
   ![Jeb_ rainbow horse, like the sheep easter egg](https://i.imgur.com/QTk8w33.gif)
+
 </details>
 
 <details>
@@ -99,6 +96,14 @@ Improve horses by removing stupid stuff and adding useful stuff.
 </details>
 
 ### Legacy features (removed due to them being added to the game officially)
+<details>
+  <summary>
+    [Server Side] Fix rubber banding on stairs/slabs "Horse moved wrongly!"
+    <a href="https://bugs.mojang.com/browse/MC-100830">(<s>MC-100830</s>)</a> (1.16.5 - 1.21.3)
+  </summary>
+
+![side by side comparison of going up a staircase with/without the mod. The without frequently goes back a couple of steps in a disorienting manner. The with doesn't have that and results in travel being faster](https://i.imgur.com/bXu7lt4.gif)
+</details>
 <details>
   <summary>
     [Server Side]

@@ -20,14 +20,15 @@ import org.spongepowered.asm.mixin.Unique;
 // - remove BreakSpeed debuff from not being grounded (when enabled)
 @Mixin(value = PlayerEntity.class, priority = 960)
 public abstract class MountedModifiers extends LivingEntity {
+
     protected MountedModifiers(EntityType<? extends LivingEntity> entityType, World world) {
         super(entityType, world);
     }
 
     @Unique
-    EntityAttributeModifier mountedStepHeight = new EntityAttributeModifier(new Identifier("horse-buff", "mounted-step-height"), 0.1, EntityAttributeModifier.Operation.ADD_VALUE);
+    EntityAttributeModifier horsebuff$mountedStepHeight = new EntityAttributeModifier(Identifier.of("horse-buff", "mounted-step-height"), 0.1, EntityAttributeModifier.Operation.ADD_VALUE);
     @Unique
-    EntityAttributeModifier mountedBreakSpeed = new EntityAttributeModifier(new Identifier("horse-buff", "mounted-break-speed"), 5, EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE);
+    EntityAttributeModifier horsebuff$mountedBreakSpeed = new EntityAttributeModifier(Identifier.of("horse-buff", "mounted-break-speed"), 5, EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE);
 
     @Override
     public boolean startRiding(Entity entity, boolean force) {
@@ -36,13 +37,13 @@ public abstract class MountedModifiers extends LivingEntity {
             return result;
 
         if (ModConfig.getInstance().stepHeight) {
-            EntityAttributeInstance stepHeight = horse.getAttributeInstance(EntityAttributes.GENERIC_STEP_HEIGHT);
-            if (stepHeight != null) stepHeight.addTemporaryModifier(mountedStepHeight);
+            EntityAttributeInstance stepHeight = horse.getAttributeInstance(EntityAttributes.STEP_HEIGHT);
+            if (stepHeight != null) stepHeight.addTemporaryModifier(horsebuff$mountedStepHeight);
         }
 
         if (ModConfig.getInstance().breakSpeed) {
-            EntityAttributeInstance breakSpeed = getAttributeInstance(EntityAttributes.PLAYER_BLOCK_BREAK_SPEED);
-            if (breakSpeed != null) breakSpeed.addTemporaryModifier(mountedBreakSpeed);
+            EntityAttributeInstance breakSpeed = getAttributeInstance(EntityAttributes.BLOCK_BREAK_SPEED);
+            if (breakSpeed != null) breakSpeed.addTemporaryModifier(horsebuff$mountedBreakSpeed);
         }
         return result;
     }
@@ -59,11 +60,11 @@ public abstract class MountedModifiers extends LivingEntity {
             return;
         }
 
-        EntityAttributeInstance stepHeight = horse.getAttributeInstance(EntityAttributes.GENERIC_STEP_HEIGHT);
-        if (stepHeight != null) stepHeight.removeModifier(mountedStepHeight);
+        EntityAttributeInstance stepHeight = horse.getAttributeInstance(EntityAttributes.STEP_HEIGHT);
+        if (stepHeight != null) stepHeight.removeModifier(horsebuff$mountedStepHeight);
 
-        EntityAttributeInstance breakSpeed = getAttributeInstance(EntityAttributes.PLAYER_BLOCK_BREAK_SPEED);
-        if (breakSpeed != null) breakSpeed.removeModifier(mountedBreakSpeed);
+        EntityAttributeInstance breakSpeed = getAttributeInstance(EntityAttributes.BLOCK_BREAK_SPEED);
+        if (breakSpeed != null) breakSpeed.removeModifier(horsebuff$mountedBreakSpeed);
 
         super.stopRiding();
     }

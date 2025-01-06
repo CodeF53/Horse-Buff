@@ -1,9 +1,10 @@
 package net.F53.HorseBuff.config;
 
 import me.shedaniel.autoconfig.AutoConfig;
-import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer;
 import me.shedaniel.autoconfig.ConfigData;
-import me.shedaniel.autoconfig.annotation.*;
+import me.shedaniel.autoconfig.annotation.Config;
+import me.shedaniel.autoconfig.annotation.ConfigEntry;
+import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer;
 
 
 @SuppressWarnings("CanBeFinal")
@@ -12,14 +13,6 @@ public class ModConfig implements ConfigData{
     @ConfigEntry.Category("Server")
     @ConfigEntry.Gui.Tooltip
     public boolean noWander = true;
-
-    @ConfigEntry.Category("Server")
-    @ConfigEntry.Gui.Tooltip
-    public boolean portalPatch = true;
-
-    @ConfigEntry.Category("Server")
-    @ConfigEntry.Gui.Tooltip
-    public boolean rubberBand = true;
 
     @ConfigEntry.Category("Server")
     @ConfigEntry.Gui.Tooltip
