@@ -24,9 +24,10 @@ public abstract class TransparentEquipment {
     @WrapOperation(method = "render(Lnet/minecraft/client/render/entity/equipment/EquipmentModel$LayerType;Lnet/minecraft/registry/RegistryKey;Lnet/minecraft/client/model/Model;Lnet/minecraft/item/ItemStack;Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;ILnet/minecraft/util/Identifier;)V",
             at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/RenderLayer;getArmorCutoutNoCull(Lnet/minecraft/util/Identifier;)Lnet/minecraft/client/render/RenderLayer;"))
     RenderLayer makeRenderLayerTranslucent(Identifier texture, Operation<RenderLayer> original, @Local(argsOnly = true) Model model, @Share("alpha") LocalIntRef alpha) {
-        if(model instanceof ExtendedRideableEquippableEntityModel extendedRideableEquippableEntityModel) {
-            alpha.set(RenderUtils.getAlpha(extendedRideableEquippableEntityModel.horsebuff$isPlayerPassenger()));
+        if(!(model instanceof ExtendedRideableEquippableEntityModel extendedRideableEquippableEntityModel)) {
+            return original.call(texture);
         }
+        alpha.set(RenderUtils.getAlpha(extendedRideableEquippableEntityModel.horsebuff$isPlayerPassenger()));
         if (alpha.get() == 255) return original.call(texture);
         return RenderLayer.getItemEntityTranslucentCull(texture);
     }
