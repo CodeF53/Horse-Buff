@@ -6,6 +6,7 @@ import net.fabricmc.api.ModInitializer;
 import net.F53.HorseBuff.config.ModConfig;
 
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
+import net.minecraft.client.particle.RainSplashParticle;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
