@@ -1,12 +1,12 @@
 package net.F53.HorseBuff.mixin.Client;
 
+import net.F53.HorseBuff.ClientInit;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.ingame.InventoryScreen;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.tutorial.TutorialManager;
 import org.jetbrains.annotations.Nullable;
-import org.lwjgl.glfw.GLFW;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -24,9 +24,7 @@ public abstract class InventoryAccessor {
     @Redirect(method= "handleInputEvents()V", at = @At(value = "INVOKE", target = "net/minecraft/client/network/ClientPlayerEntity.openRidingInventory ()V"))
     void playerInventoryAccess(ClientPlayerEntity instance) {
         assert this.player != null;
-        boolean leftControl = GLFW.glfwGetKey(MinecraftClient.getInstance().getWindow().getHandle(), GLFW.GLFW_KEY_LEFT_CONTROL) == 1;
-        boolean rightControl = GLFW.glfwGetKey(MinecraftClient.getInstance().getWindow().getHandle(), GLFW.GLFW_KEY_RIGHT_CONTROL) == 1;
-        if (leftControl || rightControl) {
+        if (ClientInit.horsePlayerInventory.isPressed()) {
             tutorialManager.onInventoryOpened();
             setScreen(new InventoryScreen(this.player));
         } else {
