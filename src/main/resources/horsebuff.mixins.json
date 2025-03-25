@@ -12,8 +12,7 @@
     "Server.MovementCheck",
     "Server.NoBuck",
     "Server.NoWander",
-    "Server.StepHeight",
-    "Server.Swim"
+    "Server.StepHeight"
   ],
   "client": [
     "Client.HeadPitchOffset",
@@ -22,7 +21,8 @@
     "Client.JebHorseTintable",
     "Client.TransparentArmor",
     "Client.TransparentLlamaDecor",
-    "Client.TransparentMarkings"
+    "Client.TransparentMarkings",
+    "Client.Swim"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -1,5 +1,6 @@
 package net.F53.HorseBuff.mixin.Client;
 
+import net.F53.HorseBuff.ClientInit;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.ingame.InventoryScreen;
@@ -21,13 +22,12 @@ public abstract class InventoryAccessor {
     @Shadow @Nullable public ClientPlayerEntity player;
 
     @Redirect(method= "handleInputEvents()V", at = @At(value = "INVOKE", target = "net/minecraft/client/network/ClientPlayerEntity.openRidingInventory ()V"))
-    void playerInventoryAccess(ClientPlayerEntity instance){
+    void playerInventoryAccess(ClientPlayerEntity instance) {
         assert this.player != null;
-        if (MinecraftClient.getInstance().options.sprintKey.isPressed()) {
+        if (ClientInit.horsePlayerInventory.isPressed()) {
             tutorialManager.onInventoryOpened();
             setScreen(new InventoryScreen(this.player));
-        }
-        else {
+        } else {
             instance.openRidingInventory();
         }
     }
