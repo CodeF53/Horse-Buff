@@ -1,3 +1,5 @@
+Horse Buff's feature-set is in the process of being merged into [HorseMan](https://modrinth.com/mod/horseman). This project is deprecated and wont be updated anymore.
+
 # Horse Buff
 ![Banner_Huge](https://user-images.githubusercontent.com/37855219/141597249-7a6a7d25-8da8-43ac-a10f-bd12d3e1577f.png)
 [![CC BY-NC-SA 4.0][cc-by-nc-sa-image]][cc-by-nc-sa]
