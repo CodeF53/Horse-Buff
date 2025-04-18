@@ -1,6 +1,5 @@
-Horse Buff's feature-set is in the process of being merged into [HorseMan](https://modrinth.com/mod/horseman). This project is deprecated and wont be updated anymore.
-
-![Conversation with Mortuus regarding letting them adopt HorseBuff's featureset into HorseMan](https://cdn.modrinth.com/data/cached_images/902a5c74ae1c45d6e39a63f863a79c2bf4679a03.png)
+## !! Deprecation Notice !!
+Horse Buff's entire feature-set can be found in [HorseMan](https://modrinth.com/mod/horseman) 1.3.0+
 
 # Horse Buff
 ![Banner_Huge](https://user-images.githubusercontent.com/37855219/141597249-7a6a7d25-8da8-43ac-a10f-bd12d3e1577f.png)
